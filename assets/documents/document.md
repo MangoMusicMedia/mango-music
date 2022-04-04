@@ -233,6 +233,7 @@
 ```
 {
     _id: ObjectId("5349b4ddd2781d08c09890f3"),
+    post: ObjectId("5d8d5b50a5b9d4a3c40h2571"),
     author: ObjectId("5d8d5b50a5b9d4a3c402f571"),
     message: "Great choice!",
     dateCreated: new Date(2022,04,04,10,00)
@@ -244,6 +245,7 @@
 ```
 {
     _id: ObjectId("5349b4ddd2781d08c09890f3"),
+    post: ObjectId("5d8d5b50a5b9d4a3c40h2571"),
     user: ObjectId("5d8d5b50a5b9d4a3c402f571")
 }
 ```
