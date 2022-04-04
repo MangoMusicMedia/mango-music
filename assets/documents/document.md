@@ -1,6 +1,6 @@
 # Document Design
 ## users
-### document
+### document sample
 ```
 {
     _id: ObjectId("5d8d5b50a5b9d4a3c402f571"),
@@ -11,6 +11,19 @@
         ObjectId("4a1h3m42a5b9d4i9dc405l721"),
         ObjectId("b9x2m45a5b7h7e3ml403a091"),
         ObjectId("1k3b5f87x5s6c7i2mp814g524")
+    ],
+    followers: [
+        ObjectId("4a23hm42a5b9d4i9dc405l721"),
+        ObjectId("b923h45a5b7h7e3ml403a091"),
+        ObjectId("1k23hf87x5s6c7i2mp814g524")
+    ],
+    playlists: [
+        ObjectId("4lgmhm42a5b9d4i9dc405l721"),
+        ObjectId("blgmh45a5b7h7e3ml403a091"),
+        ObjectId("1lgmhf87x5s6c7i2mp814g524")
+    ],
+    likedPosts: [
+        ObjectId("4a1h3m42a5b9d4i9dc405l721")
     ]
 }
 ```
@@ -216,13 +229,22 @@
 ```
 
 ## comments
-### document sample (Embedded)
+### document sample
 ```
 {
     _id: ObjectId("5349b4ddd2781d08c09890f3"),
     author: ObjectId("5d8d5b50a5b9d4a3c402f571"),
     message: "Great choice!",
     dateCreated: new Date(2022,04,04,10,00)
+}
+```
+
+## Post Likes
+### document sample
+```
+{
+    _id: ObjectId("5349b4ddd2781d08c09890f3"),
+    user: ObjectId("5d8d5b50a5b9d4a3c402f571")
 }
 ```
 
