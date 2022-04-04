@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+app.get("/", (req, res) => {
+  res.send("test");
+});
+
 app.use(bodyParser.json());
 app.use(passport.initialize());
 require('./config/passport')(passport);

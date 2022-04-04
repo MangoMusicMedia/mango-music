@@ -105,6 +105,6 @@ dist
 
 package-lock.json
 
-./config/keys.js
-./passport.js
-
+keys.js
+passport.js
+/node_modules
