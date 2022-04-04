@@ -3,9 +3,32 @@
 .header {
   background-color: $brown;
   width: 100%;
+  
+  &__inner {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 34px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__sign-in {
+    font-size: 14px;
+    font-weight: 500;
+    background-color: $pastel-green;
+    padding: 12px 18px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $lime-green;
+      cursor: pointer;
+      transform: scale(1.05) perspective(1px);
+      transition: 0.50s;
+    }
+  }
+
   &__logo {
     width: 300px;
     padding: 14px;
-    margin-left: 20px;
   }
 }
