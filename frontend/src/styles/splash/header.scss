@@ -1,0 +1,11 @@
+@import '../colors.scss';
+
+.header {
+  background-color: $brown;
+  width: 100%;
+  &__logo {
+    width: 300px;
+    padding: 14px;
+    margin-left: 20px;
+  }
+}
