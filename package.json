@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MangoMusicMedia/mango-music#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
@@ -26,6 +27,7 @@
     "mongoose": "^6.2.9",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
+    "qs": "^6.10.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {
