@@ -1,11 +1,11 @@
 import './App.scss';
 import Splash from './components/splash';
+import Header from './components/header';
 
 function App() {
   return (
     <div>
-      <header>
-      </header>
+      <Header/>
       <Splash/>
     </div>
   );

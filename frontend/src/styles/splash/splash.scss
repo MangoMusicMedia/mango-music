@@ -1,0 +1,61 @@
+@import '../colors.scss';
+
+.splash {
+  background-color: $cream;
+  width: 100vw;
+  height: 100%;
+
+  &__boom-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    &__boom-box {
+      width: 400px;
+      margin-right: 150px;
+      margin-top: -118px;
+    }
+  }
+  
+  &__rainbow-wrapper {
+    margin-left: 200px;
+    margin-top: -170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: fit-content;
+
+      & > h1 {
+        font-size: 35px;
+        font-family: 'Hind Siliguri', sans-serif;
+        font-weight: 400;
+        margin-bottom: 35px;
+      }
+    }
+    
+    &__join-button {
+      background-color: $cream;
+      // background-color: $blood-orange;
+      border: 3px solid $blood-orange;
+      color: $blood-orange;
+      // color: $cream;
+      width: 100px;
+      padding: 14px;
+      width: 100%;
+      border-radius: 8px;
+    }
+    &__rainbow {
+      max-width: 200px;
+      width: 100%;
+      // height: 500px;
+      -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    }
+  }
+}
+
