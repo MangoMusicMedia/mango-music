@@ -36,7 +36,7 @@
       }
       & > p {
         font-size: 20px;
-        line-height: 24px;
+        line-height: 30px;
         color: $light-brown;
       }
     }
@@ -44,8 +44,8 @@
   }
   
   &__rainbow-wrapper {
-    padding-left: 200px;
-    margin-top: -260px;
+    padding-left: 60px;
+    margin-top: -220px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -56,10 +56,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: fit-content;
+      // width: fit-content;
+      max-width: 700px;
+      min-width: 400px;
+      width: 100%;
       background-color: $cream;
 
-      & > h1 {
+      & > .moving-words {
         font-size: 35px;
         font-family: 'Hind Siliguri', sans-serif;
         font-weight: 400;
@@ -90,9 +93,26 @@
   &__wave-wrapper {
     display: flex;
     justify-content: flex-end;
-    margin-top: -610px;
+    margin-top: -650px;
     height: 200px;
     width: 100%;
   }
 }
 
+.react-rotating-text-cursor {
+  animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
+}
+
+@keyframes blinking-cursor {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

@@ -32,7 +32,8 @@ const getAuth = async () => {
 // Accepts optional params such as limit. Look at spotify documentation to see available params
 
 router.get("/search", (req, res) => {
-  console.log(req.query)
+  // console.log(req)
+  console.log(req.body)
   
     getAuth()
     .then(data => {
@@ -181,6 +182,148 @@ router.get("/recommendations", (req, res) => {
       rec_url += params.join("&");
       
       const response = axios.get(rec_url, {
+        headers: { 
+          'Authorization': token
+        }
+      })
+      
+      return response;
+    })
+    .then(payload => {
+      return res.json(payload.data)
+    }, err =>  res.status(400).json(err))
+});
+
+// Route for artist's top tracks. Requires knowing the spotify id of the artist. Expects request params to look like: {
+//   id: '0LcJLqbBmaGUft1e9Mm8HV',  // artist id.
+//   market: 'US'
+// }
+// Example id for abba: 0LcJLqbBmaGUft1e9Mm8HV
+router.get("/artist-top-tracks", (req, res) => {
+  console.log(req.query)
+  
+    getAuth()
+    .then(data => {
+      const token = "Bearer " + data.access_token;
+      let artist_url = `https://api.spotify.com/v1/artists/${req.query.id}/top-tracks`
+      if (req.query.market) {
+        artist_url += `?market=${req.query.market}`
+      }
+      
+      const response = axios.get(artist_url, {
+        headers: { 
+          'Authorization': token
+        }
+      })
+      
+      return response;
+    })
+    .then(payload => {
+      return res.json(payload.data)
+    }, err =>  res.status(400).json(err))
+});
+
+// Route for artist's albums. Requires knowing the spotify id of the artist. Expects request params to look like: {
+//   id: '0LcJLqbBmaGUft1e9Mm8HV',  // artist id.
+// }
+// Accepts optional params such as limit, market, offset, etc. 
+// Look at spotify documentation to see available params
+router.get("/artist-albums", (req, res) => {
+  console.log(req.query)
+  
+    getAuth()
+    .then(data => {
+      const token = "Bearer " + data.access_token;
+      let artist_url = `https://api.spotify.com/v1/artists/${req.query.id}/albums`
+      let params = []
+
+      for (let k in req.query) {
+        if (k != "id") {
+          params.push(`${k}=${req.query[k]}`)
+        }
+      }
+
+      if (params.length > 0) {
+        artist_url += "?" + params.join("&");
+      }
+      
+      const response = axios.get(artist_url, {
+        headers: { 
+          'Authorization': token
+        }
+      })
+      
+      return response;
+    })
+    .then(payload => {
+      return res.json(payload.data)
+    }, err =>  res.status(400).json(err))
+});
+
+// Route for albums's tracks. Requires knowing the spotify id of the album. Expects request params to look like: {
+//   id: '1V6a99EbTTIegOhWoPxYI9',
+// }
+// Accepts optional params such as limit, market, offset, etc. 
+// Look at spotify documentation to see available params
+router.get("/albums-tracks", (req, res) => {
+  // console.log(req.query)
+  
+    getAuth()
+    .then(data => {
+      const token = "Bearer " + data.access_token;
+      let album_url = `https://api.spotify.com/v1/albums/${req.query.id}/tracks`
+      let params = []
+
+      for (let k in req.query) {
+        if (k != "id") {
+          params.push(`${k}=${req.query[k]}`)
+        }
+      }
+
+      console.log(album_url)
+
+      if (params.length > 0) {
+        album_url += "?" + params.join("&");
+      }
+      
+      const response = axios.get(album_url, {
+        headers: { 
+          'Authorization': token
+        }
+      })
+      
+      return response;
+    })
+    .then(payload => {
+      return res.json(payload.data)
+    }, err =>  res.status(400).json(err))
+});
+
+// Route for new releases. No required request params. Optional params look like: {
+//   country: 'US',  // country
+//   limit: '5',
+//   offet: '0'
+// }
+// Accepts optional params such as limit, market, offset, etc. 
+// Look at spotify documentation to see available params
+router.get("/new-releases", (req, res) => {
+  console.log(req.query)
+  
+    getAuth()
+    .then(data => {
+      const token = "Bearer " + data.access_token;
+      let browse_url = `https://api.spotify.com/v1/browse/new-releases`
+      let params = []
+
+      for (let k in req.query) {
+        params.push(`${k}=${req.query[k]}`)
+      }
+
+      if (params.length > 0) {
+        browse_url += "?" + params.join("&");
+      }
+      
+      const response = axios.get(browse_url, {
         headers: { 
           'Authorization': token
         }
