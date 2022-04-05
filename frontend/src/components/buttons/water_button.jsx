@@ -2,7 +2,7 @@ import React from 'react';
 
 const WaterButton = props => {
   return (
-    <div>
+    <div onClick={props.handleSubmit}>
       <div className="row middle-on-small center-on-small">
         <div className="column small-12 medium-6 large-4">
           <a href="#!" className="c-button c-button--gooey">
