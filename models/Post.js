@@ -13,14 +13,25 @@ const PostSchema = new Schema({
     },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: "users"
     },
     likes: {
         type: Number
     },
     comments: [
         {
-            type: String
+            message: {
+                type: String,
+                required: true
+            },
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: "users"
+            },
+            date: {
+                type: Date,
+                default: Date.now
+            }
         }
     ],
     track: {

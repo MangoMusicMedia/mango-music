@@ -32,6 +32,8 @@
     "mongoose": "^6.2.9",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
