@@ -1,3 +1,5 @@
+@import '../colors.scss';
+
 .modal-background {
   position: fixed;
   left: 0;
@@ -45,12 +47,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: $off-white;
   padding: 1rem 1.5rem;
-  width: 24rem;
   border-radius: 1.5rem;
   transition: background-color 1s ease-in;
-  max-width: 260px;
+  max-width: 300px;
+  width: 100%;
   animation-name: slideUp;
   animation-duration: 200ms;
 }

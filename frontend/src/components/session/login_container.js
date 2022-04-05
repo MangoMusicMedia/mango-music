@@ -11,7 +11,7 @@ const mapStateToProps = ({ errors }) => ({
 const mapDispatchToProps = dispatch => ({
   login: user => dispatch(login(user)),
   removeErrors: () => dispatch(removeErrors()),
-  registerButton: <button className="register-button" onClick={() => dispatch(openModal('signup'))}>Register</button>,
+  registerButton: <button className="register-button" onClick={() => dispatch(openModal('signup'))}>Sign Up</button>,
   closeModal: () => dispatch(closeModal()),
   forgotPasswordLink: <button className="forgot-password" onClick={() => dispatch(openModal('forgot'))}>Forgot your password?</button>,
   troubleLink: <button className="trouble-signing-in" onClick={() => dispatch(openModal('trouble'))}>Trouble signing in?</button>

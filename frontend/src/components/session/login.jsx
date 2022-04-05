@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import WaterButton from "../buttons/water_button";
 
 const LoginForm = props => {
   let [email, setEmail] = useState('');
@@ -26,8 +27,8 @@ const LoginForm = props => {
   const handleSubmitDemoUser = e => {
     e.preventDefault();
     const demoUser = {
-      email: 'demo@demo.com',
-      password: 'demo123'
+      email: 'demouser@email.com',
+      password: 'password123'
     }
     props.login(demoUser).then(props.closeModal);
   }
@@ -75,7 +76,8 @@ const LoginForm = props => {
           </div>
 
           <div className="login-form__form__lower-link-wrapper">
-            <input type="submit" className="login-form__form__submit" value="Sign in" />
+            <WaterButton title={"Log In"}/>
+            {/* <input type="submit" className="login-form__form__submit" value="Sign in" /> */}
 
             {props.troubleLink}
 
@@ -88,7 +90,7 @@ const LoginForm = props => {
           </div>
 
           <p className="login-form__form__terms">
-            By clicking Sign in or Continue, you agree to Plantsy's Terms of Use and Privacy Policy.
+            By clicking Sign in or Continue, you agree to Mango Music's Terms of Use and Privacy Policy.
           </p>
 
         </form>
