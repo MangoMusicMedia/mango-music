@@ -2,6 +2,8 @@ import React from "react";
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from "react-redux";
 import { useState } from "react";
+import SignupFormContainer from "../session/signup_container";
+import LoginFormContainer from '../session/login_container';
 
 const Modal = ({ modal, closeModal }) => {
   let [modalTransition, setModalTransition] = useState(false);
@@ -19,23 +21,11 @@ const Modal = ({ modal, closeModal }) => {
   }
   let component;
   switch (modal) {
-    case 'login':
-      component = <LoginFormContainer />;
-      break;
     case 'signup':
       component = <SignupFormContainer />;
       break;
-    case 'forgot':
-      component = <ForgotPasswordContainer />;
-      break;
-    case 'trouble':
-      component = <TroubleModalContainer />;
-      break;
-    case 'checkout':
-      component = <CheckoutModalContainer />;
-      break;
-    case 'help':
-      component = <HelpModalContainer />;
+    case 'login':
+      component = <LoginFormContainer />;
       break;
     default:
       return null;
@@ -53,11 +43,9 @@ const Modal = ({ modal, closeModal }) => {
 }
 
 
-const mapStateToProps = state => {
-  return {
-    modal: state.ui.modal
-  };
-};
+const mapStateToProps = state => ({
+  modal: state.ui.modal
+});
 
 const mapDispatchToProps = dispatch => {
   return {

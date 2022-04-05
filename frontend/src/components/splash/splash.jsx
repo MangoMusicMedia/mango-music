@@ -3,11 +3,17 @@ import boomBox from '../../images/boom-box.png'
 import rainbow from '../../images/rainbow.png';
 import MusicWave from './music_wave';
 import ReactRotatingText from "react-rotating-text";
+import { connect } from 'react-redux';
+import { openModal } from '../../actions/modal_actions';
 
 
-const Splash = props => {
+const Splash = ({ openModal }) => {
   const headerContent = ['Share the music you love.', 'Connect with other music lovers.', 'Expand your musical horizon.'];
 
+  const handleOpenModal = e => {
+    e.preventDefault();
+    openModal('signup');
+  }
 
   return (
     <div className='splash'>
@@ -18,7 +24,8 @@ const Splash = props => {
         <div className='splash__rainbow-wrapper'>
           <div className='splash__rainbow-wrapper__inner'>
             <ReactRotatingText className="moving-words" items={headerContent} />
-            <button className='btn draw-border'>Join now</button>
+            <button onClick={handleOpenModal} className='btn draw-border'>Join now</button>
+            {/* <button onClick={() => openModal('signup')} className='btn draw-border'>Join now</button> */}
             <img className='splash__rainbow-wrapper__rainbow' src={rainbow}/>
           </div>
         </div>
@@ -38,4 +45,8 @@ const Splash = props => {
   );
 }
 
-export default Splash;
+const mapDispatchToProps = dispatch => ({
+  openModal: modal => dispatch(openModal(modal))
+})
+
+export default connect(null, mapDispatchToProps)(Splash);

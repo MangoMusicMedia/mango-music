@@ -1,12 +1,11 @@
 import { connect } from "react-redux";
 import React from "react";
-import { login, removeErrors } from '../../actions/session_actions';
+import { login, removeErrors } from "../../actions/session_actions";
 import LoginForm from './login';
-import { ErrorsUtil } from "../../util/errors_util";
-import { openModal, closeModal } from "../../actions/modal_actions";
+import { openModal, closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = ({ errors }) => ({
-  errors: ErrorsUtil(errors.session),
+  errors: errors.session,
 });
 
 const mapDispatchToProps = dispatch => ({
