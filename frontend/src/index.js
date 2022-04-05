@@ -1,7 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import configureStore from './store/store';
+// TESTING START
+import { search, 
+    fetchTrack, 
+    fetchAlbum, 
+    fetchArtist, 
+    fetchGenres, 
+    fetchRecommendations,
+    fetchArtistTopTracks,
+    fetchArtistAlbums,
+    fetchNewReleases,
+    fetchAlbumsTracks
+} from './util/spotify_api_util';
+// TESTING END
 
 // We will create this component shortly
 import Root from './components/root';
@@ -18,13 +31,6 @@ import { logout, signup, login } from './actions/session_actions';
 import './index.scss';
 import App from './App';
 import axios from 'axios';
-// import { fetchTrack } from './util/spotify_api_util'
-const root = document.getElementById('root');
-const renderRoot = createRoot(root);
-// const root = document.getElementById('root');
-// const renderRoot = createRoot(root);
-
-// renderRoot.render(<App />);
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -57,13 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // If this is a first time user, start with an empty store
         store = configureStore({});
     }
-    // Render our root component and pass in the store as a prop
-    const root = document.getElementById('root');
-
-
-    const renderRoot = createRoot(root);
-
-    
     
     //TESTING START
     window.axios = axios;
@@ -72,12 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
     window.login = login;
     window.logout = logout;
     window.getState = store.getState;
+    window.search = search
+    window.fetchTrack = fetchTrack;
+    window.fetchAlbum = fetchAlbum;
+    window.fetchArtist = fetchArtist;
+    window.fetchGenres = fetchGenres;
+    window.fetchRecommendations = fetchRecommendations;
+    window.fetchArtistTopTracks = fetchArtistTopTracks;
+    window.fetchArtistAlbums = fetchArtistAlbums;
+    window.fetchNewReleases = fetchNewReleases;
+    window.fetchAlbumsTracks = fetchAlbumsTracks;
     //TESTING END
     
+    // Render our root component and pass in the store as a prop
+    const root = document.getElementById('root');
+    const renderRoot = createRoot(root);
     renderRoot.render(<Root store={store} />);
-
-// Test
-// window.fetchTrack = fetchTrack
-// end
-    // ReactDOM.render(<Root store={store} />, root);
 });
