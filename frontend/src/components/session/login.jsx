@@ -16,7 +16,7 @@ const LoginForm = props => {
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
+    // e.preventDefault();
     const user = {
       email: (email).toLowerCase(),
       password
@@ -40,7 +40,7 @@ const LoginForm = props => {
   return (
     <div className="login-form">
       <div className="login-form__inner">
-        <form className="login-form__form" onSubmit={handleSubmit}>
+        <form className="login-form__form">
 
           <div className="login-form__form__header-wrapper">
             <h1>Sign in</h1>
@@ -76,7 +76,7 @@ const LoginForm = props => {
           </div>
 
           <div className="login-form__form__lower-link-wrapper">
-            <WaterButton title={"Log In"}/>
+            <WaterButton onClick={handleSubmit} title={"Log In"}/>
             {/* <input type="submit" className="login-form__form__submit" value="Sign in" /> */}
 
             {props.troubleLink}

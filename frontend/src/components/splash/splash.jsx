@@ -23,9 +23,8 @@ const Splash = ({ openModal }) => {
         </div>
         <div className='splash__rainbow-wrapper'>
           <div className='splash__rainbow-wrapper__inner'>
-            <ReactRotatingText className="moving-words" items={headerContent} />
+            <ReactRotatingText className="moving-words" typingInterval={120} deletingInterval={100} items={headerContent} />
             <button onClick={handleOpenModal} className='btn draw-border'>Join now</button>
-            {/* <button onClick={() => openModal('signup')} className='btn draw-border'>Join now</button> */}
             <img className='splash__rainbow-wrapper__rainbow' src={rainbow}/>
           </div>
         </div>

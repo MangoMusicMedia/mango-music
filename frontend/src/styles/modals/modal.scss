@@ -57,18 +57,6 @@
   animation-duration: 200ms;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    top: 100%;
-  }
-
-  to {
-    opacity: 1;
-    top: 50%;
-  }
-}
-
 .modal-child-reverse {
   position: absolute;
   top: 50%;
@@ -82,6 +70,18 @@
   max-width: 260px;
   animation-name: slideDown;
   animation-duration: 300ms;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    top: 100%;
+  }
+
+  to {
+    opacity: 1;
+    top: 50%;
+  }
 }
 
 @keyframes slideDown {

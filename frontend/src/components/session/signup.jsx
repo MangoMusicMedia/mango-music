@@ -23,7 +23,7 @@ const SignUpForm = props => {
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
+    // e.preventDefault();
     const user = {
       email: (email).toLowerCase(),
       name: (username).toLowerCase(),
@@ -48,7 +48,7 @@ const SignUpForm = props => {
   return (
     <div className="signup-form">
       <div className="signup-form__inner">
-        <form className="signup-form__form" onSubmit={handleSubmit}>
+        <form className="signup-form__form">
 
           <div className="signup-form__form__header-wrapper">
             <h1>Create your Mango account</h1>
@@ -110,7 +110,7 @@ const SignUpForm = props => {
           </div>
 
           <div className="signup-form__form__lower-inputs">
-            <WaterButton title={'Create Account'} />
+            <WaterButton onClick={handleSubmit} title={'Create Account'} />
             {/* <input type="submit" className="signup-form__form__submit" value="Sign Up" /> */}
 
             <div className="signup-form__form__or">
