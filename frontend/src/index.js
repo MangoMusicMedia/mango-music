@@ -18,7 +18,7 @@ import { logout, signup, login } from './actions/session_actions';
 import './index.scss';
 import App from './App';
 import axios from 'axios';
-import { fetchTrack } from './util/spotify_api_util'
+// import { fetchTrack } from './util/spotify_api_util'
 const root = document.getElementById('root');
 const renderRoot = createRoot(root);
 // const root = document.getElementById('root');
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderRoot.render(<Root store={store} />);
 
 // Test
-window.fetchTrack = fetchTrack
+// window.fetchTrack = fetchTrack
 // end
     // ReactDOM.render(<Root store={store} />, root);
 });
