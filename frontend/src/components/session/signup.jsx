@@ -26,8 +26,9 @@ const SignUpForm = props => {
     // e.preventDefault();
     const user = {
       email: (email).toLowerCase(),
-      name: (username).toLowerCase(),
-      password: password2
+      username: (username).toLowerCase(),
+      password: password1,
+      password2: password2
     }
     props.signup(user).then(props.closeModal);
   }
@@ -110,7 +111,7 @@ const SignUpForm = props => {
           </div>
 
           <div className="signup-form__form__lower-inputs">
-            <WaterButton onClick={handleSubmit} title={'Create Account'} />
+            <WaterButton handleSubmit={handleSubmit} title={'Create Account'} />
             {/* <input type="submit" className="signup-form__form__submit" value="Sign Up" /> */}
 
             <div className="signup-form__form__or">
