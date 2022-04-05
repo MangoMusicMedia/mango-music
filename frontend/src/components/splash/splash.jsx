@@ -1,6 +1,6 @@
 import React from 'react';
-import boomBox from '../images/boom-box.png'
-import rainbow from '../images/rainbow.png';
+import boomBox from '../../images/boom-box.png'
+import rainbow from '../../images/rainbow.png';
 import MusicWave from './music_wave';
 
 const Splash = props => {
