@@ -2,8 +2,13 @@ import React from 'react';
 import boomBox from '../../images/boom-box.png'
 import rainbow from '../../images/rainbow.png';
 import MusicWave from './music_wave';
+import ReactRotatingText from "react-rotating-text";
+
 
 const Splash = props => {
+  const headerContent = ['Share the music you love.', 'Connect with other music lovers.', 'Expand your musical horizon.'];
+
+
   return (
     <div className='splash'>
       <div className='splash__inner'>
@@ -12,7 +17,7 @@ const Splash = props => {
         </div>
         <div className='splash__rainbow-wrapper'>
           <div className='splash__rainbow-wrapper__inner'>
-          <h1>Share the music you love.</h1>
+            <ReactRotatingText className="moving-words" items={headerContent} />
             <button className='btn draw-border'>Join now</button>
             <img className='splash__rainbow-wrapper__rainbow' src={rainbow}/>
           </div>
