@@ -5,6 +5,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const REMOVE_ERRORS = 'REMOVE_ERRORS';
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -21,6 +22,11 @@ export const receiveUserSignIn = () => ({
 export const receiveErrors = errors => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
+});
+
+// remove errors so they not persist when switching between modals
+export const removeErrors = () => ({
+    type: REMOVE_ERRORS
 });
 
 // When our user is logged out, we will dispatch this action to set isAuthenticated to false
