@@ -29,9 +29,7 @@ import { setAuthToken } from './util/session_api_util';
 import { logout, signup, login } from './actions/session_actions';
 
 import './index.scss';
-import App from './App';
 import axios from 'axios';
-
 
 document.addEventListener('DOMContentLoaded', () => {
     let store;
