@@ -93,7 +93,7 @@ const SignUpForm = props => {
               <p className="signup-form__form__error">{props.errors}</p>
             </div>
             <div className="signup-form__form__inputs">
-              <label className="signup-form__form__label">Confirm Password
+              <label className="signup-form__form__label">*Confirm Password
                 <input
                   type="password"
                   className="signup-form__form__input"
