@@ -61,10 +61,11 @@
 
     &__input {
       padding: 8px;
-      border-radius: 6px;
+      border-radius: 2px;
       border: 1px solid $brown;
       outline-color: $kermit-green;
       background-color: $off-white;
+      color: $brown;
       
       &:hover {
         border: 1px solid $kermit-green;
