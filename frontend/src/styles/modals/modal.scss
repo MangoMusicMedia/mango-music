@@ -1,0 +1,95 @@
+.modal-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  z-index: 10;
+  text-align: center;
+  cursor: pointer;
+  animation-name: fadeIn;
+  animation-duration: 350ms;
+
+  &-reverse {
+    animation-name: fadeOut;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    z-index: 10;
+  }
+
+  to {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 1.5rem;
+  transition: background-color 1s ease-in;
+  max-width: 260px;
+  animation-name: slideUp;
+  animation-duration: 200ms;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    top: 100%;
+  }
+
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
+.modal-child-reverse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 1.5rem;
+  transition: background-color 1s ease-in;
+  max-width: 260px;
+  animation-name: slideDown;
+  animation-duration: 300ms;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    top: 50%;
+  }
+
+  to {
+    opacity: 0;
+    top: 100%;
+  }
+}
