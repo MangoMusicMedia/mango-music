@@ -16,6 +16,9 @@ import { search,
 } from './util/spotify_api_util';
 // TESTING END
 
+//TESTING COMMENTS
+import { fetchComments, fetchComment, createComment, editComment, deleteComment } from './actions/comment_actions';
+
 // We will create this component shortly
 import Root from './components/root';
 
@@ -79,6 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchArtistAlbums = fetchArtistAlbums;
     window.fetchNewReleases = fetchNewReleases;
     window.fetchAlbumsTracks = fetchAlbumsTracks;
+
+    window.fetchComments = fetchComments;
+    window.fetchComment = fetchComment;
+    window.createComment = createComment;
+    window.editComment = editComment;
+    window.deleteComment = deleteComment;
+
     //TESTING END
     
     // Render our root component and pass in the store as a prop

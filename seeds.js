@@ -35,7 +35,7 @@ seeder.connect(db, function() {
           title: faker.lorem.sentence(),
           description: faker.lorem.paragraph(),
           author: User.findOne({username: 'demouser'})._id,
-          likes: null,
+          likes: [],
           comments: [],
           trackName: item.name,
           trackId: item.id,
