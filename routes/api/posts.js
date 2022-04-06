@@ -47,8 +47,9 @@ router.post('/',
             title: req.body.title,
             description: req.body.description,
             author: req.body.author,
-            track: req.body.track,
-            album: req.body.album,
+            trackName: req.body.trackName,
+            trackId: req.body.trackId,
+            albumCoverURL: req.body.albumCoverURL,
             likes: [],
             comments: []   
         })
@@ -93,8 +94,31 @@ router.get("/:postId/comments", (req, res) => {
 })
 
 
+// fetches a comment
+router.get("/:postId/comments/:commentId",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        Post.findById(req.params.postId)
+            .then(post => {
+                let findComment = "";
+                post.comments.forEach(comment => {
+                    if (comment.id === req.params.commentId) {
+                        findComment = comment
+                    }
+                });
+
+                if (findComment === "") {
+                    return res.status(400).json({ nocommentfound: "No comment found with that ID" })
+                };
+
+                res.json(findComment)
+            })
+            .catch(err => res.status(400).json({ nopostfound: "No post found with that ID" }))
+    })
+
+
 // route for creating a comment
-router.post("/:postId/",
+router.post("/:postId",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         Post.findById(req.params.postId)
@@ -142,7 +166,7 @@ router.patch("/:postId/comments/:commentId",
                 .catch(err => res.status(400).json({ nocommentfound: "No comment found with that ID" }))
 
         })
-        .catch(err => res.status(400).json({ nocommentfound: "No comment found by that ID"}))
+        .catch(err => res.status(400).json({ nopostfound: "No post found by that ID"}))
         
     })
 
@@ -176,19 +200,11 @@ router.delete("/:postId/comments/:commentId",
                     .catch(err => res.status(400).json({ nocommentfound: "No comment found with that ID" }))
 
             })
-            .catch(err => res.status(400).json({ nocommentfound: "No comment found by that ID" }))
+            .catch(err => res.status(400).json({ nopostfound: "No post found by that ID" }))
 
     })
 
 
-// ---------- ROUTES FOR LIKES ON A POST ------------
-
-// fetching likes on a post
-// router.get("/:postId/likes", (req, res) => {
-//     Post.findById(req.params.postId)
-//         .then(post => res.json(post.likes))
-//         .catch(err => res.status(400).json({ nolikesfound: "No likes found" }))
-// });
 
 
 
