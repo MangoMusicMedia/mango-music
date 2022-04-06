@@ -111,7 +111,7 @@ router.get("/:postId/comments/:commentId",
                     return res.status(400).json({ nocommentfound: "No comment found with that ID" })
                 };
 
-                res.json(findComment)
+                return res.json(findComment)
             })
             .catch(err => res.status(400).json({ nopostfound: "No post found with that ID" }))
     })
@@ -132,8 +132,9 @@ router.post("/:postId",
 
                 post.comments.push(req.body);
                 post.save()
-                    .then(post => res.json(post))
-                    .catch(err => res.status(400).json({ msg: "Could not create comment" }))
+                    .then((data) => res.json(data.comments[data.comments.length - 1]))
+                    .catch(err => res.status(400).json(err))
+                
             })
         })
 
@@ -161,9 +162,11 @@ router.patch("/:postId/comments/:commentId",
             }
 
             post.comments[updateCommentIdx] = req.body
+            // 
+
             post.save()
-                .then(post => res.json(post))
-                .catch(err => res.status(400).json({ nocommentfound: "No comment found with that ID" }))
+            
+            return res.json(post.comments[updateCommentIdx])
 
         })
         .catch(err => res.status(400).json({ nopostfound: "No post found by that ID"}))
