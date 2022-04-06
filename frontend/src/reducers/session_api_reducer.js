@@ -26,7 +26,7 @@ const sessionApiReducer =  (state = initialState, action) => {
             return {
                 ...state,
                 isSignedIn: true
-            }
+            };
         default:
             return state;
     }
