@@ -44,7 +44,7 @@ const Splash = ({ openModal }) => {
           <div className='splash__right__words'>
             <div className='splash__right__words-wrapper'>
               <h1>Why Mango Music?</h1>
-              <p>Join a collective community of devote music lovers with Mango Music. As a Mango user, you can share your favorite songs or artists with other likeminded people in order to broaded your musical horizon and explore new musical tastes and sounds. Join now for free to explore all that Mango Music has to offer.</p>
+              <p>Join a collective community of devote music lovers with Mango Music. As a Mango user, you can share your favorite songs or artists with likeminded people in order to broaden your musical horizon and explore new musical tastes and sounds. Join now for free to explore all that Mango Music has to offer.</p>
             </div>
           </div>
         </div>
