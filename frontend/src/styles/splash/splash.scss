@@ -2,98 +2,120 @@
 
 .splash {
   background-color: $cream;
-  width: 100vw;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 32px;
 
-  &__boom-wrapper {
+  &__button-wrapper {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    &__boom-box {
-      width: 400px;
-      margin-right: 15%;
-      margin-top: -118px;
-      z-index: 2;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    &__rainbow-img {
+      max-width: 220px;
+      width: 100%;
+      -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    }
+
+    &__rainbow-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-color: $cream;
+      width: 100%;
+    
+      &__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        max-width: 500px;
+        min-width: 400px;
+        width: 100%;
+        background-color: $cream;
+    
+        & > .moving-words {
+          font-size: 35px;
+          font-family: 'Hind Siliguri', sans-serif;
+          font-weight: 400;
+          margin-bottom: 35px;
+        }
+      }
     }
   }
-  
-  &__words {
-    padding-top: 40px;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 15%;
 
-    & .words-wrapper {
-      max-width: 400px;
+  &__right {
+    max-width: 500px;
+    width: 100%;
+
+    &__boom-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 120px;
+    }
+
+    &__boom-box {
       width: 100%;
+      max-width: 500px;
+      margin-top: -214px;
+      z-index: 2;
+      // position: absolute;
+      // top: 0;
+    }
+
+    &__wave-wrapper {
+      display: flex;
+      justify-content: center;
+      height: 200px;
+      width: 100%;
+
+      & > div {
+        display: flex;
+        justify-content: center;
+        margin: unset;
+      }
+    }
+
+    &__words {
+      padding-top: 40px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &__words-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-
+    
       & > h1 {
         font-size: 28px;
         padding-bottom: 20px;
         color: $light-brown;
       }
+    
       & > p {
-        font-size: 20px;
-        line-height: 30px;
+        font-size: 24px;
+        line-height: 36px;
         color: $light-brown;
       }
     }
-
-  }
-  
-  &__rainbow-wrapper {
-    padding-left: 15%;
-    margin-top: -220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: $cream;
-    
-    
-    &__inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 500px;
-      min-width: 400px;
-      width: 100%;
-      background-color: $cream;
-
-      & > .moving-words {
-        font-size: 35px;
-        font-family: 'Hind Siliguri', sans-serif;
-        font-weight: 400;
-        margin-bottom: 35px;
-      }
-    }
-    
-    &__join-button {
-      background-color: $cream;
-      border: 3px solid $blood-orange;
-      color: $blood-orange;
-      width: 100px;
-      padding: 14px;
-      width: 100%;
-      border-radius: 8px;
-    }
-    &__rainbow {
-      max-width: 200px;
-      width: 100%;
-      -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    }
-  }
-
-  &__wave-wrapper {
-    margin-right: 15%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -650px;
-    height: 200px;
-    width: 100%;
   }
 }
 
