@@ -43,44 +43,45 @@ const updatePostAction = (post) => {
   }
 }
 
-const deletePostAction = () => {
+const deletePostAction = (postId) => {
   return {
     type: DELETE_POST,
+    postId
   }
 }
 
 export const fetchPosts = () => dispatch => {
   return PostAPIUtil.fetchPostIndex()
-    .then((posts) => fetchPostsAction(posts.data))
+    .then((posts) => dispatch(fetchPostsAction(posts.data)))
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const fetchPostsByUser = (authorId) => dispatch => {
   return PostAPIUtil.fetchPostsByUser(authorId)
-    .then((posts) => fetchPostsByUserAction(posts.data))
+    .then((posts) => dispatch(fetchPostsByUserAction(posts.data)))
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const fetchPost = (postId) => dispatch => {
   return PostAPIUtil.fetchPost(postId)
-    .then((post) => fetchPostAction(post.data))
+    .then((post) => dispatch(fetchPostAction(post.data)))
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const createPost = (postData) => dispatch => {
   return PostAPIUtil.createPost(postData)
-    .then((post) => createPostAction(post.data))
+    .then((post) => dispatch(createPostAction(post.data)))
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const updatePost = (postData) => dispatch => {
   return PostAPIUtil.updatePost(postData)
-    .then((post) => updatePostAction(post.data))
+    .then((post) => dispatch(updatePostAction(post.data)))
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const deletePost = (postId) => dispatch => {
   return PostAPIUtil.deletePost(postId)
-    .then(() => deletePostAction())
+    .then(() => dispatch(deletePostAction(postId)))
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }

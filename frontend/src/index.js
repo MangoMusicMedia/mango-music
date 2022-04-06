@@ -14,6 +14,7 @@ import { search,
     fetchNewReleases,
     fetchAlbumsTracks
 } from './util/spotify_api_util';
+import { fetchPosts, fetchPost, fetchPostsByUser, createPost, updatePost, deletePost } from './actions/post_actions';
 // TESTING END
 
 //TESTING COMMENTS
@@ -88,6 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.createComment = createComment;
     window.editComment = editComment;
     window.deleteComment = deleteComment;
+
+    window.fetchPosts = fetchPosts;
+    window.fetchPost = fetchPost;
+    window.createPost = createPost;
+    window.updatePost = updatePost;
+    window.deletePost = deletePost;
+    window.fetchPostsByUser = fetchPostsByUser;
 
     //TESTING END
     
