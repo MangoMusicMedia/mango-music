@@ -47,8 +47,9 @@ router.post('/',
             title: req.body.title,
             description: req.body.description,
             author: req.body.author,
-            track: req.body.track,
-            album: req.body.album,
+            trackName: req.body.trackName,
+            trackId: req.body.trackId,
+            albumCoverURL: req.body.albumCoverURL,
             likes: [],
             comments: []   
         })
