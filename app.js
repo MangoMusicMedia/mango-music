@@ -1,3 +1,5 @@
+const express = require("express");
+const app = express();
 // HEROKU
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
@@ -7,9 +9,6 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 // 
-
-const express = require("express");
-const app = express();
 const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const users = require("./routes/api/users");
