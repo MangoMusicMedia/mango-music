@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
+// restricting searching tracks for now
+
 const PostSchema = new Schema({
     title: {
         type: String,
@@ -15,9 +17,12 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
-    likes: {
-        type: Number
-    },
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "users"
+        }
+    ],
     comments: [
         {
             message: {
@@ -34,10 +39,19 @@ const PostSchema = new Schema({
             }
         }
     ],
-    track: {
+    trackName: {
         type: String
     },
-    album: {
+    trackId: {
+        type: String
+    },
+    albumId: {
+        type: String
+    },
+    albumName: {
+        type: String
+    },
+    albumCoverURL: {
         type: String
     }
 }, {
