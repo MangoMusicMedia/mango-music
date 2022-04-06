@@ -2,20 +2,64 @@ const { faker } = require('@faker-js/faker');
 const seeder = require('mongoose-seed');
 const bcrypt = require('bcryptjs');
 const db = require("./config/keys").mongoURI;
+const axios = require('axios');
 
 const User = require('./models/User');
+const Post = require('./models/Post');
 
 seeder.connect(db, function() {
   seeder.loadModels(["./models/User.js"])
-  seeder.clearModels(['User'], function(err, done) {
+  seeder.clearModels(['User', 'Post'], function(err, done) {
     if (err) {
       return console.log("Error seeding")
     } else if (done) {
       return console.log("Done seeding")
     }
-    seeder.populateModels(data, function() {
-      seeder.disconnect();
-    });
+
+    axios.get('http://localhost:5000/api/spotify/new-releases', {
+      country: 'US'
+    })
+    .then(res => {
+      // Array of new release data (should be 20 items)
+      console.log("successful fetch!")
+      return res.data.albums.items
+    }, err => {
+      console.log("fail to fetch!")
+      console.log(err)
+    })
+    .then( (newReleases) => {
+      const fakePostData = []
+      
+      newReleases.forEach(item => {
+        let newPost = {
+          title: faker.lorem.sentence(),
+          description: faker.lorem.paragraph(),
+          author: User.findOne({username: 'demouser'})._id,
+          likes: null,
+          comments: [],
+          trackName: item.name,
+          trackId: item.id,
+          albumCoverURL: item.images[0].url
+        }
+  
+        fakePostData.push(newPost)
+      })
+      return fakePostData
+    })
+    .then((fakePostData) => {
+      const postData = {
+        'model': 'Post',
+        'documents': [
+          ...fakePostData
+        ]
+      }
+      const newData = data.concat(postData);
+
+      seeder.populateModels(newData, function() {
+        seeder.disconnect();
+      });
+    }, err => console.log(err))
+
   })
 })
 
