@@ -3,8 +3,8 @@ import { signup, login, removeErrors } from '../../actions/session_actions';
 import SignUpForm from './signup';
 import { closeModal } from '../../actions/modal_actions';
 
-const mapStateToProps = ({ errors }) => ({
-  errors: errors.session
+const mapStateToProps = ({ errors, session }) => ({
+  errors: errors.session,
 });
 
 const mapDispatchToProps = dispatch => ({

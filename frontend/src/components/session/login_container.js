@@ -4,7 +4,7 @@ import { login, removeErrors } from "../../actions/session_actions";
 import LoginForm from './login';
 import { openModal, closeModal } from '../../actions/modal_actions';
 
-const mapStateToProps = ({ errors }) => ({
+const mapStateToProps = ({ errors, session }) => ({
   errors: errors.session,
 });
 
