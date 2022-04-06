@@ -46,9 +46,11 @@ router.post('/',
         const newPost = new Post({
             title: req.body.title,
             description: req.body.description,
-            author: req.body.authorId,
+            author: req.body.author,
             track: req.body.track,
-            album: req.body.album   
+            album: req.body.album,
+            likes: [],
+            comments: []   
         })
 
         newPost.save()
@@ -75,6 +77,8 @@ router.delete("/:id",
             .then(post => res.json("Post deleted"))
             .catch(err => res.status(400).json({ nopostfound: "No post found by that ID" }))
     })
+
+
 
 
 
@@ -114,7 +118,7 @@ router.post("/:postId/",
 router.patch("/:postId/comments/:commentId",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Post.findByIdAndUpdate(req.params.postId, req.body)
+        Post.findByIdAndUpdate(req.params.postId, req.body, { new: true })
         .then(post => {
             let updateCommentIdx = "";
             post.comments.forEach( (comment, idx) => {
@@ -175,6 +179,19 @@ router.delete("/:postId/comments/:commentId",
             .catch(err => res.status(400).json({ nocommentfound: "No comment found by that ID" }))
 
     })
+
+
+// ---------- ROUTES FOR LIKES ON A POST ------------
+
+// fetching likes on a post
+// router.get("/:postId/likes", (req, res) => {
+//     Post.findById(req.params.postId)
+//         .then(post => res.json(post.likes))
+//         .catch(err => res.status(400).json({ nolikesfound: "No likes found" }))
+// });
+
+
+
 
 
 module.exports = router;
