@@ -30,7 +30,13 @@ const SignUpForm = props => {
       password: password1,
       password2: password2
     }
-    props.signup(user).then(props.closeModal);
+    
+    if (props.errors.length === 0 ) {
+      props.signup(user).then(props.closeModal);
+    }
+    else {
+      props.signup(user);
+    }
   }
 
   const handleSubmitDemoUser = e => {
@@ -67,7 +73,7 @@ const SignUpForm = props => {
                   onChange={update('email')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors}</p>
+              <p className="signup-form__form__error">{props.errors.email}</p>
             </div>
 
             <div className="signup-form__form__inputs">
@@ -79,7 +85,7 @@ const SignUpForm = props => {
                   onChange={update('username')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors}</p>
+              <p className="signup-form__form__error">{props.errors.username}</p>
             </div>
 
             <div className="signup-form__form__inputs">
@@ -91,7 +97,7 @@ const SignUpForm = props => {
                   onChange={update('password1')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors}</p>
+              <p className="signup-form__form__error">{props.errors.password}</p>
             </div>
             <div className="signup-form__form__inputs">
               <label className="signup-form__form__label">*Confirm Password
