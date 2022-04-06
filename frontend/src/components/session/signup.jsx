@@ -32,10 +32,16 @@ const SignUpForm = props => {
       password: password1,
       password2: password2
     }
-    if (props.errors.length === 0) {
+    
+//     if (props.errors.length === 0) {
+//       props.signup(user).then(props.closeModal);
+//     } else {
+//       return null;
+    
+    if (props.errors.length === 0 ) {
       props.signup(user).then(props.closeModal);
     } else {
-      return null;
+      props.signup(user);
     }
   }
 
@@ -97,7 +103,7 @@ const SignUpForm = props => {
                   onChange={update('password1')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors}</p>
+              <p className="signup-form__form__error">{props.errors.password}</p>
             </div>
             <div className="signup-form__form__inputs">
               <label className="signup-form__form__label">*Confirm Password

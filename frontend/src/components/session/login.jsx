@@ -21,7 +21,13 @@ const LoginForm = props => {
       email: (email).toLowerCase(),
       password
     }
-    props.login(user).then(props.closeModal);
+    // props.login(user).then(props.closeModal);
+    if (props.errors.length === 0) {
+      props.signup(user).then(props.closeModal);
+    }
+    else {
+      props.signup(user);
+    }
   }
 
   const handleSubmitDemoUser = e => {

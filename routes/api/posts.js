@@ -46,7 +46,9 @@ router.post('/',
         const newPost = new Post({
             title: req.body.title,
             description: req.body.description,
-            author: req.body.authorId    
+            author: req.body.authorId,
+            track: req.body.track,
+            album: req.body.album   
         })
 
         newPost.save()
