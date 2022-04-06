@@ -4,7 +4,7 @@ import { openModal } from "../../actions/modal_actions";
 import { logout } from "../../actions/session_actions"
 import { connect } from "react-redux";
 
-const Header = (props) => {
+const SplashHeader = (props) => {
   const { openModal, logout } = props;
 
   const getSessionLink = (loggedIn = null) => {
@@ -34,4 +34,4 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(SplashHeader);
