@@ -11,8 +11,9 @@
 
     &__boom-box {
       width: 400px;
-      margin-right: 150px;
+      margin-right: 15%;
       margin-top: -118px;
+      z-index: 2;
     }
   }
   
@@ -20,17 +21,17 @@
     padding-top: 40px;
     display: flex;
     justify-content: flex-end;
-    margin-right: 100px;
+    margin-right: 15%;
 
     & .words-wrapper {
-      max-width: 500px;
+      max-width: 400px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
 
       & > h1 {
-        font-size: 30px;
+        font-size: 28px;
         padding-bottom: 20px;
         color: $light-brown;
       }
@@ -44,20 +45,19 @@
   }
   
   &__rainbow-wrapper {
-    padding-left: 60px;
+    padding-left: 15%;
     margin-top: -220px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     background-color: $cream;
-
+    
     
     &__inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-      // width: fit-content;
-      max-width: 700px;
+      max-width: 500px;
       min-width: 400px;
       width: 100%;
       background-color: $cream;
@@ -72,10 +72,8 @@
     
     &__join-button {
       background-color: $cream;
-      // background-color: $blood-orange;
       border: 3px solid $blood-orange;
       color: $blood-orange;
-      // color: $cream;
       width: 100px;
       padding: 14px;
       width: 100%;
@@ -84,13 +82,13 @@
     &__rainbow {
       max-width: 200px;
       width: 100%;
-      // height: 500px;
       -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
       mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     }
   }
 
   &__wave-wrapper {
+    margin-right: 15%;
     display: flex;
     justify-content: flex-end;
     margin-top: -650px;

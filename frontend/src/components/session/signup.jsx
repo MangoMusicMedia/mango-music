@@ -8,6 +8,8 @@ const SignUpForm = props => {
   let [password1, setPassword1] = useState('');
   let [password2, setPassword2] = useState('');
 
+  console.log(props.errors);
+
   const update = field => {
     return e => {
       if (field === 'email') {
@@ -30,7 +32,11 @@ const SignUpForm = props => {
       password: password1,
       password2: password2
     }
-    props.signup(user).then(props.closeModal);
+    if (props.errors.length === 0) {
+      props.signup(user).then(props.closeModal);
+    } else {
+      return null;
+    }
   }
 
   const handleSubmitDemoUser = e => {
@@ -67,7 +73,7 @@ const SignUpForm = props => {
                   onChange={update('email')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors}</p>
+              <p className="signup-form__form__error">{props.errors.email}</p>
             </div>
 
             <div className="signup-form__form__inputs">
@@ -79,7 +85,7 @@ const SignUpForm = props => {
                   onChange={update('username')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors}</p>
+              <p className="signup-form__form__error">{props.errors.username}</p>
             </div>
 
             <div className="signup-form__form__inputs">
@@ -103,9 +109,9 @@ const SignUpForm = props => {
                 />
               </label>
               {password1 === password2 ? (
-                <p className="signup-form__form__error"></p>
+                <p className="signup-form__form__error">{props.errors.password}</p>
               ) : (
-                <p className="signup-form__form__error">Please try re-entering your password</p>
+                <p className="signup-form__form__error">Passwords must match</p>
               )}
             </div>
           </div>
