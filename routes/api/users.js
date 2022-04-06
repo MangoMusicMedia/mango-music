@@ -31,7 +31,7 @@ router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email})
   .then(user => {
     if (user) {
-      errors.username = "User already exists";
+      errors.email = "Sorry, email is already in use";
       return res.status(400).json(errors);
     } else {
       const newUser = new User({
@@ -97,7 +97,7 @@ router.post('/login', (req, res) => {
               }
             )
           } else {
-            return res.status(400).json("Incorrect password");
+            return res.status(400).json("Sorry, incorrect email or password");
           }
         })
     })

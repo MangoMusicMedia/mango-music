@@ -8,8 +8,6 @@ const SignUpForm = props => {
   let [password1, setPassword1] = useState('');
   let [password2, setPassword2] = useState('');
 
-  console.log(props.errors);
-
   const update = field => {
     return e => {
       if (field === 'email') {
@@ -25,24 +23,14 @@ const SignUpForm = props => {
   }
 
   const handleSubmit = e => {
-    // e.preventDefault();
     const user = {
       email: (email).toLowerCase(),
       username: (username).toLowerCase(),
       password: password1,
       password2: password2
     }
-    
-//     if (props.errors.length === 0) {
-//       props.signup(user).then(props.closeModal);
-//     } else {
-//       return null;
-    
-    if (props.errors.length === 0 ) {
-      props.signup(user).then(props.closeModal);
-    } else {
-      props.signup(user);
-    }
+
+    props.signup(user);
   }
 
   const handleSubmitDemoUser = e => {
@@ -103,7 +91,7 @@ const SignUpForm = props => {
                   onChange={update('password1')}
                 />
               </label>
-              <p className="signup-form__form__error">{props.errors.password}</p>
+              <p className="signup-form__form__error">{password1 === '' && props.errors.password}</p>
             </div>
             <div className="signup-form__form__inputs">
               <label className="signup-form__form__label">*Confirm Password
@@ -115,7 +103,7 @@ const SignUpForm = props => {
                 />
               </label>
               {password1 === password2 ? (
-                <p className="signup-form__form__error">{props.errors.password}</p>
+                <p className="signup-form__form__error"></p>
               ) : (
                 <p className="signup-form__form__error">Passwords must match</p>
               )}

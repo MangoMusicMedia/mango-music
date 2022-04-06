@@ -16,18 +16,12 @@ const LoginForm = props => {
   }
 
   const handleSubmit = e => {
-    // e.preventDefault();
     const user = {
       email: (email).toLowerCase(),
       password
     }
-    // props.login(user).then(props.closeModal);
-    if (props.errors.length === 0) {
-      props.signup(user).then(props.closeModal);
-    }
-    else {
-      props.signup(user);
-    }
+
+    props.login(user);
   }
 
   const handleSubmitDemoUser = e => {
@@ -64,7 +58,7 @@ const LoginForm = props => {
                   onChange={update('email')}
                 />
               </label>
-              <p className="login-form__form__error">{props.errors.email}</p>
+              <p className="login-form__form__error">{email === '' && props.errors.email}</p>
             </div>
 
             <div className="login-form__form__inputs">
@@ -76,14 +70,14 @@ const LoginForm = props => {
                   onChange={update('password')}
                 />
               </label>
-              <p className="login-form__form__error">{props.errors.password}</p>
+              <p className="login-form__form__error">{password !== '' && Object.values(props.errors)}</p>
+                <p className="login-form__form__error">{password === '' && Object.values(props.errors)}</p>
             </div>
 
           </div>
 
           <div className="login-form__form__lower-link-wrapper">
-            <WaterButton onClick={handleSubmit} title={"Log In"}/>
-            {/* <input type="submit" className="login-form__form__submit" value="Sign in" /> */}
+            <WaterButton handleSubmit={handleSubmit} title={"Log In"}/>
 
             {props.troubleLink}
 
