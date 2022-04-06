@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
+const likes = require("./routes/api/likes");
 const spotify = require("./routes/api/spotify");
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -68,6 +69,7 @@ require('./config/passport')(passport);
 app.use("/api/users", users );
 app.use("/api/spotify", spotify );
 app.use("/api/posts", posts);
+app.use("/api/likes", likes);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -17,10 +17,10 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
-    likes: [
+    likes: [ //testing this
         {
             type: Schema.Types.ObjectId,
-            ref: "users"
+            ref: "likes"
         }
     ],
     comments: [
