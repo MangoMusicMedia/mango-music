@@ -49,7 +49,7 @@ export const clearCommentErrors = () => {
 export const fetchComments = (postId) => (dispatch) => {
     return CommentApiUtil.fetchComments(postId)
         .then(
-            comments => dispatch(receiveComments(comments)),
+            comments => dispatch(receiveComments(comments.data)),
             err => dispatch(receiveCommentErrors(err.response.data))
         )
 };
@@ -57,7 +57,7 @@ export const fetchComments = (postId) => (dispatch) => {
 export const fetchComment = (postId, commentId) => (dispatch) => {
     return CommentApiUtil.fetchComment(postId, commentId)
         .then(
-            comment => dispatch(receiveComment(comment)),
+            comment => dispatch(receiveComment(comment.data)),
             err => dispatch(receiveCommentErrors(err.response.data))
         )
 };
@@ -65,7 +65,7 @@ export const fetchComment = (postId, commentId) => (dispatch) => {
 export const createComment = (postId, data) => (dispatch) => {
     return CommentApiUtil.createComment(postId, data)
         .then(
-            comment => dispatch(receiveComment(comment)),
+            comment => dispatch(receiveComment(comment.data)),
             err => dispatch(receiveCommentErrors(err.response.data))
         )
 };
@@ -73,7 +73,7 @@ export const createComment = (postId, data) => (dispatch) => {
 export const editComment = (postId, commentId, data) => (dispatch) => {
     return CommentApiUtil.editComment(postId, commentId, data)
         .then(
-            comment => dispatch(receiveComment(comment)),
+            comment => dispatch(receiveComment(comment.data)),
             err => dispatch(receiveCommentErrors(err.response.data))
         )
 };
