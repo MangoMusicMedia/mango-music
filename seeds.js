@@ -5,8 +5,8 @@ const db = require("./config/keys").mongoURI;
 const axios = require('axios');
 const mongoose = require("mongoose");
 
-const User = require('./models/User');
-const Post = require('./models/Post');
+const {User} = require('./models/User');
+const {Post} = require('./models/Post');
 
 mongoose
   .connect(db, { useNewUrlParser: true })

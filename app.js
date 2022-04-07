@@ -17,8 +17,8 @@ const likes = require("./routes/api/likes");
 const spotify = require("./routes/api/spotify");
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const User = require('./models/User');
-const Post = require("./models/Post");
+const {User} = require('./models/User');
+const {Post} = require("./models/Post");
 
 mongoose
   .connect(db, { useNewUrlParser: true })
