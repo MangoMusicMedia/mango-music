@@ -26,7 +26,7 @@ router.get("/posts/:postId", (req, res) => {
 // });
 
 
-// creating a like for a post.
+// creating a like for a post
 router.post("/posts/:postId",
     passport.authenticate("jwt", { session: false}),
     (req, res) => {

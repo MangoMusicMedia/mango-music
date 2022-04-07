@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Post = require('../../models/Post');
+const User = require('../../models/User');
 const validatePostInput = require('../../validation/posts');
 const validateCommentInput = require('../../validation/comments');
 
@@ -25,6 +26,7 @@ router.get("/author/:authorId", (req, res) => {
 });
 
 
+
 // fetches a single post by id
 router.get("/:id", (req, res) => {
     Post.findById(req.params.id)
@@ -34,6 +36,33 @@ router.get("/:id", (req, res) => {
 
 
 // protected route to make a post
+// router.post('/',
+//     passport.authenticate("jwt", { session: false }),
+//     (req, res) => {
+//         const { errors, isValid } = validatePostInput(req.body);
+
+//         if (!isValid) {
+//             return res.status(400).json(errors)
+//         }
+
+//         const newPost = new Post({
+//             title: req.body.title,
+//             description: req.body.description,
+//             author: req.body.author,
+//             trackName: req.body.trackName,
+//             trackId: req.body.trackId,
+//             albumCoverURL: req.body.albumCoverURL,
+//             likes: [],
+//             comments: []   
+//         })
+
+//         newPost.save()
+//             .then(post => res.json(post))
+//             .catch(err => res.json(err))
+//     })
+    
+
+// this works so far. pushes post to the user posts array right after creating it
 router.post('/',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
@@ -53,6 +82,15 @@ router.post('/',
             likes: [],
             comments: []   
         })
+
+        let user = newPost.author
+        let userId = user._id.toString();
+
+        User.findById(userId)
+            .then(foundUser => {
+                foundUser.posts.push(newPost)
+                foundUser.save()
+            })
 
         newPost.save()
             .then(post => res.json(post))

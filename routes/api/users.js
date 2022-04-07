@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require("../../models/User");
+const Post = require("../../models/Post");
+const Like = require("../../models/Like");
 const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
@@ -38,6 +40,8 @@ router.post("/register", (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        posts: [],
+        likedPosts: []
       })
       
       bcrypt.genSalt(10, (err, salt) => {
@@ -101,7 +105,36 @@ router.post('/login', (req, res) => {
           }
         })
     })
+})
 
+
+
+// ------ FETCHING USERS POSTS AND LIKED POSTS ------
+
+// there is a route that fetches users posts already in routes/api/posts.js
+
+
+// fetching posts that users liked
+router.get("/:userId/likedPosts", (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      Like.find()
+        .then(likes => {
+          likes.forEach(like => {
+            if (like.user === user.id) {
+              user.likedPosts.push(like.post)
+            }
+          })
+        })
+        
+        user.save()
+        // user.save()
+        //   .then(data => res.json(user.likedPosts))
+        //   .catch(err => res.status(400).json("No posts found"))
+        // console.log(user.likedPosts)
+        return res.json(user.likedPosts)
+    })
+    .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
 })
 
 module.exports = router;

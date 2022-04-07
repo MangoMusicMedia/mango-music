@@ -13,7 +13,19 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "posts"
+    }
+  ],
+  likedPosts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "posts"
+    }
+  ]
 }, {
   timestamps: true
 })
