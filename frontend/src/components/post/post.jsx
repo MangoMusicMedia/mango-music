@@ -1,8 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
 import { beautifyDate } from "../../util/date_util";
+import { Link } from "react-router-dom";
 
 const Post = props => {
+
+  const getDate = date => {
+    return date.slice(0,4);
+  }
+
+  const testComments = [{ authorId: 1, authorName: 'user420', body: 'I love this song too!' }, { authorId: 1, authorName: 'stringBean', body: 'Such a good album' }, { authorId: 1, authorName: 'fried-chicken-boi', body: 'This artist is great.'}];
+  // const testComments = ['I love this song too!', 'Such a good album', 'This artist is great.'];
 
   useEffect(() => {
     props.fetchPost(props.match.params.postId)
@@ -12,7 +20,10 @@ const Post = props => {
     <div className="post">
       <div className="post__left">
         <h1 className="post__left__track-name">{props.post.trackName}</h1>
-        <h2>{props.post.albumName}</h2>
+        <div className="post__left__album-info">
+          <h2>{props.post.albumName}</h2>
+          <h3>{getDate(props.post.releaseDate)}</h3>
+        </div>
         <img src={props.post.albumCoverURL}/>
         <div className="button-wrapper">
           <button className="edit">Edit</button>
@@ -33,7 +44,24 @@ const Post = props => {
           </div>
         </div>
         <p className="post__right__description">{props.post.description}</p>
-        <p className="post__right__comments">Comments{props.post.comments.length}</p>
+        <ul className="post__right__comments-wrapper">
+          <h1>Comments</h1>
+          {testComments.map((comment, idx) => (
+            <li key={idx}>
+              <div className="inner-comment-wrapper">
+                <Link to='/'>{comment.authorName}</Link>
+                <div className="btn-wrapper">
+                  <button>Edit</button>
+                  <button>Remove</button>
+                </div>
+              </div>
+              <h1>{comment.body}</h1>
+            </li>
+            ))}
+          <div className="text-wrapper">
+            <textarea placeholder='Add a comment . . .' />
+          </div>
+        </ul>
       </div>
     </div>
   ) : null;
