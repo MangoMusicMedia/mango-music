@@ -18,23 +18,24 @@ router.get("/posts/:postId", (req, res) => {
         .catch(err => res.status(400).json({ nolikesfound: "No likes found" }))
 });
 
-// fetching all likes for a user. Not set up yet in User model....*********
-// router.get("/users/:userId", (req, res) => {
-//     User.findById(req.params.userId)
-//         .then(user => res.json(user.likes))
-//         .catch(err => res.status(400).json({ nolikesfound: "No likes found" }))
-// });
 
+// fetching a like
+router.get("/:id", (req, res) => {
+    Like.findById(req.params.id)
+        .then(like => res.json(like))
+        .catch(err => res.status(400).json({ nolikefound: "No like found by that ID" }))
+})
 
 // creating a like for a post
-router.post("/posts/:postId",
+router.post("/:userId/posts/:postId",
     passport.authenticate("jwt", { session: false}),
     (req, res) => {
         Post.findById(req.params.postId)
             .then(foundPost => {
+                // console.log(foundPost)
                 const newLike = new Like({
                     post: foundPost.id,
-                    user: req.body.author
+                    user: req.params.userId
                 })
 
                 // working, but need to refactor?

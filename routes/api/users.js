@@ -23,6 +23,12 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
   });
 })
 
+router.get('/:id', (req, res) => {
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json({nouserfound: "No user found by that id"}))
+})
+
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -115,8 +121,8 @@ router.post('/login', (req, res) => {
 
 
 // fetching posts that users liked
-router.get("/:userId/likedPosts", (req, res) => {
-  User.findById(req.params.userId)
+router.get("/:authorId/likedPosts", (req, res) => {
+  User.findById(req.params.authorId)
     .then(user => {
       Like.find()
         .then(likes => {
@@ -126,8 +132,8 @@ router.get("/:userId/likedPosts", (req, res) => {
             }
           })
         })
-        
         user.save()
+        
         // user.save()
         //   .then(data => res.json(user.likedPosts))
         //   .catch(err => res.status(400).json("No posts found"))

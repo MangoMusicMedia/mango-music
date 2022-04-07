@@ -6,8 +6,8 @@ import Modal from './components/modal/modal';
 import { AuthRoute, ProtectedRoute } from './util/route_util';
 import { Route, Switch, } from "react-router-dom";
 import Feed from './components/feed/feed_container';
+import Profile from './components/profile/profile';
 import Post from './components/post/post_container';
-
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Switch>
         <AuthRoute exact path="/welcome"component={Splash} />
         <ProtectedRoute exact path="/posts/:postId" component={Post}/>
+        <ProtectedRoute exact path="/users/:id" component={Profile} />
         <ProtectedRoute path="/" component={Feed}/>
       </Switch>
     </div>
