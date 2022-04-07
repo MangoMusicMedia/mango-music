@@ -3,6 +3,7 @@ import ProfileHeader from "./profile_header";
 import { requestUser } from "../../actions/user_actions";
 import { useEffect } from 'react';
 import { fetchPostsByUser } from '../../actions/post_actions';
+// import PostIndex from './profile_posts_index';
 
 const Profile = props => {
 
@@ -14,10 +15,12 @@ const Profile = props => {
 
   console.log(props);
   return (
-    <div className="profile-wrapper">
-      <ProfileHeader props={props}/>
+    <div>
+      <div className="profile-wrapper">
+        <ProfileHeader props={props}/>
+      </div>
+      {/* <PostIndex props={props}/> */}
     </div>
-    // personal posts feed
   )
 
   // scroll to top button in profile
