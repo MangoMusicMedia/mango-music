@@ -3,66 +3,28 @@ const seeder = require('mongoose-seed');
 const bcrypt = require('bcryptjs');
 const db = require("./config/keys").mongoURI;
 const axios = require('axios');
+const mongoose = require("mongoose");
 
 const User = require('./models/User');
 const Post = require('./models/Post');
 
-seeder.connect(db, function() {
-  seeder.loadModels(["./models/User.js"])
-  seeder.clearModels(['User', 'Post'], function(err, done) {
-    if (err) {
-      return console.log("Error seeding")
-    } else if (done) {
-      return console.log("Done seeding")
-    }
-
-    axios.get('http://localhost:5000/api/spotify/new-releases', {
-      country: 'US'
-    })
-    .then(res => {
-      // Array of new release data (should be 20 items)
-      console.log("successful fetch!")
-      return res.data.albums.items
-    }, err => {
-      console.log("fail to fetch!")
-      console.log(err)
-    })
-    .then( (newReleases) => {
-      const fakePostData = []
-      
-      newReleases.forEach(item => {
-        let newPost = {
-          title: faker.lorem.sentence(),
-          description: faker.lorem.paragraph(),
-          author: User.findOne({username: 'demouser'})._id,
-          likes: [],
-          comments: [],
-          trackName: item.name,
-          trackId: item.id,
-          albumCoverURL: item.images[0].url
-        }
-  
-        fakePostData.push(newPost)
-      })
-      return fakePostData
-    })
-    .then((fakePostData) => {
-      const postData = {
-        'model': 'Post',
-        'documents': [
-          ...fakePostData
-        ]
-      }
-      const newData = data.concat(postData);
-
-      seeder.populateModels(newData, function() {
-        seeder.disconnect();
-      });
-    }, err => console.log(err))
-
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .catch(err => {
+    console.log(err.stack);
+    process.exit(1);
   })
-})
+  .then((res) => {
+    console.log("connected to db in development environment");
+  });
 
+User.remove({}, function(err) { 
+  console.log('User collection removed') 
+});
+
+Post.remove({}, function(err) { 
+  console.log('User collection removed') 
+});
 
 const fakeUserData = [];
 for (let idx = 0; idx < 100; idx++) {
@@ -73,86 +35,131 @@ for (let idx = 0; idx < 100; idx++) {
     'email': faker.internet.email(firstName, lastName),
     'password': 'password'
   }
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      newUser.password = hash;
-    })
-  })
-
-  fakeUserData.push(newUser)
+  fakeUserData.push(new User(newUser))
 }
 
 let newDemoUser = {
   'username': 'demouser',
   'email': 'demouser@email.com',
-  'password': 'password123'
+  'password': '$2a$10$aOMJ3eVpcopmn71gewSVte3h15VlB3nKk1fgEvHfjmjBe2dpZnnVq'
 }
-
-bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash(newDemoUser.password, salt, (err, hash) => {
-    newDemoUser.password = hash;
-  })
-})
 
 let newCatUser = {
   'username': 'catchoi',
   'email': 'catherine-test@gmail.com',
-  'password': 'password'
+  'password': '$2a$10$aOMJ3eVpcopmn71gewSVte3h15VlB3nKk1fgEvHfjmjBe2dpZnnVq'
 }
-
-bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash(newCatUser.password, salt, (err, hash) => {
-    newCatUser.password = hash;
-  })
-})
 
 let newMaggieUser = {
   'username': 'kingbloopy',
   'email': 'maggie-test@gmail.com',
-  'password': 'password'
+  'password': '$2a$10$aOMJ3eVpcopmn71gewSVte3h15VlB3nKk1fgEvHfjmjBe2dpZnnVq'
 }
-
-bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash(newMaggieUser.password, salt, (err, hash) => {
-    newMaggieUser.password = hash;
-  })
-})
 
 let newAbbeyUser = {
   'username': 'Shhmabbey',
   'email': 'abbey-test@gmail.com',
-  'password': 'password'
+  'password': '$2a$10$aOMJ3eVpcopmn71gewSVte3h15VlB3nKk1fgEvHfjmjBe2dpZnnVq'
 }
-
-bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash(newAbbeyUser.password, salt, (err, hash) => {
-    newAbbeyUser.password = hash;
-  })
-})
 
 let newJohnnyUser = {
   'username': 'johnnyhoang510',
   'email': 'johnny-test@gmail.com',
-  'password': 'password'
+  'password': '$2a$10$aOMJ3eVpcopmn71gewSVte3h15VlB3nKk1fgEvHfjmjBe2dpZnnVq'
 }
 
+let usersData = [
+  new User(newDemoUser),
+  new User(newCatUser),
+  new User(newMaggieUser),
+  new User(newAbbeyUser),
+  new User(newJohnnyUser),
+  ...fakeUserData
+]
+
 bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash(newJohnnyUser.password, salt, (err, hash) => {
-    newJohnnyUser.password = hash;
+  bcrypt.hash("password123", salt, (err, hash) => {
+    console.log(hash);
   })
 })
 
+usersData.map(async (user, index) => {
+  await user.save((err, result) => {
+    if (index === usersData.length - 1) {
+      console.log("Users seeded!");
+    }
+  });
+})
 
-const data = [
-  {
-      'model': 'User',
-      'documents': [
-          newDemoUser,
-          newCatUser,
-          newMaggieUser,
-          newAbbeyUser,
-          newJohnnyUser,
-          ...fakeUserData
-      ]
-  }
-];
+const songIds = [
+  "7qCZgvV98j6RjUULW1s1it", 
+  "3UYFbRnkJlvm4POhrtsEL7", 
+  "43NI5sAcvDLG7QQAmUc7UU", 
+  "3i2pAVmEzBgJIHtIMkNQBJ", 
+  "4c7k0jGOFR1OraHvE3BszV", 
+  "04oQ19JkxyzzLglnqYsrlB", 
+  "3kzOYFM5ZTj45uLhpSoINZ", 
+  "29rx2LiCOpZ6PYFc8l4M3z", 
+  "0ZfP7K8NoyJRjEfWWk8Mlv", 
+  "1595LW73XBxkRk2ciQOHfr", 
+  "5KUNwkaNf8l5A9sXZhiCgI", 
+  "2P5yIMu2DNeMXTyOANKS6k", 
+  "5AJrhrwz4oSZX2PwwV4qrN", 
+  "2zQl59dZMzwhrmeSBEgiXY", 
+  "2Nh2cMryoXl7BrZoIeN2Pr", 
+  "5WNYg3usc6H8N3MBEp4zVk", 
+  "1DrlLvlYd1FIjNavRm6NdX", 
+  "1p6AQlMFpnH4hmhrSfoQ3k", 
+  "5Go7a9wnApTQm2nYqKBdm0", 
+  "0jWgAnTrNZmOGmqgvHhZEm", 
+  "1Cv1YLb4q0RzL6pybtaMLo", 
+  "4DAaQ5InUO23d8yNRbB0Yj", 
+  "5bBUDJUfGcG7eFy3Bf4fXv", 
+  "2H7PHVdQ3mXqEHXcvclTB0", 
+  "6nozDLxeL0TE4MS9GqYU1v", 
+  "0OMmiWMwsCNtpQ5aP6fdp9", 
+  "4xlpJ99yL9xYQtzG6c3hwk", 
+  "2wQVmS0j4xcSbEK8CLEgwz", 
+  "1XQhZctQWzkznclbmbE7FQ", 
+  "362zcsyXMLbL7PNLhOovvm", 
+  "1jJci4qxiYcOHhQR247rEU", 
+  "00WvmRXTkPBZNhhRK3xfdy"
+]
+
+
+let postData = []
+songIds.forEach(async (songId, idx) => {
+  let newPost;
+  await axios.get('http://localhost:5000/api/spotify/track', { params: { id: songId } })
+  .then(res => {
+    console.log("Fetch new releases!")
+    const song = res.data
+    // console.log(song)
+    const randUser = usersData[Math.floor(Math.random() * usersData.length)];
+    newPost = new Post({
+      title: faker.lorem.sentence(),
+      description: faker.lorem.paragraph(),
+      author: randUser._id,
+      likes: [],
+      comments: [],
+      trackName: song.name,
+      trackId: song.id,
+      albumCoverURL: song.album.images[0].url,
+      albumName: song.album.name,
+      releaseDate: song.album.release_date,
+    })
+    // postData.push(newPost)
+    return newPost
+  }, err => console.log(err))
+  .then( async (post) => {
+    await post.save((err, result) => {
+      if (idx === songIds.length - 1) {
+        console.log("Posts seeded!");
+        mongoose.disconnect();
+      } 
+    })
+  })
+
+})
+
+  

@@ -53,7 +53,13 @@ const PostSchema = new Schema({
     },
     albumCoverURL: {
         type: String
-    }
+    },
+    albumName: {
+        type: String
+    },
+    releaseDate: {
+        type: String
+    },
 }, {
     timestamps: true
 });
