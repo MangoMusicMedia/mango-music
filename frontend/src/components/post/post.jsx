@@ -33,9 +33,13 @@ const Post = props => {
       author: props.currentUser.id,
       message: comment
     }
-    props.createComment(props.post._id, commentObj)
-    .then(response => console.log(response))
+    props.createComment(props.post._id, commentObj);
+    setComment('');
   }
+  
+  // const handleDeleteComment = comment => {
+  //   props.deleteComment(props.post._id, comment._id)
+  // }
 
   const getDate = date => {
     return date.slice(0,4);
@@ -101,10 +105,13 @@ const Post = props => {
             <li key={idx}>
               <div className="inner-comment-wrapper">
                 <Link to='/'>{comment.author}</Link>
+                {props.currentUser.id === comment.author ? (
                 <div className="btn-wrapper">
-                  <button>Edit</button>
-                  <button>Remove</button>
+                  <button onClick={() => props.deleteComment(props.post._id, comment._id)}>Remove</button>
                 </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
               <h1>{comment.message}</h1>
             </li>
