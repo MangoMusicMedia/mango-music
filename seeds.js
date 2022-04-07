@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const User = require('./models/User');
 const Post = require('./models/Post');
+const Like = require('./models/Like')
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -23,6 +24,10 @@ User.remove({}, function(err) {
 });
 
 Post.remove({}, function(err) { 
+  console.log('User collection removed') 
+});
+
+Like.remove({}, function(err) { 
   console.log('User collection removed') 
 });
 

@@ -145,4 +145,72 @@ router.post('/login', (req, res) => {
 //     .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
 // })
 
+
+// ---------- Routes for Follows (embedded in users) -----------
+
+router.get("/:userId/followers", (req, res) => {
+  User.findById(req.params.userId)
+      .then(user => res.json(user.followers))
+      .catch(err => res.status(400).json({ nofollowsfound: "No followers found" }))
+})
+
+router.get("/:userId/followers/:followerId", (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+        let findFollower = "";
+        user.followers.forEach(follower => {
+            if (follower.toString() === req.params.followerId) {
+                findFollower = follower
+            }
+        });
+
+        if (findFollower === "") {
+            return res.status(400).json({ nofollowerfound: "No follower found with that ID" })
+        };
+
+        return res.json(findFollower)
+    })
+    .catch(err => res.status(400).json({ nouserfound: "No user found with that ID" }))
+})
+
+router.post("/:userId/followers",
+  (req, res) => {
+    User.findById(req.params.userId)
+      .then(user => {
+
+        // console.log(user)
+        user.followers.push(req.body.follower);
+        // console.log(user)
+        user.save()
+          .then((data) => res.json(data.followers))
+          .catch(err => res.status(400).json(err))
+
+        // return res.json(user)
+      }
+    )
+  }
+)
+
+router.delete("/:userId/followers/:followerId",
+  (req, res) => {
+    User.findByIdAndUpdate(req.params.userId, req.body)
+      .then(user => {
+        const index = user.followers.indexOf(req.params.followerId);
+          if (index > -1) {
+            user.followers.splice(index, 1); 
+          }
+        
+        user.save()
+          .then(user => res.json("Follower deleted"))
+          .catch(err => res.status(400).json({ nofollowerfound: "No follower found with that ID" }))
+
+        // return res.json(user)
+      })
+      .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
+
+  }
+)
+
+
+
 module.exports = router;
