@@ -3,6 +3,12 @@
 .feed {
   padding: 50px;
 
+  & > h1 {
+    font-weight: 500;
+    color: $light-brown;
+    margin-bottom: 20px;
+  }
+
   &__container {
     column-count: 4;
     column-gap: 10px;
