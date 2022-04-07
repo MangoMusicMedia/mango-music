@@ -20,6 +20,9 @@ import { fetchPosts, fetchPost, fetchPostsByUser, createPost, updatePost, delete
 //TESTING COMMENTS
 import { fetchComments, fetchComment, createComment, editComment, deleteComment } from './actions/comment_actions';
 
+//TESTING LIKES
+import { fetchLikes, fetchLike, createLike, deleteLike } from "./actions/like_actions";
+
 // We will create this component shortly
 import Root from './components/root';
 
@@ -96,6 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updatePost = updatePost;
     window.deletePost = deletePost;
     window.fetchPostsByUser = fetchPostsByUser;
+
+    window.fetchLikes = fetchLikes;
+    window.fetchLike = fetchLike;
+    window.createLike = createLike;
+    window.deleteLike = deleteLike;
 
     //TESTING END
     
