@@ -46,6 +46,7 @@ router.post("/register", (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        followers: [],
         posts: [],
         likedPosts: []
       })
@@ -120,27 +121,28 @@ router.post('/login', (req, res) => {
 // there is a route that fetches users posts already in routes/api/posts.js
 
 
-// fetching posts that users liked
-router.get("/:authorId/likedPosts", (req, res) => {
-  User.findById(req.params.authorId)
-    .then(user => {
-      Like.find()
-        .then(likes => {
-          likes.forEach(like => {
-            if (like.user === user.id) {
-              user.likedPosts.push(like.post)
-            }
-          })
-        })
-        user.save()
+// fetching posts that users liked.. moved to posts routes
+
+// router.get("/:authorId/likedPosts", (req, res) => {
+//   User.findById(req.params.authorId)
+//     .then(user => {
+//       Like.find()
+//         .then(likes => {
+//           likes.forEach(like => {
+//             if (like.user === user.id) {
+//               user.likedPosts.push(like.post)
+//             }
+//           })
+//         })
+//         user.save()
         
-        // user.save()
-        //   .then(data => res.json(user.likedPosts))
-        //   .catch(err => res.status(400).json("No posts found"))
-        // console.log(user.likedPosts)
-        return res.json(user.likedPosts)
-    })
-    .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
-})
+//         // user.save()
+//         //   .then(data => res.json(user.likedPosts))
+//         //   .catch(err => res.status(400).json("No posts found"))
+//         // console.log(user.likedPosts)
+//         return res.json(user.likedPosts)
+//     })
+//     .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
+// })
 
 module.exports = router;
