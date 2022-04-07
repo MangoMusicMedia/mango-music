@@ -10,7 +10,7 @@ const entitiesReducer = combineReducers({
     posts: postsReducer,
     comments: commentsReducer,
     likes: likesReducer,
-    user: usersReducer,
+    users: usersReducer,
     // followers: followersReducer
 });
 

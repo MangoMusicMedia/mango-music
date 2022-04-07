@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 
 const Post = props => {
   let [caption, setCaption] = useState('');
+  let [comment, setComment] = useState('');
 
   const update = field => {
     return e => {
       if (field === 'caption') {
         setCaption(e.target.value);
+      }
+      if (field === 'comment') {
+        setComment(e.target.value);
       }
     }
   }
@@ -20,18 +24,28 @@ const Post = props => {
       id: props.post._id,
       description: caption
     }
-
     props.updatePost(post);
+  }
+
+  const handleComment = e => {
+    e.preventDefault();
+    const commentObj = {
+      author: props.currentUser.id,
+      message: comment
+    }
+    props.createComment(props.post._id, commentObj)
+    .then(response => console.log(response))
   }
 
   const getDate = date => {
     return date.slice(0,4);
   }
 
-  const testComments = [{ authorId: 1, authorName: 'user420', body: 'I love this song too!' }, { authorId: 1, authorName: 'stringBean', body: 'Such a good album' }, { authorId: 1, authorName: 'fried-chicken-boi', body: 'This artist is great.'}];
+  // const testComments = [{ authorId: 1, authorName: 'user420', body: 'I love this song too!' }, { authorId: 1, authorName: 'stringBean', body: 'Such a good album' }, { authorId: 1, authorName: 'fried-chicken-boi', body: 'This artist is great.'}];
 
   useEffect(() => {
-    props.fetchPost(props.match.params.postId)
+    props.fetchPost(props.match.params.postId);
+    props.fetchComments(props.match.params.postId);
   }, []);
   
   useEffect(() => {
@@ -40,7 +54,7 @@ const Post = props => {
     }
   }, [props.post]);
   
-  if (props.post) {
+  if (props.post && props.comments) {
     return (
       <div className="post">
       <div className="post__left">
@@ -72,7 +86,6 @@ const Post = props => {
         {props.currentUser.id === props.post.author ? (
           <form onSubmit={handleEdit} className="post__right__edit-wrapper">
             <div className="text-wrapper">
-              {/* <textarea value={props.post.description} /> */}
               <textarea value={caption} onChange={update('caption')} />
             </div>
             <div className="post__right__edit-wrapper__button-wrapper">
@@ -84,21 +97,26 @@ const Post = props => {
         )}
         <ul className="post__right__comments-wrapper">
           <h1>Comments</h1>
-          {testComments.map((comment, idx) => (
+          {props.comments.map((comment, idx) => (
             <li key={idx}>
               <div className="inner-comment-wrapper">
-                <Link to='/'>{comment.authorName}</Link>
+                <Link to='/'>{comment.author}</Link>
                 <div className="btn-wrapper">
                   <button>Edit</button>
                   <button>Remove</button>
                 </div>
               </div>
-              <h1>{comment.body}</h1>
+              <h1>{comment.message}</h1>
             </li>
             ))}
-          <div className="text-wrapper">
-            <textarea placeholder='Add a comment . . .' />
-          </div>
+            <form onSubmit={handleComment} className="new-comment-wrapper">
+            <div className="text-wrapper">
+              <textarea onChange={update('comment')} value={props.comment} placeholder='Add a comment . . .' />
+            </div>
+              <div className="comment-button-wrapper">
+                <button className="comment-button">Add comment</button>
+            </div>
+            </form>
         </ul>
       </div>
     </div>
