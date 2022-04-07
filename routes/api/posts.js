@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const Post = require('../../models/Post');
 const User = require('../../models/User');
+const Like = require('../../models/Like');
 const validatePostInput = require('../../validation/posts');
 const validateCommentInput = require('../../validation/comments');
 
@@ -18,14 +19,35 @@ router.get("/", (req, res) => {
 });
 
 
-// fetches all posts from a user
+// fetches all posts a user has created
 router.get("/author/:authorId", (req, res) => {
     Post.find({ author: req.params.authorId })
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json({ nopostsfound: "No posts found by that author" }))
 });
 
+// fetches all posts a user has liked
+router.get("/:authorId/likedPosts", (req, res) => {
+    User.findById(req.params.authorId)
+        .then(user => {
+            Like.find()
+                .then(likes => {
+                    likes.forEach(like => {
+                        if (like.user === user.id) {
+                            user.likedPosts.push(like.post)
+                        }
+                    })
+                })
+            user.save()
 
+            // user.save()
+            //   .then(data => res.json(user.likedPosts))
+            //   .catch(err => res.status(400).json("No posts found"))
+            // console.log(user.likedPosts)
+            return res.json(user.likedPosts)
+        })
+        .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
+})
 
 // fetches a single post by id
 router.get("/:id", (req, res) => {

@@ -26,22 +26,31 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(400).json({ nolikefound: "No like found by that ID" }))
 })
 
-// creating a like for a post
+// creating a like for a post. **Updated to store post to users likedPosts array after creating like
 router.post("/:userId/posts/:postId",
     passport.authenticate("jwt", { session: false}),
     (req, res) => {
         Post.findById(req.params.postId)
             .then(foundPost => {
-                // console.log(foundPost)
                 const newLike = new Like({
                     post: foundPost.id,
                     user: req.params.userId
                 })
 
-                // working, but need to refactor?
+                User.findById(req.params.userId)
+                    .then(user => {
+                        //saving this post to users likedPosts
+                        user.likedPosts.push(foundPost)
+                        user.save()
+
+                        //saving the user into the post's likes array
+                        foundPost.likes.push(user)
+                        foundPost.save()
+                    })
+
                 newLike.save()
-                foundPost.likes.push(newLike)
-                foundPost.save()
+                // foundPost.likes.push(newLike)
+                // foundPost.save()
                 res.json(newLike)
             })
             .catch(err => res.status(400).json("Could not save like"))
