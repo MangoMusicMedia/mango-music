@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const {PostSchema} = require('./Post');
+const {UserSchema} = require('./User');
 
 
 const LikeSchema = new Schema({
     post: {
-        type: String,
-        required: true
+        type: PostSchema
     },
     user: {
-        type: String,
-        required: true
+        type: UserSchema
     }
 }, {
     timestamps: true
