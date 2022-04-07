@@ -1,0 +1,99 @@
+.post {
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+
+  &__left {
+    max-width: 500px;
+    width: 100%;
+
+    &__track-name {
+      font-size: 40px;
+      padding-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    & > h2 {
+      padding-bottom: 20px;
+      color: $light-brown;
+    }
+
+    & > img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 6px;
+    }
+  }
+
+  &__right {
+    padding-top: 60px;
+    max-width: 800px;
+    width: 100%;
+
+    &__small-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & > p {
+        font-size: 16px;
+        color: $light-brown;
+      }
+
+      & > .likes-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+  
+        & > p {
+          font-size: 28px;
+        }
+  
+        & > button {
+          padding-right: 10px;
+  
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.2) perspective(1px);
+            transition: 0.50s;
+          }
+        }
+      }
+    }
+
+    & > iFrame {
+      border-radius: 6px;
+      margin-bottom: 30px;
+    }
+
+
+    &__description {
+      margin-top: 40px;
+      font-size: 24px;
+      line-height: 30px;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.button-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  max-width: 400px;
+  width: 100%;
+  & > button {
+    font-size: 20px;
+    font-weight: 500;
+    border: 1.5px solid $brown;
+    padding: 6px 14px;
+    border-radius: 6px;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      transition: ease-in 0.16s;
+    }
+  }
+}
