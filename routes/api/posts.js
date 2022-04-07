@@ -26,7 +26,6 @@ router.get("/author/:authorId", (req, res) => {
         .catch(err => res.status(400).json({ nopostsfound: "No posts found by that author" }))
 });
 
-//*****TEST THIS AFTER RESEEDING 4/7 2PM
 // fetches all posts a user has liked
 router.get("/:authorId/likedPosts", (req, res) => {
     User.findById(req.params.authorId)

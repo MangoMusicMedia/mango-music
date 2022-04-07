@@ -62,6 +62,12 @@ export const fetchPostsByUser = (authorId) => dispatch => {
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
+export const fetchLikedPostsbyUser = (authorId) => dispatch => {
+  return PostAPIUtil.fetchLikedPostsbyUser(authorId)
+    .then((posts) => dispatch(fetchPostsAction(posts.data)))
+    .catch(err => dispatch(receiveErrors(err.response.data)))
+}
+
 export const fetchPost = (postId) => dispatch => {
   return PostAPIUtil.fetchPost(postId)
     .then((post) => dispatch(fetchPostAction(post.data)))

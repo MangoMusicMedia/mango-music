@@ -5,7 +5,7 @@ import configureStore from './store/store';
 
 
 //TESTING FETCHING LIKED POSTS
-import { fetchLikedPostsbyUser } from './util/post_api_util';
+import { fetchLikedPostsbyUser } from './actions/post_actions';
 
 
 // TESTING START
