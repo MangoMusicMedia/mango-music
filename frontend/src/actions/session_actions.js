@@ -47,20 +47,6 @@ export const signup = user => dispatch => (
     }, err => (
         dispatch(receiveErrors(err.response.data))
     ))
-        // .catch(err => {
-        //     dispatch(receiveErrors(err.response.data));
-        // })
-
-    // APIUtil.signup(user).then(() => {
-    //     const { token } = res.data;
-    //     localStorage.setItem('jwtToken', token);
-    //     APIUtil.setAuthToken(token);
-    //     const decoded = jwt_decode(token);
-    //     dispatch(receiveCurrentUser(decoded))
-    //     dispatch(receiveCurrentUser(user))
-    // }, err => (
-    //     dispatch(receiveErrors(err.response.data))
-    // ))
 );
 
 // Upon login, set the session token and dispatch the current user. Dispatch errors on failure.
