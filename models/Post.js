@@ -17,10 +17,16 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
-    likes: [ //testing this
+    // likes: [ //testing this
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: "likes"
+    //     }
+    // ],
+    likes: [
         {
             type: Schema.Types.ObjectId,
-            ref: "likes"
+            ref: "users"
         }
     ],
     comments: [
@@ -66,4 +72,4 @@ const PostSchema = new Schema({
 
 
 const Post = mongoose.model('Post', PostSchema);
-module.exports = Post;
+module.exports = {Post, PostSchema};

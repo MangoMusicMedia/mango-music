@@ -3,8 +3,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import configureStore from './store/store';
 
-//
 
+//TESTING FETCHING LIKED POSTS
+import { fetchLikedPostsbyUser } from './util/post_api_util';
 
 
 // TESTING START
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updatePost = updatePost;
     window.deletePost = deletePost;
     window.fetchPostsByUser = fetchPostsByUser;
+    window.fetchLikedPostsbyUser = fetchLikedPostsbyUser;
 
     window.fetchLikes = fetchLikes;
     window.fetchLike = fetchLike;
