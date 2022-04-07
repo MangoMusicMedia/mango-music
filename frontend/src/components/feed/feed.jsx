@@ -1,5 +1,4 @@
 import React from 'react';
-import testPic from '../../images/test.jpg'
 import FeedPost from './feed_post';
 import { useEffect } from 'react';
 

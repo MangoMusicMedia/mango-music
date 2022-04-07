@@ -33,23 +33,18 @@ const Post = props => {
       author: props.currentUser.id,
       message: comment
     }
-    props.createComment(props.post._id, commentObj);
-    setComment('');
+    props.createComment(props.post._id, commentObj).then(() => setComment(''));
   }
-  
-  // const handleDeleteComment = comment => {
-  //   props.deleteComment(props.post._id, comment._id)
-  // }
 
   const getDate = date => {
     return date.slice(0,4);
   }
 
-  // const testComments = [{ authorId: 1, authorName: 'user420', body: 'I love this song too!' }, { authorId: 1, authorName: 'stringBean', body: 'Such a good album' }, { authorId: 1, authorName: 'fried-chicken-boi', body: 'This artist is great.'}];
-
   useEffect(() => {
     props.fetchPost(props.match.params.postId);
     props.fetchComments(props.match.params.postId);
+    props.fetchUsers()
+    window.scrollTo(0, 0);
   }, []);
   
   useEffect(() => {
@@ -58,7 +53,7 @@ const Post = props => {
     }
   }, [props.post]);
   
-  if (props.post && props.comments) {
+  if (props.post && props.comments && Object.values(props.users)) {
     return (
       <div className="post">
       <div className="post__left">
@@ -104,7 +99,7 @@ const Post = props => {
           {props.comments.map((comment, idx) => (
             <li key={idx}>
               <div className="inner-comment-wrapper">
-                <Link to='/'>{comment.author}</Link>
+                <Link to='/'>{props.users[comment.author] && props.users[comment.author].username}</Link>
                 {props.currentUser.id === comment.author ? (
                 <div className="btn-wrapper">
                   <button onClick={() => props.deleteComment(props.post._id, comment._id)}>Remove</button>
@@ -118,7 +113,7 @@ const Post = props => {
             ))}
             <form onSubmit={handleComment} className="new-comment-wrapper">
             <div className="text-wrapper">
-              <textarea onChange={update('comment')} value={props.comment} placeholder='Add a comment . . .' />
+              <textarea onChange={update('comment')} value={comment} placeholder='Add a comment . . .' />
             </div>
               <div className="comment-button-wrapper">
                 <button className="comment-button">Add comment</button>
