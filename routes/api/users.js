@@ -121,8 +121,8 @@ router.post('/login', (req, res) => {
 
 
 // fetching posts that users liked
-router.get("/:userId/likedPosts", (req, res) => {
-  User.findById(req.params.userId)
+router.get("/:authorId/likedPosts", (req, res) => {
+  User.findById(req.params.authorId)
     .then(user => {
       Like.find()
         .then(likes => {
@@ -132,8 +132,8 @@ router.get("/:userId/likedPosts", (req, res) => {
             }
           })
         })
-        
         user.save()
+        
         // user.save()
         //   .then(data => res.json(user.likedPosts))
         //   .catch(err => res.status(400).json("No posts found"))

@@ -8,6 +8,10 @@ export const fetchPostsByUser = (authorId) => {
   return axios.get(`/api/posts/author/${authorId}`)
 }
 
+export const fetchLikedPostsbyUser = (authorId) => {
+  return axios.get(`api/posts/${authorId}/likedPosts`)
+}
+
 export const fetchPost = (postId) => {
   return axios.get(`/api/posts/${postId}`)
 }
