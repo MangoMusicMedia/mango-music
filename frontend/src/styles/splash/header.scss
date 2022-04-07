@@ -45,14 +45,14 @@
     border: 2px solid rgb(199, 144, 66);
     display: flex;
     align-items: center;
-    background-color: rgb(149, 110, 54);
+    background-color: $cream;
     position: relative;
     -webkit-transition: background 0.8s;
     transition: background 0.8s;
   
     & > svg {
       width: 20px;
-      height: 24px;
+      height: 21px;
       right: 0;
       position: absolute;
       position: right 100px;
@@ -71,7 +71,7 @@
   
     &:focus-within {
       border: 2px solid $orange-soda;
-      background-color: $cream;
+      background-color: $off-white;
       -webkit-transition: background 0.8s;
       transition: background 0.8s;
   
@@ -81,7 +81,7 @@
     }
   
     & > input {
-      background-color: rgb(149, 110, 54);
+      background-color: $cream;
       width: 100%;
       border: none;
       margin-left: 15px;
@@ -99,7 +99,7 @@
       }
   
       &:focus {
-        background-color: $cream;
+        background-color: $off-white;
         -webkit-transition: background 0.8s;
         transition: background 0.8s;
       }
