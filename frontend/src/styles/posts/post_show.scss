@@ -119,49 +119,52 @@
       padding-top: 20px;
       border-top: 1px solid $light-brown;
 
+      & > .new-comment-wrapper {
 
-    & > .text-wrapper {
-      margin-top: 40px;
-      // max-width: 400px;
-      min-width: 200px;
-      width: 100%;
-      max-height: 300px;
-      min-height: 60px;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid rgba(92, 69, 53, 0.3);
-      border-radius: 10px;
-
-      & > textarea {
-        background-color: $off-white;
-      }
+        & > .text-wrapper {
+          margin-top: 40px;
+          // max-width: 400px;
+          min-width: 200px;
+          width: 100%;
+          max-height: 300px;
+          min-height: 60px;
+          height: 80px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 2px solid rgba(92, 69, 53, 0.3);
+          border-radius: 10px;
     
-      &:focus-within {
-        border-radius: 10px;
-        border: 2px solid $lime-green;
-      }
-    
-      & > textarea {
-        width: 90%;
-        height: 60%;
-        resize: none;
-        border: none;
-        outline: none;
-        font-size: 16px;
-        font-family: 'Hind Siliguri', sans-serif;
-        letter-spacing: 0.5px;
-        color: $brown;
+          & > textarea {
+            background-color: $off-white;
+          }
         
-        &::placeholder {
-          font-size: 14px;
-          font-family: 'Hind Siliguri', sans-serif;
-          letter-spacing: 0.5px;
-          color: $light-brown;
+          &:focus-within {
+            border-radius: 10px;
+            border: 2px solid $lime-green;
+          }
+        
+          & > textarea {
+            width: 90%;
+            height: 60%;
+            resize: none;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Hind Siliguri', sans-serif;
+            letter-spacing: 0.5px;
+            color: $brown;
+            
+            &::placeholder {
+              font-size: 14px;
+              font-family: 'Hind Siliguri', sans-serif;
+              letter-spacing: 0.5px;
+              color: $light-brown;
+            }
+          }
         }
       }
-    }
+
 
       & > h1 {
         font-size: 18px;
@@ -169,7 +172,7 @@
       }
 
       & > li {
-        margin-bottom: 10px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: column;
 
@@ -287,6 +290,30 @@
     border-radius: 6px;
     color: $light-brown;
 
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      transition: ease-in 0.16s;
+      color: $brown;
+    }
+  }
+}
+
+.comment-button-wrapper {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  
+  & > button {
+    font-size: 14px;
+    font-weight: 500;
+    border: 1.5px solid $light-brown;
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: $light-brown;
+    text-align: end;
+  
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       transition: ease-in 0.16s;

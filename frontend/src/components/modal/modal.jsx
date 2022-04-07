@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { useState } from "react";
 import SignupFormContainer from "../session/signup_container";
 import LoginFormContainer from '../session/login_container';
+import ForgotPassword from "./forgot_password";
 
 const Modal = ({ modal, closeModal }) => {
   let [modalTransition, setModalTransition] = useState(false);
@@ -26,6 +27,9 @@ const Modal = ({ modal, closeModal }) => {
       break;
     case 'login':
       component = <LoginFormContainer />;
+      break;
+    case 'trouble':
+      component = <ForgotPassword />;
       break;
     default:
       return null;
