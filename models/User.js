@@ -14,6 +14,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  followers: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  }
+  ],
   posts: [
     {
       type: Schema.Types.ObjectId,
@@ -25,7 +31,10 @@ const UserSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "posts"
     }
-  ]
+  ],
+  profilePhoto: {
+    type: String
+  }
 }, {
   timestamps: true
 })
