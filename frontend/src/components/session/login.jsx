@@ -17,7 +17,7 @@ const LoginForm = props => {
 
   const handleSubmit = e => {
     const user = {
-      email: (email).toLowerCase(),
+      email,
       password
     }
 

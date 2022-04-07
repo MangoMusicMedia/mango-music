@@ -17,8 +17,8 @@ function App() {
       <Switch>
         <AuthRoute exact path="/welcome"component={Splash} />
         <ProtectedRoute exact path="/posts/:postId" component={Post}/>
-        <ProtectedRoute exact path="/" component={Feed}/>
         <ProtectedRoute exact path="/users/:id" component={Profile} />
+        <ProtectedRoute path="/" component={Feed}/>
       </Switch>
     </div>
   );

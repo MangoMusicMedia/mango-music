@@ -1,24 +1,61 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { beautifyDate } from "../../util/date_util";
+import { Link } from "react-router-dom";
 
 const Post = props => {
+  let [caption, setCaption] = useState('');
+
+  const update = field => {
+    return e => {
+      if (field === 'caption') {
+        setCaption(e.target.value);
+      }
+    }
+  }
+
+  const handleEdit = e => {
+    e.preventDefault();
+    const post = {
+      id: props.post._id,
+      description: caption
+    }
+
+    props.updatePost(post);
+  }
+
+  const getDate = date => {
+    return date.slice(0,4);
+  }
+
+  const testComments = [{ authorId: 1, authorName: 'user420', body: 'I love this song too!' }, { authorId: 1, authorName: 'stringBean', body: 'Such a good album' }, { authorId: 1, authorName: 'fried-chicken-boi', body: 'This artist is great.'}];
 
   useEffect(() => {
     props.fetchPost(props.match.params.postId)
   }, []);
-
-  return props.post ? (
-    <div className="post">
+  
+  useEffect(() => {
+    if (props.post){
+      setCaption(props.post.description);
+    }
+  }, [props.post]);
+  
+  if (props.post) {
+    return (
+      <div className="post">
       <div className="post__left">
         <h1 className="post__left__track-name">{props.post.trackName}</h1>
-        <h2>{props.post.albumName}</h2>
+        <div className="post__left__album-info">
+          <h2>{props.post.albumName}</h2>
+          <h3>{getDate(props.post.releaseDate)}</h3>
+        </div>
         <img src={props.post.albumCoverURL}/>
         <div className="button-wrapper">
-          <button className="edit">Edit</button>
-          {/* <button onClick={() => props.updatePost()}>Edit</button> */}
-          <button className="remove">Remove</button>
-          {/* <button onClick={() => props.deletePost()}>Remove</button> */}
+          {props.currentUser.id === props.post.author ? (
+            <button onClick={() => props.deletePost(props.post._id)}>Remove</button>
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
       <div className="post__right">
@@ -32,11 +69,43 @@ const Post = props => {
             <p className="post__right__likes">{props.post.likes.length}</p>
           </div>
         </div>
-        <p className="post__right__description">{props.post.description}</p>
-        <p className="post__right__comments">Comments{props.post.comments.length}</p>
+        {props.currentUser.id === props.post.author ? (
+          <form onSubmit={handleEdit} className="post__right__edit-wrapper">
+            <div className="text-wrapper">
+              {/* <textarea value={props.post.description} /> */}
+              <textarea value={caption} onChange={update('caption')} />
+            </div>
+            <div className="post__right__edit-wrapper__button-wrapper">
+              <button>Edit</button>
+            </div>
+          </form>
+        ) : (
+          <p className="post__right__description">{props.post.description}</p>
+        )}
+        <ul className="post__right__comments-wrapper">
+          <h1>Comments</h1>
+          {testComments.map((comment, idx) => (
+            <li key={idx}>
+              <div className="inner-comment-wrapper">
+                <Link to='/'>{comment.authorName}</Link>
+                <div className="btn-wrapper">
+                  <button>Edit</button>
+                  <button>Remove</button>
+                </div>
+              </div>
+              <h1>{comment.body}</h1>
+            </li>
+            ))}
+          <div className="text-wrapper">
+            <textarea placeholder='Add a comment . . .' />
+          </div>
+        </ul>
       </div>
     </div>
-  ) : null;
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Post;

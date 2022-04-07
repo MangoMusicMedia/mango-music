@@ -24,8 +24,8 @@ const SignUpForm = props => {
 
   const handleSubmit = e => {
     const user = {
-      email: (email).toLowerCase(),
-      username: (username).toLowerCase(),
+      email,
+      username,
       password: password1,
       password2: password2
     }
