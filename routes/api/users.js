@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const User = require("../../models/User");
-const Post = require("../../models/Post");
+const {User} = require("../../models/User");
+const {Post} = require("../../models/Post");
 const Like = require("../../models/Like");
 const keys = require('../../config/keys');
 const passport = require('passport');
@@ -27,6 +27,12 @@ router.get('/:id', (req, res) => {
   User.findById(req.params.id)
     .then(user => res.json(user))
     .catch(err => res.status(400).json({nouserfound: "No user found by that id"}))
+})
+
+router.get('/', (req, res) => {
+  User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json({ nousers: "No users" }))
 })
 
 router.post("/register", (req, res) => {

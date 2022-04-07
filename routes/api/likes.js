@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
-const User = require('../../models/User');
-const Post = require('../../models/Post');
+const {User} = require('../../models/User');
+const {Post} = require('../../models/Post');
 const Like = require('../../models/Like');
 const validateLikeInput = require('../../validation/likes');
 
@@ -32,26 +32,28 @@ router.post("/:userId/posts/:postId",
     (req, res) => {
         Post.findById(req.params.postId)
             .then(foundPost => {
-                const newLike = new Like({
-                    post: foundPost.id,
-                    user: req.params.userId
-                })
-
                 User.findById(req.params.userId)
-                    .then(user => {
-                        //saving this post to users likedPosts
-                        user.likedPosts.push(foundPost)
-                        user.save()
+                    .then(foundUser => {
+                        //saving this post to foundUsers likedPosts
+                        foundUser.likedPosts.push(foundPost)
+                        foundUser.save()
 
-                        //saving the user into the post's likes array
-                        foundPost.likes.push(user)
+                        //saving the foundUser into the post's likes array
+                        foundPost.likes.push(foundUser._id)
                         foundPost.save()
+
+                        const newLike = new Like({
+                            post: foundPost,
+                            user: foundUser
+                        })
+        
+        
+                        newLike.save()
+                        // foundPost.likes.push(newLike)
+                        // foundPost.save()
+                        res.json(newLike)
                     })
 
-                newLike.save()
-                // foundPost.likes.push(newLike)
-                // foundPost.save()
-                res.json(newLike)
             })
             .catch(err => res.status(400).json("Could not save like"))
     })

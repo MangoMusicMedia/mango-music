@@ -20,5 +20,5 @@ export const editComment = (postId, commentId, data) => {
 
 
 export const deleteComment = (postId, commentId) => {
-    return axios.delete(`/api/posts/${postId}/comments/${commentId}`)
+    return axios.delete(`/api/posts/${postId}/comments/${commentId}`, commentId)
 };
