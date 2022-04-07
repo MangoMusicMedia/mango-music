@@ -72,6 +72,10 @@ const Post = props => {
         </div>
       </div>
       <div className="post__right">
+        <Link to={`/users${props.post.author}`} className="post__right__author-wrapper">
+          <h1>{props.users[props.post.author] && props.users[props.post.author].username}</h1>
+          <img src={props.users[props.post.author] && props.users[props.post.author].profilePhoto}/>
+        </Link>
         <iframe src={`https://open.spotify.com/embed/track/${props.post.trackId}?utm_source=generator`} width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         <div className="post__right__small-wrapper">
           <p className="post__right__time">{beautifyDate(props.post.createdAt)}</p>
@@ -99,7 +103,7 @@ const Post = props => {
           {props.comments.map((comment, idx) => (
             <li key={idx}>
               <div className="inner-comment-wrapper">
-                <Link to='/'>{props.users[comment.author] && props.users[comment.author].username}</Link>
+                <Link to={`/users/${comment.author}`}>{props.users[comment.author] && props.users[comment.author].username}</Link>
                 {props.currentUser.id === comment.author ? (
                 <div className="btn-wrapper">
                   <button onClick={() => props.deleteComment(props.post._id, comment._id)}>Remove</button>
