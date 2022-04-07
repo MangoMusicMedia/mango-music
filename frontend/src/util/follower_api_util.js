@@ -13,5 +13,5 @@ export const createFollower = (follower, userId) => {
 }
 
 export const deleteFollower = (userId, followerId) => {
-  return axios.delete(`/api/users/${userId}/comments/${followerId}`)
+  return axios.delete(`/api/users/${userId}/followers/${followerId}`)
 }

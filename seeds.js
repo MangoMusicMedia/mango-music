@@ -5,6 +5,10 @@ const db = require("./config/keys").mongoURI;
 const axios = require('axios');
 const mongoose = require("mongoose");
 
+
+// const User = require('./models/User');
+// const Post = require('./models/Post');
+const Like = require('./models/Like')
 const {User} = require('./models/User');
 const {Post} = require('./models/Post');
 
@@ -23,6 +27,10 @@ User.remove({}, function(err) {
 });
 
 Post.remove({}, function(err) { 
+  console.log('User collection removed') 
+});
+
+Like.remove({}, function(err) { 
   console.log('User collection removed') 
 });
 
