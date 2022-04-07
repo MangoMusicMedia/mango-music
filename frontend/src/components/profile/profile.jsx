@@ -1,4 +1,3 @@
-import Header from "../splash/header";
 import ProfileHeader from "./profile_header";
 
 const Profile = props => {
