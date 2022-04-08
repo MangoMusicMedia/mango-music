@@ -1,0 +1,33 @@
+@import '../colors.scss';
+
+.forgot-pass {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+
+  h1 {
+    font-weight: 500;
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 16px;
+    color: $light-brown;
+  }
+
+  button {
+    border: 1.5px $brown solid;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05) perspective(1px);
+      transition: 0.50s;
+      box-shadow: $shadow;
+    }
+  }
+}

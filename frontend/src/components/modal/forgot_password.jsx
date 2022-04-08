@@ -17,7 +17,7 @@ const ForgotPasswordModal = props => {
   return (
     <div className="forgot-pass">
       <h1>
-        Forgot you password?
+        Forgot your password?
       </h1>
 
       <p>Please try signing in as a Demo user to access Mango Music's content.</p>
