@@ -4,6 +4,7 @@ import { openModal } from "../actions/modal_actions";
 import { logout } from "../actions/session_actions"
 import { connect } from "react-redux";
 import SearchBarContainer from "./search/search_bar_container";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const { openModal, logout } = props;
@@ -19,7 +20,9 @@ const Header = (props) => {
   return (
     <header className="header">
       <div className="header__inner">
+        <Link to="/" >
         <img className="header__logo" src={logo} alt="logo" />
+        </Link>
         <SearchBarContainer />
         {getSessionLink(props.loggedIn)}
       </div>
