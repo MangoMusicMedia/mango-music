@@ -1,6 +1,21 @@
-// import React from "react";
-// import { useEffect } from "react";
-// import { beautifyDate } from "../../util/date_util";
+import React from "react";
+import { useEffect } from "react";
+import { beautifyDate } from "../../util/date_util";
+import { Link } from "react-router-dom";
+
+const ProfilePost = props => {
+  return (
+    <Link to={`/posts/${props.id}`} className="profile-inner__post-wrapper">
+      <img src={props.img} />
+      <h3>{props.name}</h3>
+      <p>{props.text}</p>
+    </Link>
+  );
+}
+
+export default ProfilePost;
+
+
 
 // const PostCard = props => {
 

@@ -73,6 +73,7 @@ const Post = props => {
   
   if (props.post && props.comments && Object.values(props.users)) {
     return (
+      <div className="post-outer">
       <div className="post">
       <div className="post__left">
         <h1 className="post__left__track-name">{props.post.trackName}</h1>
@@ -92,7 +93,7 @@ const Post = props => {
         </div>
       </div>
       <div className="post__right">
-        <Link to={`/users${props.post.author}`} className="post__right__author-wrapper">
+        <Link to={`/users/${props.post.author}`} className="post__right__author-wrapper">
           <h1>{props.users[props.post.author] && props.users[props.post.author].username}</h1>
           <img src={props.users[props.post.author] && props.users[props.post.author].profilePhoto}/>
         </Link>
@@ -155,6 +156,7 @@ const Post = props => {
         </ul>
       </div>
     </div>
+      </div>
     );
   } else {
     return null;
