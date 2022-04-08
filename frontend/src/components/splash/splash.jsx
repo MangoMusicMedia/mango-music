@@ -13,7 +13,7 @@ const Splash = ({ openModal }) => {
 
   const handleOpenModal = e => {
     e.preventDefault();
-    openModal('signup');
+    openModal({type: 'signup'});
   }
 
   return (

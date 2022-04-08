@@ -11,7 +11,7 @@ const SplashHeader = (props) => {
     if (loggedIn) {
       return <button onClick={() => logout()} className="header__sign-in">Sign Out</button>
     } else {
-      return <button onClick={() => openModal('login')} className="header__sign-in">Sign in</button>
+      return <button onClick={() => openModal({type: 'login'})} className="header__sign-in">Sign in</button>
     }
   }
 
