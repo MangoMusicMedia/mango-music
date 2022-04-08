@@ -4,8 +4,10 @@ import { beautifyDate } from "../../util/date_util";
 import { Link } from "react-router-dom";
 
 const Post = props => {
+  let [likes, setLikes] = useState(props.postLikes.length)
   let [caption, setCaption] = useState('');
   let [comment, setComment] = useState('');
+  let [likedStatus, setLikedStatus] = useState(false)
 
   const update = field => {
     return e => {
@@ -36,6 +38,15 @@ const Post = props => {
     props.createComment(props.post._id, commentObj).then(() => setComment(''));
   }
 
+  const handleLike = e => {
+    e.preventDefault();
+    if (likedStatus) return;
+
+    setLikes(likes + 1)
+    setLikedStatus(true)
+    props.createLike(props.currentUser.id, props.post._id);
+  }
+
   const getDate = date => {
     return date.slice(0,4);
   }
@@ -43,15 +54,19 @@ const Post = props => {
   useEffect(() => {
     props.fetchPost(props.match.params.postId);
     props.fetchComments(props.match.params.postId);
-    props.fetchUsers()
+    props.fetchUsers();
+    props.fetchLikes(props.match.params.postId);
     window.scrollTo(0, 0);
   }, []);
   
   useEffect(() => {
     if (props.post){
       setCaption(props.post.description);
+      setLikes(props.postLikes.length)
     }
   }, [props.post]);
+
+  console.log(props.likes)
   
   if (props.post && props.comments && Object.values(props.users)) {
     return (
@@ -80,10 +95,19 @@ const Post = props => {
         <div className="post__right__small-wrapper">
           <p className="post__right__time">{beautifyDate(props.post.createdAt)}</p>
           <div className="likes-wrapper">
-            <button>
-              <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg>
-            </button>
-            <p className="post__right__likes">{props.post.likes.length}</p>
+            {props.post.likes.includes(props.currentUser.id) ? (
+              <button className="liked">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg>
+              </button>
+            ) : (
+              <button className="unlike" onClick={ handleLike }>
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg>
+              </button>
+            )}
+              {/* <button className="unlike" onClick={handleLike}>
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg>
+              </button> */}
+            <p className="post__right__likes">{likes}</p>
           </div>
         </div>
         {props.currentUser.id === props.post.author ? (

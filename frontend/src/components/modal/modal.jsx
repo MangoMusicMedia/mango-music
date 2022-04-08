@@ -5,6 +5,7 @@ import { useState } from "react";
 import SignupFormContainer from "../session/signup_container";
 import LoginFormContainer from '../session/login_container';
 import ForgotPassword from "./forgot_password";
+import AddPostModal from "../post/add_post";
 
 const Modal = ({ modal, closeModal }) => {
   let [modalTransition, setModalTransition] = useState(false);
@@ -21,7 +22,7 @@ const Modal = ({ modal, closeModal }) => {
     return null;
   }
   let component;
-  switch (modal) {
+  switch (modal.type) {
     case 'signup':
       component = <SignupFormContainer />;
       break;
@@ -30,6 +31,9 @@ const Modal = ({ modal, closeModal }) => {
       break;
     case 'trouble':
       component = <ForgotPassword />;
+      break;
+    case 'addPost':
+      component = <AddPostModal payload={modal.payload} />;
       break;
     default:
       return null;
