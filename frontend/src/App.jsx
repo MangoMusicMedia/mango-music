@@ -8,6 +8,8 @@ import { Route, Switch, } from "react-router-dom";
 import Feed from './components/feed/feed_container';
 import Profile from './components/profile/profile';
 import Post from './components/post/post_container';
+import Footer from './components/footer/footer';
+import OurTeam from './components/ourTeam/ourTeam';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Modal/>
       <ProtectedRoute component={Header}/>
       <Switch>
+        <Route exact path="/footer" component={Footer} />
+        <Route exact path="/ourTeam" component={OurTeam} />
         <AuthRoute exact path="/welcome"component={Splash} />
         <ProtectedRoute exact path="/posts/:postId" component={Post}/>
         <ProtectedRoute exact path="/users/:id" component={Profile} />
