@@ -18,7 +18,7 @@ function App() {
         <Modal/>
         <ProtectedRoute component={Header}/>
       </header>
-      <body>
+      <div>
         <Switch>
           <AuthRoute exact path="/welcome"component={Splash} />
           <ProtectedRoute exact path="/posts/:postId" component={Post}/>
@@ -26,7 +26,7 @@ function App() {
           <ProtectedRoute exact path="/ourTeam" component={OurTeam} />
           <ProtectedRoute path="/" component={Feed}/>
         </Switch>
-      </body>
+      </div>
       <footer>
         <ProtectedRoute path="/posts/:postId" component={Footer} />
         <ProtectedRoute path="/users/:id" component={Footer} />

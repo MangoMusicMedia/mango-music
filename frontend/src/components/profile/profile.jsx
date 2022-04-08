@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 import ProfileHeader from "./profile_header";
 import { requestUser } from "../../actions/user_actions";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchPostsByUser } from '../../actions/post_actions';
-// import PostIndex from './profile_posts_index';
+import PostIndex from './profile_posts_index';
 
 const Profile = props => {
 
+  const [userPosts, setUserPosts] = useState([]);
+
   useEffect(() => {
     props.requestUser();
-    props.fetchPostsByUser(props.userId);
+    props.fetchPostsByUser(props.userId).then((res) => {
+      setUserPosts(res.posts)
+    });
     window.scrollTo(0, 0);
   }, []);
 
@@ -17,9 +21,9 @@ const Profile = props => {
   return (
     <div>
       <div className="profile-wrapper">
-        <ProfileHeader props={props}/>
+        <ProfileHeader props={props} userPosts={userPosts}/>
       </div>
-      {/* <PostIndex props={props}/> */}
+      <PostIndex props={props} userPosts={userPosts}/>
     </div>
   )
 
@@ -35,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     userId: ownProps.match.params.id,
-    user: state.entities.user,
+    user: state.entities.users[ownProps.match.params.id],
     currentUser: state.session.user,
     loggedIn: state.session.isAuthenticated,
     posts: Object.values(state.entities.posts)
