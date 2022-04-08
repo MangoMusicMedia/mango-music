@@ -1,25 +1,28 @@
 import { connect } from 'react-redux';
 import ProfileHeader from "./profile_header";
 import { requestUser } from "../../actions/user_actions";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchPostsByUser } from '../../actions/post_actions';
 import ProfilePost from './profile_post';
 
 const Profile = props => {
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     props.requestUser(props.match.params.id);
-    props.fetchPostsByUser(props.match.params.id);
+    props.fetchPostsByUser(props.userId).then((res) => {
+      setUserPosts(res.posts)
+    });
     window.scrollTo(0, 0);
   }, []);
 
   return props.user && props.posts ? (
     <div className='profile-outer'>
       <div className='profile-inner'>
-        <ProfileHeader currentUser={props.currentUser} posts={props.posts} user={props.user}/>
-      {props.posts.length ? (
+        <ProfileHeader currentUser={props.currentUser} posts={userPosts} user={props.user}/>
+      {(userPosts) ? (
         <ul className='profile-inner__container'>
-          {props.posts.map((post, idx) => (
+          {userPosts.map((post, idx) => (
             <ProfilePost key={idx} id={post._id} img={post.albumCoverURL} name={post.trackName} text={post.description}/>
           ))}
         </ul>
