@@ -1,7 +1,6 @@
-# [Mango Music](https://mango-music-fsp.herokuapp.com/#/)
+# Welcome to Mango Music 🎶 
 
-## About
-Mango Music is a social media platform in which users can share songs or albums. Songs and albums will provide information on song lyrics, chord/instrumental data, band information, potentially event information, and Spotify link/api.
+Mango Music is a social media platform in which users can vibe over what they love the most, music! Users can search for tracks, discover new tunes, listen to song previews, and most importantly, share their thought's and start a discussion about a particular piece. Whether visitors prefer meeting new people by visiting the explore page or sharing the new indie band they just dicovered with their tight-knit circle, Mango Music has something for all music lovers alike. Visit [Mango Music](https://mango-music-fsp.herokuapp.com/#/welcome) today and see what all the hype is about.
 
 ## Features
 * A database to store user information- such as user sign in information and post/ music preference references
