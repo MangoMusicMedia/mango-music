@@ -6,13 +6,21 @@ import { openModal } from "../../actions/modal_actions";
 import { fetchUsers } from "../../actions/user_actions";
 import { createLike, deleteLike, fetchLikes } from "../../actions/like_actions";
 
-const mapStateToProps = (state, ownProps) => ({
-  currentUser: state.session.user,
-  post: state.entities.posts[ownProps.match.params.postId],
-  comments: Object.values(state.entities.comments),
-  users: state.entities.users,
-  likes: Object.values(state.entities.likes)
-});
+const mapStateToProps = (state, ownProps) => {
+  let postLikes = [];
+  if (state.entities.posts[ownProps.match.params.postId]) {
+    postLikes = state.entities.posts[ownProps.match.params.postId].likes
+  }
+  // debugger
+  return {
+    currentUser: state.session.user,
+    post: state.entities.posts[ownProps.match.params.postId],
+    postLikes: postLikes,
+    comments: Object.values(state.entities.comments),
+    users: state.entities.users,
+    likes: Object.values(state.entities.likes)
+  }
+}
 
 export default connect(mapStateToProps, {fetchPost, 
   updatePost, 
