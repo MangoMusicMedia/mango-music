@@ -26,11 +26,11 @@ class Footer extends React.Component {
 
                             <div className="technologies-container">
                                 <h2>Technologies</h2>
-                                <a href="https://www.mongodb.com/" target="_blank">MongoDB/Mongoose</a>
+                                <a href="https://www.mongodb.com/" target="_blank">MongoDB / Mongoose</a>
                                 <a href="https://expressjs.com/" target="_blank">Express</a>
-                                <a href="https://react-redux.js.org/" target="_blank">React/Redux</a>
+                                <a href="https://react-redux.js.org/" target="_blank">React / Redux</a>
                                 <a href="https://nodejs.org/" target="_blank">Node.js</a>
-                                <a href="https://developer.spotify.com/documentation/web-api/" target="_blank">SpotifyAPI</a>
+                                <a href="https://developer.spotify.com/documentation/web-api/" target="_blank">Spotify API</a>
                             </div>
 
                             <div className="contact-us-container">

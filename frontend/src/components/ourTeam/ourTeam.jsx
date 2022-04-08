@@ -13,7 +13,7 @@ class OurTeam extends React.Component {
         return(
             <div id="our-team">
                 <div className="our-team-container">
-                    <h1 className="our-team-title">Our Team</h1>
+                    <h1 className="our-team-title">Get to Know the Developers:</h1>
                         <div className="our-team-boxes">
                             <div id="box">
                                 <img src={abbeyPhoto} alt="" className="individual-photo"/>
@@ -22,7 +22,7 @@ class OurTeam extends React.Component {
                                     <a href="" target="_blank"><img src={linkedin} id="linkedin-photo-icon" alt="linkedin" /></a>
                                     <a href="" target="_blank"><img src={angel2} id="angellist-photo-icon" alt="angellist" /></a>
                                 </div>
-                                <p id="role">Group Lead (Head Honcho)</p>
+                                <p id="role">Group Lead / Head Honcho</p>
                             </div>
                             <div id="box">
                                 <img src={maggiePhoto} alt="" className="individual-photo"/>
@@ -49,7 +49,7 @@ class OurTeam extends React.Component {
                                     <a href="" target="_blank"><img src={linkedin} id="linkedin-photo-icon" alt="linkedin" /></a>
                                     <a href="https://angel.co/u/johnny-hoang-3" target="_blank"><img src={angel2} id="angellist-photo-icon" alt="angellist" /></a>
                                 </div>
-                                <p id="role">Backend Guy (needs better photo)</p>
+                                <p id="role">Backend Guy / Route Master</p>
                             </div>
                         </div>
                 </div>

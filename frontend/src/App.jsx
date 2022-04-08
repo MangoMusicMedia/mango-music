@@ -14,16 +14,24 @@ import OurTeam from './components/ourTeam/ourTeam';
 function App() {
   return (
     <div>
-      <Modal/>
-      <ProtectedRoute component={Header}/>
-      <Switch>
-        <Route exact path="/footer" component={Footer} />
-        <Route exact path="/ourTeam" component={OurTeam} />
-        <AuthRoute exact path="/welcome"component={Splash} />
-        <ProtectedRoute exact path="/posts/:postId" component={Post}/>
-        <ProtectedRoute exact path="/users/:id" component={Profile} />
-        <ProtectedRoute path="/" component={Feed}/>
-      </Switch>
+      <header>
+        <Modal/>
+        <ProtectedRoute component={Header}/>
+      </header>
+      <body>
+        <Switch>
+          <AuthRoute exact path="/welcome"component={Splash} />
+          <ProtectedRoute exact path="/posts/:postId" component={Post}/>
+          <ProtectedRoute exact path="/users/:id" component={Profile} />
+          <ProtectedRoute exact path="/ourTeam" component={OurTeam} />
+          <ProtectedRoute path="/" component={Feed}/>
+        </Switch>
+      </body>
+      <footer>
+        <ProtectedRoute path="/posts/:postId" component={Footer} />
+        <ProtectedRoute path="/users/:id" component={Footer} />
+        <ProtectedRoute exact path="/" component={Footer} />
+      </footer>
     </div>
   );
 }
