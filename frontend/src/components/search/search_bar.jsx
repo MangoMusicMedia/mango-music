@@ -8,7 +8,7 @@ const SearchBar = (props) => {
   const displayResults = () => {
     return ( 
       <div className="search_drop-down">
-        if (songList) {
+        {songList &&
           songList.map( song => (
             <div className="song_card" key={song.id}>
               <div className="song_card_details">
@@ -59,7 +59,10 @@ const SearchBar = (props) => {
         ></input>
         <div onClick={ e => {
           props.search({ q: searchString, type: "track", limit: 12 })
-            .then(res => setSongList(res.data.tracks.items))
+            .then(res => {
+              setSongList(res.data.tracks.items)
+              console.log(res.data.tracks.items)
+            })
             .catch(err => setSongList([]))
         }}>
           <svg className="search-icon" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">

@@ -20,7 +20,7 @@ const ProfileHeader = props => {
             <div className="profile__title">
               <div className='profile__title__body details'>7 Likes</div>
               <div className='profile__title__body details'>10 Followers</div>
-              <div className='profile__title__body details'>{props.props.posts.length} Posts</div>
+              <div className='profile__title__body details'>{props.userPosts.length} Posts</div>
             </div>
           </div>
         </div>
