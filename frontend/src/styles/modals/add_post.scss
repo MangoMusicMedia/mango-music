@@ -1,0 +1,27 @@
+@import '../colors.scss';
+
+.addPostModal {
+  padding: 20px;
+  text-align: left;
+
+  h1 {
+    padding-bottom: 15px;
+    font-weight: 500;
+  }
+
+  .text-wrapper {
+    margin-top: 10px;
+    width: 100%;
+
+    textarea {
+      width: 98%;
+      min-height: 100px;
+      margin-bottom: 20px;
+    }
+  }
+
+  a {
+    width: calc(100% - 115px);
+    text-align: center;
+  }
+}
