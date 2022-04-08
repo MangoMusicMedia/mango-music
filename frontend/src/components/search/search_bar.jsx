@@ -1,9 +1,6 @@
 import {  React, useState } from 'react';
 
 const SearchBar = (props) => {
-  console.log(props);
-
-  // window.search({q: "Dancing Queen", type: "track"}).then(res => console.log(res.data.tracks.items));
 
   const [searchString, setSearch] = useState("");
   const [songList, setSongList] = useState([]);
@@ -32,10 +29,9 @@ const SearchBar = (props) => {
           ))
         }
       </div>
-      )
+    )
   }
- 
-  console.log("search: ", searchString);
+
 
   return (
     <div>
