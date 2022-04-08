@@ -13,7 +13,7 @@ const Feed = props => {
     <div className='feed'>
       <h1>Explore recently shared</h1>
       <ul className='feed__container'>
-        {props.posts.map((post, idx) => (
+        {props.posts.reverse().map((post, idx) => (
           <FeedPost id={post._id} key={idx} img={post.albumCoverURL} name={post.trackName} text={post.description}/>
         ))}
       </ul>

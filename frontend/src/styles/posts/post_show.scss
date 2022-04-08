@@ -1,3 +1,8 @@
+.post-outer {
+  display: flex;
+  justify-content: center;
+}
+
 .post {
   padding: 50px;
   display: flex;
@@ -281,7 +286,7 @@
           color: $blood-orange;
         }
   
-        & > button {
+        & > .like {
           padding-right: 10px;
   
           &:hover {
@@ -351,5 +356,15 @@
       transition: ease-in 0.16s;
       color: $brown;
     }
+  }
+}
+
+.liked {
+  padding-right: 10px;
+  
+  svg {
+    padding: 8px;
+    background-color: rgba(242, 104, 24, 0.4);
+    border-radius: 8px;
   }
 }

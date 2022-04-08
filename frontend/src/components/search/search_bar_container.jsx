@@ -5,7 +5,6 @@ import { search } from "../../util/spotify_api_util";
 import { createPost } from "../../actions/post_actions"
 
 const mapStateToProps = state => {
-  console.log("State: ", state)
   return {
     currentUser: state.session.user,
   }

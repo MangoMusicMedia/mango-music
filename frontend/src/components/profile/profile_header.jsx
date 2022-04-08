@@ -1,31 +1,24 @@
 import React from 'react';
-import avatar from '../../images/avatar.jpg';
+import { useEffect } from 'react';
+import profPic from '../../images/demo-profile.png';
 
 const ProfileHeader = props => {
 
-  console.log("Profile Header: ", props)
-
-    return props.props.user ? (
+    return props.user ? (
       <div className='profile'>
         <div className="profile__top">
-          <div className="profile_top___image-wrapper">
-            <img className='profile__image__avatar' src={avatar} alt='Avatar' loading='eager' />
-            <button className='profile__title__follows'>Follow</button>
+          <div className="profile__image-wrapper">
+            <img className='profile__image' src={props.user.profilePhoto} alt='Avatar' loading='eager' />
+            <button>Follow</button>
           </div>
-          <div className='profile__title-wrapper'>
-            <div className="profile__title-wrapper__info">
-              <h1 className='profile__title-wrapper__username'>{props.props.user.username}</h1>
-              {/* <button className='profile__title-wrapper__follow'>Edit profile</button> */}
-            </div>
-            <div className="profile__title">
-              <div className='profile__title__body details'>7 Likes</div>
-              <div className='profile__title__body details'>10 Followers</div>
-              <div className='profile__title__body details'>{props.props.posts.length} Posts</div>
-            </div>
+          <div className='profile__details'>
+              <h1 className='profile__username'>{props.user.username}</h1>
+              <h2 className='details'>10 Followers</h2>
+              <h3 className='details'>{props.posts.length} Posts</h3>
           </div>
         </div>
         <div className='profile__bottom'>
-          <p className='profile__title__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p>
+          <p className='profile__bottom__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p>
         </div>
       </div>
     ) : null
