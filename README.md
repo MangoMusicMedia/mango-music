@@ -13,10 +13,10 @@ Mango Music is a social media platform in which users can share songs or albums.
 MangoMusic is primarily built with the MERN stack, a combination of following four technologies: MongoDB, Express, React, and Node.
 
 Spotify API will be used to extract:
-* song details
-* artist name
-* album art and realease date
-* track samples
+* Song details
+* Artist name
+* Album art and realease date
+* Track samples
 
 ## Roles and Responsibilities
 Team
@@ -24,3 +24,7 @@ Team
 * Catherine Choi - Flex
 * Johnny Hoang - Backend
 * Maggie McDonald - Frontend lead
+
+## Future Features
+* Lyrics
+* Chords
