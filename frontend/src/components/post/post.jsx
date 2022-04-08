@@ -75,7 +75,7 @@ const Post = props => {
         <h1 className="post__left__track-name">{props.post.trackName}</h1>
         <div className="post__left__album-info">
           <h2>{props.post.albumName}</h2>
-          <h3>{getDate(props.post.releaseDate)}</h3>
+          <h3>{props.post.releaseDate && getDate(props.post.releaseDate)}</h3>
         </div>
         <img src={props.post.albumCoverURL}/>
         <div className="button-wrapper">
