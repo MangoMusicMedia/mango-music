@@ -83,7 +83,7 @@ const Post = props => {
             <h3>{getDate(props.post.releaseDate)}</h3>
           ) : null }
         </div>
-        <img src={props.post.albumCoverURL}/>
+        <img src={props.post.albumCoverURL} alt="album or track art" />
         <div className="button-wrapper">
           {props.currentUser.id === props.post.author ? (
             <button onClick={() => props.deletePost(props.post._id)}>Remove</button>
@@ -95,9 +95,9 @@ const Post = props => {
       <div className="post__right">
         <Link to={`/users/${props.post.author}`} className="post__right__author-wrapper">
           <h1>{props.users[props.post.author] && props.users[props.post.author].username}</h1>
-          <img src={props.users[props.post.author] && props.users[props.post.author].profilePhoto}/>
+              <img title={props.post.trackName} alt={props.post.trackName} src={props.users[props.post.author] && props.users[props.post.author].profilePhoto}/>
         </Link>
-        <iframe src={`https://open.spotify.com/embed/track/${props.post.trackId}?utm_source=generator`} width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <iframe title={props.post.trackName} alt={props.post.trackName} src={`https://open.spotify.com/embed/track/${props.post.trackId}?utm_source=generator`} width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" ></iframe>
         <div className="post__right__small-wrapper">
           <p className="post__right__time">{beautifyDate(props.post.createdAt)}</p>
           <div className="likes-wrapper">

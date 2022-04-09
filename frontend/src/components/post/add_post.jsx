@@ -14,7 +14,6 @@ const AddPostModal = props => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting yoooo")
 
     if (description === "") {
       setDescriptionError(true)
