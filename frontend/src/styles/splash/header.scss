@@ -14,7 +14,7 @@
 
   &__sign-in {
     font-size: 20px;
-    margin-left: 14px;
+    margin-left: 64px;
     font-weight: 500;
     background-color: $pastel-green;
     padding: 12px 18px;
@@ -52,7 +52,7 @@
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 6px;
-    border: 2.5px solid rgb(199, 144, 66);
+    border: 2px solid rgb(199, 144, 66);
     align-items: center;
     background-color: $cream;
     -webkit-transition: background 0.8s;
@@ -89,7 +89,7 @@
   
       & > div {
         & > svg {
-          background-color: rgba(255, 170, 51, 0.7);
+          background-color: rgba(255, 170, 51, 0.5);
         }
       }
     }
@@ -120,7 +120,7 @@
     }
   
     &:hover {
-      border: 2.5px solid $lime-green;
+      border: 2px solid $orange-soda;
     }
   }
 }
