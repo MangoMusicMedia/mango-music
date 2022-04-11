@@ -1,61 +1,66 @@
-#our-team {
+@import '../colors.scss';
+
+.team {
+  width: 100%;
   display: flex;
   justify-content: center;
-  text-align: center;
-  margin-top: 150px;
-}
+  
+  &__inner {
+    padding: 50px;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.our-team-title {
-  font-size: 55px;
-  margin-bottom: 45px;
-  font-weight: 600;
-  color: $light-brown;
-}
+    & > h1 {
+      font-size: 40px;
+      font-weight: 500;
+      margin-bottom: 50px;
+    }
+  }
 
-.our-team-boxes {
-  display: flex;
-  justify-content: space-evenly;
-}
+  &__info-wrapper {
+    display: flex;
+    gap: 50px;
 
-#box {
-  height: 400px;
-  width: 300px;
-  margin: 30px;
-}
+    &__person {
+      & > img {
+        max-width: 258px;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      
+      & > h1 {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+      
+      & > h2 {
+        font-size: 18px;
+        color: $light-brown;
+      }
+    }
+    &__contacts {
+      display: flex;
+      justify-content: space-between;
+      margin-left: -10px;
+      
+      & > a {
+        & > svg {
+          width: 80px;
+          -webkit-transition: fill 0.5s;
+          transition: fill 0.5s;
+          fill: $brown;
 
-.individual-photo {
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-}
-
-.icons-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
-  margin-left: 8px;
-}
-
-#github-photo-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: fill;
-}
-
-#linkedin-photo-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: fill;
-}
-
-#angellist-photo-icon {
-  width: 50px;
-  height: 50px;
-  object-fit: fill;
-  margin-top: -7px;
-}
-
-#role {
-  margin-top: 18px;
+          &:hover {
+            cursor: pointer;
+            fill: $blood-orange;
+          }
+        }
+      }
+    }
+  }
 }
