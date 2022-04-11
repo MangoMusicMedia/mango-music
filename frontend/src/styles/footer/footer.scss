@@ -66,8 +66,14 @@
         align-items: center;
 
         & > a {
-            & > img {
-                width: 30px;
+            & > svg {
+                -webkit-transition: fill 0.5s;
+                transition: fill 0.5s;
+
+                &:hover {
+                    cursor: pointer;
+                    fill: $blood-orange;
+                }
             }
         }
         
