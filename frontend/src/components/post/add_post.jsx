@@ -7,9 +7,7 @@ import WaterButton from "../buttons/water_button"
 
 const AddPostModal = props => {
 
-  // const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [titleError, setTitleError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
 
   const handleSubmit = (e) => {
@@ -19,9 +17,6 @@ const AddPostModal = props => {
       setDescriptionError(true)
       return;
     } 
-    // if (title === "") {
-    //   setTitleError(true)
-    // }
 
     const newPost = {
       title: "default",
@@ -41,16 +36,21 @@ const AddPostModal = props => {
           {/* <iframe src={`https://open.spotify.com/embed/track/${props.payload.trackId}?utm_source=generator`} width="100%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> */}
           <iframe className="imbedded-track" src={`https://open.spotify.com/embed/track/${props.payload.trackId}?utm_source=generator`} width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
-        <div className="text-wrapper">
-          <textarea 
-            placeholder={`What would you like to share about ${props.payload.trackName}?`} 
-            value={description} 
-            onChange={ (e) => setDescription(e.target.value)}
-            />
-          {(descriptionError && description === "")&& <p>Description cannot be blank</p>}
+        <div>
+
+          <div className="text-wrapper">
+            <textarea 
+              placeholder={`What would you like to share about ${props.payload.trackName}?`} 
+              value={description} 
+              onChange={ (e) => setDescription(e.target.value)}
+              />
+          </div>
+          {(descriptionError && description === "")&& <p className="addPostModal__error">Description cannot be blank</p>}
         </div>
-        {/* <button className="c-button c-button--gooey">ADD POST</button> */}
-        < WaterButton handleSubmit={handleSubmit} title={"ADD POST"} />
+
+        <div className="btn-container">
+          < WaterButton handleSubmit={handleSubmit} title={"ADD POST"} />
+        </div>
       </form>
     </div>
   );

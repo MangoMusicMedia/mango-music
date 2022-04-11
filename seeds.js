@@ -35,7 +35,7 @@ Like.remove({}, function(err) {
 });
 
 const fakeUserData = [];
-for (let idx = 0; idx < 100; idx++) {
+for (let idx = 0; idx < 16; idx++) {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
   let newUser = {
