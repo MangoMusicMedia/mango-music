@@ -6,24 +6,12 @@ import {
   UPDATE_POST,
   DELETE_POST
 } from '../../actions/post_actions'
-import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../../actions/comment_actions';
 
 const postsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   let newState = Object.assign({}, oldState)
 
   switch (action.type) {
-    case RECEIVE_COMMENT:
-      Object.values(newState)[0].comments.push(action.comment)
-      return newState;
-    case REMOVE_COMMENT:
-      let arr = Object.values(newState)[0].comments
-        for( var i = 0; i < arr.length; i++){
-          if (arr[i]._id === action.commentId) {
-            arr.splice(i, 1);
-        }
-      }
-      return newState;
     case FETCH_ALL_POSTS:
       action.posts.forEach(post => {
         newState[post._id] = post;
