@@ -15,6 +15,7 @@ const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
 const likes = require("./routes/api/likes");
 const spotify = require("./routes/api/spotify");
+const genius = require("./routes/api/genius");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const {User} = require('./models/User');
@@ -79,6 +80,7 @@ app.use("/api/users", users );
 app.use("/api/spotify", spotify );
 app.use("/api/posts", posts);
 app.use("/api/likes", likes);
+app.use("/api/genius", genius );
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
