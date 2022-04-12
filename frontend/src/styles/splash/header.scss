@@ -13,7 +13,7 @@
   }
 
   &__sign-in {
-    margin-left: 30px;
+    margin-left: 40px;
     font-size: 20px;
     font-weight: 500;
     background-color: $pastel-green;
@@ -141,4 +141,8 @@
       transform: scale(1.1) perspective(1px);
       transition: 0.50s;
     }
+}
+
+.sign-out-button {
+  
 }
