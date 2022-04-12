@@ -37,7 +37,7 @@ const ProfileHeader = props => {
               ) : (
               <img className='profile__image' src={demoPic} alt='Avatar' loading='eager' />
             )}
-            <button>Follow</button>
+            {/* <button>Follow</button> */}
           </div>
           <div className='profile__details'>
               <h1 className='profile__username'>{props.user.username}</h1>
