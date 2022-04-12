@@ -8,14 +8,14 @@ import ProfilePost from './profile_post';
 
 const Profile = props => {
   const [userPosts, setUserPosts] = useState([]);
-
+  
   useEffect(() => {
     props.requestUser(props.match.params.id);
     props.fetchPostsByUser(props.userId).then((res) => {
       setUserPosts(res.posts)
     });
     window.scrollTo(0, 0);
-  }, []);
+  }, [props.location.pathname])
 
   return props.user && props.posts ? (
     <div className='profile-outer'>
