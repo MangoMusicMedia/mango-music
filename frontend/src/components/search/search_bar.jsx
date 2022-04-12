@@ -87,7 +87,7 @@ const SearchBar = (props) => {
         <input
           onKeyDown={onKeyDown}
           className="header__search-input"
-          placeholder="Search for a track"
+          placeholder="Search for a track to make a post . . ."
           onChange={ e => {
             setSearch(e.target.value);
           }}

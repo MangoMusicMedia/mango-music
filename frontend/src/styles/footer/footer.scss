@@ -69,6 +69,7 @@
             & > svg {
                 -webkit-transition: fill 0.5s;
                 transition: fill 0.5s;
+                fill: $light-brown;
 
                 &:hover {
                     cursor: pointer;
