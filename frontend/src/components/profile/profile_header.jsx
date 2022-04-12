@@ -15,17 +15,17 @@ const ProfileHeader = props => {
 
   useEffect(() => {
     if (props.currentUser) {
-      setBio(props.currentUser.bio);
+      setBio(props.user.profileBio);
     }
-  }, [props.currentUser]);
+  }, [props.user]);
 
   const handleEdit = e => {
     e.preventDefault();
-    const bio = {
-      id: props.post._id,
-      description: bio
+    const userBio = {
+      id: props.user._id,
+      profileBio: bio
     }
-    props.updateUserProfile(bio);
+    props.updateUserProfile(userBio);
   }
 
     return props.user ? (
@@ -52,11 +52,11 @@ const ProfileHeader = props => {
               <textarea onChange={update('bio')} value={bio} placeholder='Add a bio . . .' />
             </div>
             <div className="profile__bottom__bio-button-wrapper">
-              <button className="profile__bottom__bio-button">Edit</button>
+              <button onClick={handleEdit} className="profile__bottom__bio-button">Edit</button>
             </div>
           </form>
           ) : (
-            <p className='profile__bottom__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p>
+            <p className='profile__bottom__body'>{bio}</p>
           )}
         </div>
       </div>

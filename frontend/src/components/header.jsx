@@ -25,9 +25,15 @@ const Header = (props) => {
         <img className="header__logo" src={logo} alt="logo" />
         </Link>
         <SearchBarContainer />
+        {props.currentUser.profilePhoto ? (
+        <Link to={`/users/${props.currentUser.id}`}>
+          <img className="user-profile" src={props.currentUser.profilePhoto}/>
+        </Link>
+        ) : (
         <Link to={`/users/${props.currentUser.id}`}>
         <img className="user-profile" src={demoPic}/>
         </Link>
+        )}
         {getSessionLink(props.loggedIn)}
       </div>
     </header>
