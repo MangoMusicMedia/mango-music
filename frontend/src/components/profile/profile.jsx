@@ -3,6 +3,7 @@ import ProfileHeader from "./profile_header";
 import { requestUser } from "../../actions/user_actions";
 import { useEffect, useState } from 'react';
 import { fetchPostsByUser } from '../../actions/post_actions';
+import { updateUserProfile } from '../../actions/user_actions';
 import ProfilePost from './profile_post';
 
 const Profile = props => {
@@ -19,7 +20,7 @@ const Profile = props => {
   return props.user && props.posts ? (
     <div className='profile-outer'>
       <div className='profile-inner'>
-        <ProfileHeader currentUser={props.currentUser} posts={userPosts} user={props.user}/>
+        <ProfileHeader updateUserProfile={props.updateUserProfile} currentUser={props.currentUser} posts={userPosts} user={props.user}/>
       {(userPosts) ? (
         <ul className='profile-inner__container'>
           {userPosts.map((post, idx) => (
@@ -45,4 +46,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { requestUser, fetchPostsByUser })(Profile);
+export default connect(mapStateToProps, { requestUser, fetchPostsByUser, updateUserProfile })(Profile);
