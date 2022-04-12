@@ -8,18 +8,16 @@ import { createLike, deleteLike, fetchLikes } from "../../actions/like_actions";
 
 const mapStateToProps = (state, ownProps) => {
   const currentPost = state.entities.posts[ownProps.match.params.postId]
-  let postComments = [];
   let postLikes = [];
   if (currentPost) {
     postLikes = currentPost.likes
-    postComments = currentPost.comments
   }
-  // debugger
+  
   return {
     currentUser: state.session.user,
     post: currentPost,
     postLikes: postLikes,
-    comments: postComments,
+    comments: Object.values(state.entities.comments),
     users: state.entities.users,
     likes: Object.values(state.entities.likes)
   }
