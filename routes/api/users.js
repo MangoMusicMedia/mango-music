@@ -42,41 +42,47 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email})
+  User.findOne({ email: req.body.email })
   .then(user => {
-    if (user) {
-      errors.email = "Sorry, email is already in use";
-      return res.status(400).json(errors);
-    } else {
-      const newUser = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        followers: [],
-        posts: [],
-        likedPosts: []
-      })
-      
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser.save()
-            .then((user) => {
-              const payload = { id: user.id, username: user.username };
-
-              jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                res.json({
-                  success: true,
-                  token: "Bearer " + token
-                });
-              });
-            })
-            .catch(err => console.log(err));
+    User.findOne({ username: req.body.username })
+    .then(user2 => {
+      if (user) {
+        errors.email = "Sorry, email is already in use";
+        return res.status(400).json(errors);
+      } else if (user2) {
+        errors.username = "Sorry, username is already in use";
+        return res.status(400).json(errors);
+      } else {
+        const newUser = new User({
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          followers: [],
+          posts: [],
+          likedPosts: []
         })
-      })
-
-    }
+        
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save()
+              .then((user) => {
+                const payload = { id: user.id, email: user.email, username: user.username, profilePhoto: user.profilePhoto, profileBio: user.profileBio };
+  
+                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                  res.json({
+                    success: true,
+                    token: "Bearer " + token
+                  });
+                });
+              })
+              .catch(err => console.log(err));
+          })
+        })
+  
+      }
+    })
   })
 })
 
@@ -100,7 +106,7 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            const payload = {id: user.id, email: user.email};
+            const payload = { id: user.id, email: user.email, username: user.username, profilePhoto: user.profilePhoto, profileBio: user.profileBio };
 
             jwt.sign(
               payload,
@@ -217,6 +223,15 @@ router.delete("/:userId/followers/:followerId",
   }
 )
 
+
+// --------- Edit user profile route ----------
+router.patch("/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .then(user => res.json(user))
+      .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
+  })
 
 
 module.exports = router;

@@ -33,6 +33,9 @@ const UserSchema = new Schema({
   ],
   profilePhoto: {
     type: String
+  },
+  profileBio: {
+    type: String
   }
 }, {
   timestamps: true

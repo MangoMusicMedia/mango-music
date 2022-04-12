@@ -7,6 +7,8 @@ import configureStore from './store/store';
 //TESTING FETCHING LIKED POSTS
 import { fetchLikedPostsbyUser } from './actions/post_actions';
 
+//TESTING UPDATE PROFILE
+import { updateUserProfile } from './actions/user_actions';
 
 // TESTING START
 import { search, 
@@ -114,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.deleteLike = deleteLike;
 
     window.searchGenius = searchGenius;
-    window.fetchTrackDescription = fetchTrackDescription;
+    window.fetchTrackDescription = fetchTrackDescription
+    window.updateUserProfile = updateUserProfile
 
     //TESTING END
     
