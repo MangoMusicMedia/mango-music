@@ -10,7 +10,6 @@ const commentsReducer = (oldState = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_COMMENTS:
-            console.log(action.comments)
             newState = {}
             action.comments.forEach(comment => {
                 newState[comment._id] = comment;
@@ -20,9 +19,6 @@ const commentsReducer = (oldState = {}, action) => {
             newState[action.comment._id] = action.comment;
             return newState
         case REMOVE_COMMENT:
-            console.log('NEWSTATE', newState)
-            console.log('ID', action.commentId);
-            console.log('ACTION', action);
             delete newState[action.commentId];
             return newState;
         default:
