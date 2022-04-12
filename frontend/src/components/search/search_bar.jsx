@@ -22,7 +22,10 @@ const SearchBar = (props) => {
 
   const displayResults = 
     <div className="search_drop-down-container">
-      {searching && <div className="search-modal-background" onClick={() => setSearching(false)}></div>}
+      {/* <div className="search-modal-background" onClick={() => {
+        setSearching(false)
+        setSearch("")
+      }}></div> */}
 
       <div className="search_drop-down">
         {
@@ -30,6 +33,7 @@ const SearchBar = (props) => {
             <div className="song_card" key={song.id}>
               <button className="song_card__details" key={song.id} onClick={() => {
                 setSearching(false)
+                setSearch("")
                 props.openModal({
                   type: "addPost",
                   payload: {
@@ -55,6 +59,7 @@ const SearchBar = (props) => {
                   </div>
                   <div className="song_card__add-post" onClick={() => {
                     setSearching(false)
+                    setSearch("")
                     props.openModal({ 
                       type: "addPost", 
                       payload: {
@@ -82,8 +87,14 @@ const SearchBar = (props) => {
 
 
   return (
+    <div className="header__outter-wrapper-container" >
     <div className="header__outter-wrapper" >
+      {searching && <div className="search-modal-background" onClick={(e) => {
+        setSearching(false)
+        setSearch("")
+      }}></div>}
       <div className="header__search-wrapper">
+
         <input
           onKeyDown={onKeyDown}
           className="header__search-input"
@@ -91,6 +102,7 @@ const SearchBar = (props) => {
           onChange={ e => {
             setSearch(e.target.value);
           }}
+          value={searchString}
         ></input>
         <div onClick={ e => {
           if (!searching) {
@@ -109,6 +121,7 @@ const SearchBar = (props) => {
         </div>
       </div>
       {searching &&  displayResults }
+    </div>
     </div>
   );
 }
