@@ -7,3 +7,7 @@ export const fetchUser = userId => {
 export const fetchAllUsers = () => {
   return axios.get('/api/users')
 }
+
+export const editUserProfile = (userData) => {
+  return axios.patch(`api/users/${userData.id}`, userData)
+}

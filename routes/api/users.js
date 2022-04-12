@@ -224,5 +224,14 @@ router.delete("/:userId/followers/:followerId",
 )
 
 
+// --------- Edit user profile route ----------
+router.patch("/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .then(user => res.json(user))
+      .catch(err => res.status(400).json({ nouserfound: "No user found by that ID" }))
+  })
+
 
 module.exports = router;
