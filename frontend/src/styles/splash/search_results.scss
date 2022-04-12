@@ -1,5 +1,19 @@
 @import '../colors.scss';
 
+.search-modal-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  text-align: center;
+  cursor: pointer;
+  animation-name: fadeIn;
+  animation-duration: 350ms;
+}
+
 .search_drop-down {
   border-radius: 6px;
   overflow-x: hidden;
