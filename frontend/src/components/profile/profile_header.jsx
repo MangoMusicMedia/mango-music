@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import profPic from '../../images/demo-profile.png';
+import demoPic from '../../images/demo-profile.png';
 
 const ProfileHeader = props => {
 
@@ -8,7 +8,11 @@ const ProfileHeader = props => {
       <div className='profile'>
         <div className="profile__top">
           <div className="profile__image-wrapper">
-            <img className='profile__image' src={props.user.profilePhoto} alt='Avatar' loading='eager' />
+            {props.user.profilePhoto ? (
+              <img className='profile__image' src={props.user.profilePhoto} alt='Avatar' loading='eager' />
+              ) : (
+              <img className='profile__image' src={demoPic} alt='Avatar' loading='eager' />
+            )}
             <button>Follow</button>
           </div>
           <div className='profile__details'>

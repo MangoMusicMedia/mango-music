@@ -28,8 +28,8 @@ const Footer = () => {
                     <div className="footer__contact">
                         <h2 className="footer__label">Contact Us</h2>
                             <div>
-                            <a href="https://github.com/Shhmabbey"target="_blank">Abigail Hernandez</a>
-                            <a href="https://github.com/kingbloopyPlantsy" target="_blank">Maggie McDonald</a>
+                            <a href="https://www.linkedin.com/in/abigail-rose-hernandez/"target="_blank">Abigail Hernandez</a>
+                            <a href="https://www.linkedin.com/in/maggie-mae-mcdonald/" target="_blank">Maggie McDonald</a>
                             <a href="https://github.com/Catherine-M-Choi"target="_blank">Catherine Choi</a>
                             <a href="https://github.com/johnnyhoang510" target="_blank">Johnny Hoang</a>
                             </div>

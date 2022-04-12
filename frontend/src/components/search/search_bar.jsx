@@ -69,7 +69,7 @@ const SearchBar = (props) => {
       <div className="header__search-wrapper">
         <input
           className="header__search-input"
-          placeholder="Search for a track"
+          placeholder="Search for a track to make a post . . ."
           onChange={ e => {
             setSearch(e.target.value);
           }}
