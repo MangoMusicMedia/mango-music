@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { beautifyDate } from "../../util/date_util";
 import { Link } from "react-router-dom";
 import demoPic from '../../images/demo-profile.png';
+import Description from "./song_description";
 
 const Post = props => {
   let [likes, setLikes] = useState(props.postLikes.length)
   let [caption, setCaption] = useState('');
   let [comment, setComment] = useState('');
   let [likedStatus, setLikedStatus] = useState(false);
-  let [likedButton, setLikedButton] = useState('like')
+  let [likedButton, setLikedButton] = useState('like');
 
   const update = field => {
     return e => {
@@ -70,10 +71,6 @@ const Post = props => {
       setLikes(props.postLikes.length);
     }
   }, [props.post]);
-
-  // useEffect(() => {
-  //   setLikedButton('liked')
-  // }, [likedStatus]);
   
   if (props.post && props.comments && Object.values(props.users)) {
     return (
@@ -88,9 +85,10 @@ const Post = props => {
           ) : null }
         </div>
         <img src={props.post.albumCoverURL} alt="album or track art" />
+        <Description name={props.post.trackName}/>
         <div className="button-wrapper">
           {props.currentUser.id === props.post.author ? (
-            <button onClick={() => props.deletePost(props.post._id)}>Remove</button>
+            <button onClick={() => props.deletePost(props.post._id)}>Delete Post</button>
           ) : (
             <p></p>
           )}
