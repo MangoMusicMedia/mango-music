@@ -13,6 +13,21 @@ const ProfileHeader = props => {
     }
   }
 
+  useEffect(() => {
+    if (props.currentUser) {
+      setBio(props.currentUser.bio);
+    }
+  }, [props.currentUser]);
+
+  const handleEdit = e => {
+    e.preventDefault();
+    const bio = {
+      id: props.post._id,
+      description: bio
+    }
+    props.updateUserProfile(bio);
+  }
+
     return props.user ? (
       <div className='profile'>
         <div className="profile__top">
