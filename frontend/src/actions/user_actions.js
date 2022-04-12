@@ -27,3 +27,8 @@ export const requestUser = (userId) => dispatch => {
   return UserAPIUtil.fetchUser(userId)
     .then(user => dispatch(receiveUser(user)))
 }
+
+export const updateUserProfile = (userData) => dispatch => {
+  return UserAPIUtil.editUserProfile(userData)
+    .then(user => dispatch(receiveUser(user)))
+}

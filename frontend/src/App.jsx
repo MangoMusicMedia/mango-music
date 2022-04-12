@@ -10,6 +10,7 @@ import Profile from './components/profile/profile';
 import Post from './components/post/post_container';
 import Footer from './components/footer/footer';
 import OurTeam from './components/ourTeam/ourTeam';
+import EditProfile from './components/profile/edit_profile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <AuthRoute exact path="/welcome"component={Splash} />
           <ProtectedRoute exact path="/posts/:postId" component={Post}/>
           <ProtectedRoute exact path="/users/:id" component={Profile} />
+          <ProtectedRoute exact path="/users/edit/:id" component={EditProfile} />
           <ProtectedRoute exact path="/ourTeam" component={OurTeam} />
           <ProtectedRoute path="/" component={Feed}/>
         </Switch>
