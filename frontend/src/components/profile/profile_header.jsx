@@ -1,8 +1,17 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import demoPic from '../../images/demo-profile.png';
 
 const ProfileHeader = props => {
+  let [bio, setBio] = useState('');
+
+  const update = field => {
+    return e => {
+      if (field === 'bio') {
+        setBio(e.target.value);
+      }
+    }
+  }
 
     return props.user ? (
       <div className='profile'>
@@ -22,7 +31,15 @@ const ProfileHeader = props => {
           </div>
         </div>
         <div className='profile__bottom'>
-          <p className='profile__bottom__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p>
+          <form className="profile__bottom__bio-wrapper">
+            <div className="profile__bottom__text-wrapper">
+              <textarea onChange={update('bio')} value={bio} placeholder='Add a bio . . .' />
+            </div>
+            <div className="profile__bottom__bio-button-wrapper">
+              <button className="profile__bottom__bio-button">Edit</button>
+            </div>
+          </form>
+          {/* <p className='profile__bottom__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p> */}
         </div>
       </div>
     ) : null
