@@ -23,6 +23,7 @@ import { search,
     fetchAlbumsTracks
 } from './util/spotify_api_util';
 import { fetchPosts, fetchPost, fetchPostsByUser, createPost, updatePost, deletePost } from './actions/post_actions';
+import { searchGenius, fetchTrackDescription } from './util/genius_api_util'
 // TESTING END
 
 //TESTING COMMENTS
@@ -114,7 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.createLike = createLike;
     window.deleteLike = deleteLike;
 
-    window.updateUserProfile = updateUserProfile;
+    window.searchGenius = searchGenius;
+    window.fetchTrackDescription = fetchTrackDescription
+    window.updateUserProfile = updateUserProfile
 
     //TESTING END
     

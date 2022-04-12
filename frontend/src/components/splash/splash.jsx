@@ -48,6 +48,7 @@ const Splash = ({ openModal }) => {
               <div className='splash__right__words-wrapper'>
                 <h1>Why Mango Music?</h1>
                 <p>Join a collective community of devote music lovers with Mango Music. As a Mango user, you can share your favorite songs or artists with likeminded people in order to broaden your musical horizon and explore new musical tastes and sounds. Join now for free to explore all that Mango Music has to offer.</p>
+                <div id='rg_embed_link_395791' class='rg_embed_link' data-song-id='395791'>Read <a href='https://genius.com/Abba-dancing-queen-lyrics'>“Dancing Queen” by ABBA</a> on Genius</div> <script crossorigin src='//genius.com/songs/395791/embed.js'></script>
               </div>
             </div>
           </div>
