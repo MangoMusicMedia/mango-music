@@ -5,6 +5,7 @@ import { logout } from "../actions/session_actions"
 import { connect } from "react-redux";
 import SearchBarContainer from "./search/search_bar_container";
 import { Link } from "react-router-dom";
+import demoPic from '../images/demo-profile.png';
 
 const Header = (props) => {
   const { openModal, logout } = props;
@@ -24,6 +25,9 @@ const Header = (props) => {
         <img className="header__logo" src={logo} alt="logo" />
         </Link>
         <SearchBarContainer />
+        <Link to={`/users/${props.currentUser.id}`}>
+        <img className="user-profile" src={demoPic}/>
+        </Link>
         {getSessionLink(props.loggedIn)}
       </div>
     </header>
@@ -31,7 +35,8 @@ const Header = (props) => {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.session.isAuthenticated
+  loggedIn: state.session.isAuthenticated,
+  currentUser: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({

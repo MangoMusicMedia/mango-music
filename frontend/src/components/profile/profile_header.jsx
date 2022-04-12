@@ -31,6 +31,7 @@ const ProfileHeader = props => {
           </div>
         </div>
         <div className='profile__bottom'>
+          {props.currentUser.id === props.user._id ? (
           <form className="profile__bottom__bio-wrapper">
             <div className="profile__bottom__text-wrapper">
               <textarea onChange={update('bio')} value={bio} placeholder='Add a bio . . .' />
@@ -39,7 +40,9 @@ const ProfileHeader = props => {
               <button className="profile__bottom__bio-button">Edit</button>
             </div>
           </form>
-          {/* <p className='profile__bottom__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p> */}
+          ) : (
+            <p className='profile__bottom__body'>Growing up in a family of music lovers, I was accustomed from an early age to different genres ranging from progressive rock to jazz. It was classical music though that gave me the impetus to move on from being a passive listener to actually playing an instrument myself...</p>
+          )}
         </div>
       </div>
     ) : null

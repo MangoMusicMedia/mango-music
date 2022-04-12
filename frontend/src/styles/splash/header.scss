@@ -13,8 +13,8 @@
   }
 
   &__sign-in {
+    margin-left: 30px;
     font-size: 20px;
-    margin-left: 64px;
     font-weight: 500;
     background-color: $pastel-green;
     padding: 12px 18px;
@@ -123,4 +123,17 @@
       border: 2px solid $orange-soda;
     }
   }
+}
+
+.user-profile {
+  margin-top: 4px;
+  width: 40px;
+  border-radius: 6px;
+  margin-left: 64px;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1) perspective(1px);
+      transition: 0.50s;
+    }
 }
