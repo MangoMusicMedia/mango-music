@@ -46,6 +46,7 @@ for (let idx = 0; idx < 16; idx++) {
     'posts': [],
     'likedPosts': [],
     'profilePhoto': faker.internet.avatar(),
+    'profileBio': faker.lorem.paragraph(),
   }
   fakeUserData.push(new User(newUser))
 }
@@ -58,6 +59,7 @@ let newDemoUser = {
   'posts': [],
   'likedPosts': [],
   'profilePhoto': faker.internet.avatar(),
+  'profileBio': "",
 }
 
 let newCatUser = {
@@ -68,6 +70,7 @@ let newCatUser = {
   'posts': [],
   'likedPosts': [],
   'profilePhoto': faker.internet.avatar(),
+  'profileBio' : "",
 }
 
 let newMaggieUser = {
@@ -78,6 +81,7 @@ let newMaggieUser = {
   'posts': [],
   'likedPosts': [],
   'profilePhoto': faker.internet.avatar(),
+  'profileBio': "",
 }
 
 let newAbbeyUser = {
@@ -88,6 +92,7 @@ let newAbbeyUser = {
   'posts': [],
   'likedPosts': [],
   'profilePhoto': faker.internet.avatar(),
+  'profileBio': "",
 }
 
 let newJohnnyUser = {
@@ -98,6 +103,8 @@ let newJohnnyUser = {
   'posts': [],
   'likedPosts': [],
   'profilePhoto': faker.internet.avatar(),
+  'profileBio' : "",
+
 }
 
 let usersData = [
