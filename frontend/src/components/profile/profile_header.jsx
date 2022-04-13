@@ -4,6 +4,7 @@ import demoPic from '../../images/demo-profile.png';
 
 const ProfileHeader = props => {
   let [bio, setBio] = useState('');
+  let [initialBio, setInitialBio] = useState('');
 
   const update = field => {
     return e => {
@@ -16,6 +17,7 @@ const ProfileHeader = props => {
   useEffect(() => {
     if (props.currentUser) {
       setBio(props.user.profileBio);
+      setInitialBio(props.user.profileBio);
     }
   }, [props.user]);
 
@@ -52,7 +54,11 @@ const ProfileHeader = props => {
               <textarea onChange={update('bio')} value={bio} placeholder='Add a bio . . .' />
             </div>
             <div className="profile__bottom__bio-button-wrapper">
-              <button onClick={handleEdit} className="profile__bottom__bio-button">Edit</button>
+              {initialBio === bio ? (
+                null
+              ) : (
+                <button onClick={handleEdit} className="profile__bottom__bio-button">Edit</button>
+              )}
             </div>
           </form>
           ) : (
