@@ -33,6 +33,13 @@ const LoginForm = props => {
     props.login(demoUser).then(props.closeModal);
   }
 
+  const submitHandler = e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  }
+
   useEffect(() => {
     props.removeErrors();
   }, []);
@@ -40,7 +47,7 @@ const LoginForm = props => {
   return (
     <div className="login-form">
       <div className="login-form__inner">
-        <form className="login-form__form">
+        <form className="login-form__form" onKeyDown={submitHandler}>
 
           <div className="login-form__form__header-wrapper">
             <h1>Sign in</h1>
