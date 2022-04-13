@@ -171,15 +171,11 @@
       column-count: 2;
       column-gap: 10px;
     }
-
-    // &__outer-wrapper {
-    //   padding: 24px;
-    // }
     
     &__post-wrapper {
-    margin-bottom: 10px;
     text-decoration: none;
     border-radius: 8px;
+    margin-bottom: 10px !important;
     margin: 0;
     display: grid;
     grid-template-rows: 1fr auto;
