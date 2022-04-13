@@ -23,6 +23,7 @@ const SignUpForm = props => {
   }
 
   const handleSubmit = e => {
+    e.preventDefault();
     const user = {
       email,
       username,
@@ -31,6 +32,12 @@ const SignUpForm = props => {
     }
 
     props.signup(user);
+  }
+
+  const submitHandler = e => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+    }
   }
 
   const handleSubmitDemoUser = e => {
@@ -49,7 +56,7 @@ const SignUpForm = props => {
   return (
     <div className="signup-form">
       <div className="signup-form__inner">
-        <form className="signup-form__form">
+        <form className="signup-form__form" onKeyDown={submitHandler}>
 
           <div className="signup-form__form__header-wrapper">
             <h1>Create your Mango account</h1>
@@ -111,14 +118,14 @@ const SignUpForm = props => {
           </div>
 
           <div className="signup-form__form__lower-inputs">
-            <WaterButton handleSubmit={handleSubmit} title={'Create Account'} />
+            <WaterButton type="button" handleSubmit={handleSubmit} title={'Create Account'} />
             {/* <input type="submit" className="signup-form__form__submit" value="Sign Up" /> */}
 
             <div className="signup-form__form__or">
               <p>OR</p>
             </div>
 
-            <button className="signup-form__form__demo-button" onClick={handleSubmitDemoUser}>Continue with Demo User</button>
+            <button className="signup-form__form__demo-button" onKeyDown={submitHandler} onClick={handleSubmitDemoUser}>Continue with Demo User</button>
           </div>
 
           <p className="signup-form__form__terms">
