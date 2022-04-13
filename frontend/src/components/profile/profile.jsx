@@ -14,17 +14,8 @@ const Profile = props => {
     props.fetchPostsByUser(props.userId).then((res) => {
       setUserPosts(res.posts)
     });
-    props.fetchPostsByUser(props.userId).then((res) => {
-      setUserPosts(res.posts)
-    });
     window.scrollTo(0, 0);
   }, [props.location.pathname])
-  
-  useEffect(() => {
-    // props.fetchPostsByUser(props.userId).then((res) => {
-    //   setUserPosts(res.posts)
-    // });
-  }, [props.posts]);
 
   return props.user && props.posts ? (
     <div className='profile-outer'>

@@ -4,10 +4,12 @@ import { beautifyDate } from "../../util/date_util";
 import { Link } from "react-router-dom";
 import demoPic from '../../images/demo-profile.png';
 import Description from "./song_description";
+import Lyrics from "./song_lyrics";
 
 const Post = props => {
   let [likes, setLikes] = useState(props.postLikes.length)
   let [caption, setCaption] = useState('');
+  let [initialCaption, setInitialCaption] = useState('');
   let [comment, setComment] = useState('');
   let [likedStatus, setLikedStatus] = useState(false);
   let [likedButton, setLikedButton] = useState('like');
@@ -68,6 +70,7 @@ const Post = props => {
   useEffect(() => {
     if (props.post){
       setCaption(props.post.description);
+      setInitialCaption(props.post.description);
       setLikes(props.postLikes.length);
     }
   }, [props.post]);
@@ -86,6 +89,7 @@ const Post = props => {
         </div>
         <img src={props.post.albumCoverURL} alt="album or track art" />
         <Description name={props.post.trackName}/>
+        <Lyrics artist={props.post.trackName} name={props.post.trackName}/>
         <div className="button-wrapper">
           {props.currentUser.id === props.post.author ? (
             <button onClick={() => props.deletePost(props.post._id)}>Delete Post</button>
@@ -125,7 +129,11 @@ const Post = props => {
               <textarea value={caption} onChange={update('caption')} />
             </div>
             <div className="post__right__edit-wrapper__button-wrapper">
-              <button>Edit</button>
+              {initialCaption === caption ? (
+                null
+              ) : (
+                <button>Edit</button>
+              )}
             </div>
           </form>
         ) : (
