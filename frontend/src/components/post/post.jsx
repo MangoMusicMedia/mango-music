@@ -89,7 +89,7 @@ const Post = props => {
         </div>
         <img src={props.post.albumCoverURL} alt="album or track art" />
         <Description name={props.post.trackName}/>
-        <Lyrics artist={props.post.trackName} name={props.post.trackName}/>
+        <Lyrics id={props.post.trackId} artist={props.post.trackName} name={props.post.trackName}/>
         <div className="button-wrapper">
           {props.currentUser.id === props.post.author ? (
             <button onClick={() => props.deletePost(props.post._id)}>Delete Post</button>
