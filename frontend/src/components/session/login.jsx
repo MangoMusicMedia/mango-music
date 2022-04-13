@@ -36,6 +36,7 @@ const LoginForm = props => {
   const submitHandler = e => {
     if (e.key === "Enter") {
       e.preventDefault();
+      handleSubmit();
     }
   }
 

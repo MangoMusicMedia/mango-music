@@ -23,7 +23,6 @@ const SignUpForm = props => {
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
     const user = {
       email,
       username,
@@ -36,7 +35,8 @@ const SignUpForm = props => {
 
   const submitHandler = e => {
     if (e.key === "Enter") {
-      e.preventDefault()
+      e.preventDefault();
+      handleSubmit();
     }
   }
 
