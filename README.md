@@ -40,3 +40,4 @@ Thanks for the following people who have contributed to this project:
 * Users wll soon have the ability to create, edit or delete 'playlists' on their personal profile to organize their music posts
 * Private posts that can only been seen by the user
 * Feed customization
+* Upload profile image
