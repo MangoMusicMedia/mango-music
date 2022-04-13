@@ -14,7 +14,11 @@ const Description = props => {
 
   return songDesc ? (
     <div className='song-desc'>
-      <p>{songDesc}</p>
+      {songDesc === '?' ? (
+        <p className='not-available'>Sorry, there is not yet a description available for this song.</p>
+      ) : (
+        <p>{songDesc}</p>
+      )}
     </div>
   ) : (
     <Spinner/>

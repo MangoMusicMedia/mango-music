@@ -24,7 +24,6 @@ const AddPostModal = props => {
       author: props.currentUserId,
       ...props.payload
     }
-    console.log(newPost)
     props.createPost(newPost).then( () => props.closeModal() )
   }
 

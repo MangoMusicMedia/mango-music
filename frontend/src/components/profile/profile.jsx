@@ -14,8 +14,17 @@ const Profile = props => {
     props.fetchPostsByUser(props.userId).then((res) => {
       setUserPosts(res.posts)
     });
+    props.fetchPostsByUser(props.userId).then((res) => {
+      setUserPosts(res.posts)
+    });
     window.scrollTo(0, 0);
   }, [props.location.pathname])
+  
+  useEffect(() => {
+    // props.fetchPostsByUser(props.userId).then((res) => {
+    //   setUserPosts(res.posts)
+    // });
+  }, [props.posts]);
 
   return props.user && props.posts ? (
     <div className='profile-outer'>
@@ -24,7 +33,7 @@ const Profile = props => {
       {(userPosts) ? (
         <ul className='profile-inner__container'>
           {userPosts.map((post, idx) => (
-            <ProfilePost key={idx} id={post._id} img={post.albumCoverURL} name={post.trackName} text={post.description}/>
+              <ProfilePost key={idx} id={post._id} img={post.albumCoverURL} name={post.trackName} text={post.description}/>
           ))}
         </ul>
       ) : (

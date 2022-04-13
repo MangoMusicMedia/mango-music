@@ -16,14 +16,15 @@
 
   &__post-wrapper {
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 8px;
     margin: 0;
     display: grid;
     grid-template-rows: 1fr auto;
     margin-bottom: 10px;
     break-inside: avoid;
     background-color: $off-white;
-    box-shadow: $shadow;
+    // box-shadow: $shadow;
+    border: 2px solid rgba(92, 69, 53, 0.1);
 
     &:hover h3 {
       display: block;
