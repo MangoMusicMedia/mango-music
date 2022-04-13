@@ -24,6 +24,7 @@ import { search,
 } from './util/spotify_api_util';
 import { fetchPosts, fetchPost, fetchPostsByUser, createPost, updatePost, deletePost } from './actions/post_actions';
 import { searchGenius, fetchTrackDescription } from './util/genius_api_util'
+import { fetchLyrics } from './util/lyrics_api_util';
 // TESTING END
 
 //TESTING COMMENTS
@@ -118,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.searchGenius = searchGenius;
     window.fetchTrackDescription = fetchTrackDescription
     window.updateUserProfile = updateUserProfile
+
+    window.fetchLyrics = fetchLyrics;
 
     //TESTING END
     
