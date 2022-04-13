@@ -49,7 +49,10 @@ const ProfileHeader = props => {
             ) : (
             <img className='profile__image' src={demoPic} alt='Avatar' loading='eager' />
           )}
-          <button onClick={handleFollow}>{props.user.followers.includes(props.currentUser.id) ? "Unfollow" : "Follow"}</button>
+          {props.currentUser.id !== props.user._id ? 
+            <button onClick={handleFollow}>{props.user.followers.includes(props.currentUser.id) ? "Unfollow" : "Follow"}</button> :
+            <p></p>
+          }
         </div>
         <div className='profile__details'>
             <h1 className='profile__username'>{props.user.username}</h1>
