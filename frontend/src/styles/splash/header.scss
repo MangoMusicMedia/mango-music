@@ -10,6 +10,12 @@
     margin-right: 34px;
     justify-content: space-between;
     align-items: center;
+
+    & > a {
+      &:last-of-type {
+        margin-left: 64px;
+      }
+    }
   }
 
   &__sign-in {
@@ -136,7 +142,6 @@
   margin-top: 4px;
   width: 40px;
   border-radius: 6px;
-  margin-left: 64px;
 
     &:hover {
       cursor: pointer;
