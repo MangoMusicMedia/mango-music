@@ -25,6 +25,8 @@ import { search,
 import { fetchPosts, fetchPost, fetchPostsByUser, createPost, updatePost, deletePost } from './actions/post_actions';
 import { searchGenius, fetchTrackDescription } from './util/genius_api_util'
 import { fetchLyrics } from './util/lyrics_api_util';
+import { createFollower, deleteFollower } from './actions/follower_actions'
+// import { createFollower } from './util/follower_api_util';
 // TESTING END
 
 //TESTING COMMENTS
@@ -121,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateUserProfile = updateUserProfile
 
     window.fetchLyrics = fetchLyrics;
+    window.createFollower = createFollower;
+    window.deleteFollower = deleteFollower;
 
     //TESTING END
     

@@ -190,11 +190,9 @@ router.post("/:userId/followers",
     User.findById(req.params.userId)
       .then(user => {
 
-        // console.log(user)
-        user.followers.push(req.body.follower);
-        // console.log(user)
+        user.followers.push((req.body.followerId));
         user.save()
-          .then((data) => res.json(data.followers))
+          .then((data) => res.json(user))
           .catch(err => res.status(400).json(err))
 
         // return res.json(user)
@@ -211,9 +209,11 @@ router.delete("/:userId/followers/:followerId",
           if (index > -1) {
             user.followers.splice(index, 1); 
           }
+
+        console.log(user)
         
         user.save()
-          .then(user => res.json("Follower deleted"))
+          .then(user => res.json(user))
           .catch(err => res.status(400).json({ nofollowerfound: "No follower found with that ID" }))
 
         // return res.json(user)
