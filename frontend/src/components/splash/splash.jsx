@@ -6,6 +6,7 @@ import ReactRotatingText from "react-rotating-text";
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal_actions';
 import SplashHeader from './splash_header';
+import Footer from '../footer/footer';
 
 
 const Splash = ({ openModal }) => {
@@ -53,6 +54,7 @@ const Splash = ({ openModal }) => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
