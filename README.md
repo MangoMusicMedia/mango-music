@@ -2,6 +2,13 @@
 
 Mango Music is a social media platform in which users can build connections over what they love the most, music! Users can search for tracks, discover new tunes, listen to song previews, and most importantly, share their thoughts and start a discussion about a particular piece. Whether visitors prefer meeting new people by visiting the explore page or sharing the new indie band they just dicovered with their tight-knit circle, Mango Music has something for all music lovers alike. [Visit Mango Music](https://mango-music-fsp.herokuapp.com/#/welcome) today and see what all the hype is about.
 
+## Table of Contents
+
+1. [Features](#features)
+2. [Technologies](#technologies)
+3. [Contributors](#contributors)
+4. [Future Features](#future-features)
+
 ## Features
 * Create new account creation and login
 * Create, edit, or delete posts about songs and albums they would like to share
