@@ -6,6 +6,10 @@ import {
   UPDATE_POST,
   DELETE_POST
 } from '../../actions/post_actions'
+import {
+  RECEIVE_ALL_LIKES,
+} from "../../actions/like_actions";
+
 
 const postsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -31,6 +35,10 @@ const postsReducer = (oldState = {}, action) => {
       return newState;
     case DELETE_POST:
       delete newState[action.postId]
+      return newState;
+    case RECEIVE_ALL_LIKES:
+      newState[action.post._id] = action.post
+      debugger;
       return newState;
     default:
       return oldState;

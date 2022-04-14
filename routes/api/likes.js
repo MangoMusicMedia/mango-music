@@ -51,7 +51,7 @@ router.post("/:userId/posts/:postId",
                         newLike.save()
                         // foundPost.likes.push(newLike)
                         // foundPost.save()
-                        res.json(newLike)
+                        res.json(foundPost)
                     })
 
             })
@@ -84,7 +84,7 @@ router.delete("/posts/:postId/:likeId",
                 post.likes.splice(deleteLikeIndex, 1);
                 
                 post.save()
-                    .then(() => res.json("Like removed"))
+                    .then(() => res.json(post))
                     .catch(err => res.status(400).json({ nolikefound: "No like found with that ID" }))
 
             })
