@@ -8,50 +8,50 @@ export const REMOVE_LIKE = "REMOVE_LIKE";
 
 // regular action creators
 
-export const receiveAllLikes = (likes) => {
+export const receiveAllLikes = (post) => {
     return {
         type: RECEIVE_ALL_LIKES,
-        likes
+        post
     }
 };
 
-export const receiveLike = (like) => {
-    return {
-        type: RECEIVE_LIKE,
-        like
-    }
-};
+// export const receiveLike = (like) => {
+//     return {
+//         type: RECEIVE_LIKE,
+//         like
+//     }
+// };
 
-export const removeLike = (likeId) => {
-    return {
-        type: REMOVE_LIKE,
-        likeId
-    }
-};
+// export const removeLike = (likeId) => {
+//     return {
+//         type: REMOVE_LIKE,
+//         likeId
+//     }
+// };
 
 
-// thunk action creators
+// // thunk action creators
 
-export const fetchLikes = (postId) => (dispatch) => {
-    return LikeApiUtil.fetchLikes(postId)
-        .then(
-            likes => dispatch(receiveAllLikes(likes.data)),
-            err => dispatch(receiveErrors(err.response.data))
-        )
-};
+// export const fetchLikes = (postId) => (dispatch) => {
+//     return LikeApiUtil.fetchLikes(postId)
+//         .then(
+//             likes => dispatch(receiveAllLikes(likes.data)),
+//             err => dispatch(receiveErrors(err.response.data))
+//         )
+// };
 
-export const fetchLike = (likeId) => (dispatch) => {
-    return LikeApiUtil.fetchLike(likeId)
-        .then(
-            like => dispatch(receiveLike(like.data)),
-            err => dispatch(receiveErrors(err.response.data))
-        )
-};
+// export const fetchLike = (likeId) => (dispatch) => {
+//     return LikeApiUtil.fetchLike(likeId)
+//         .then(
+//             like => dispatch(receiveLike(like.data)),
+//             err => dispatch(receiveErrors(err.response.data))
+//         )
+// };
 
 export const createLike = (userId, postId) => (dispatch) => {
     return LikeApiUtil.createLike(userId, postId)
         .then(
-            like => dispatch(receiveLike(like.data)),
+            post => dispatch(receiveAllLikes(post.data)),
             err => dispatch(receiveErrors(err.response.data))
         )
 };
@@ -59,7 +59,7 @@ export const createLike = (userId, postId) => (dispatch) => {
 export const deleteLike = (postId, likeId) => (dispatch) => {
     return LikeApiUtil.deleteLike(postId, likeId)
         .then(
-            () => dispatch(removeLike(likeId)),
+            () => dispatch(receiveAllLikes(likeId)),
             err => dispatch(receiveErrors(err.response.data))
         )
 };
