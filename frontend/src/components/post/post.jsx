@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import demoPic from '../../images/demo-profile.png';
 import Description from "./song_description";
 import Lyrics from "./song_lyrics";
+import Comment from "./comment";
 
 const Post = props => {
   let [likes, setLikes] = useState(props.postLikes.length)
@@ -33,6 +34,15 @@ const Post = props => {
     }
     props.updatePost(post);
   }
+
+  // const handleEditComment = (id) => {
+  //   const commentObj = {
+  //     postId: props.postId, 
+  //     id: id,
+  //     message: targetComment
+  //   }
+  //   props.editComment(postId, id,)
+  // }
 
   const handleComment = e => {
     e.preventDefault();
@@ -142,20 +152,27 @@ const Post = props => {
         <ul className="post__right__comments-wrapper">
           <h1>Comments</h1>
           {props.comments.map((comment, idx) => (
-            <li key={idx}>
-              <div className="inner-comment-wrapper">
-                <Link to={`/users/${comment.author}`}>{props.users[comment.author] && props.users[comment.author].username}</Link>
-                {props.currentUser.id === comment.author ? (
-                <div className="btn-wrapper">
-                  <button onClick={() => props.deleteComment(props.post._id, comment._id)}>Remove</button>
-                </div>
-                ) : (
-                  <div></div>
-                )}
-              </div>
-              <h1>{comment.message}</h1>
-            </li>
-            ))}
+            // <li key={idx}>
+            //   <div className="inner-comment-wrapper">
+            //     <Link to={`/users/${comment.author}`}>{props.users[comment.author] && props.users[comment.author].username}</Link>
+            //     {props.currentUser.id === comment.author ? (
+            //       <form action="" className="new-comment-wrapper">
+            //         <div className="text-wrapper">
+            //           <textarea onChange={update('targetComment')} value={targetComment} />
+            //         </div>
+            //         <div className="btn-wrapper">
+            //           <button onClick={() => props.editComment(props.post._id, comment._id, targetComment)}>Edit</button>
+            //           <button onClick={() => props.deleteComment(props.post._id, comment._id)}>Remove</button>
+            //         </div>
+            //       </form>
+            //     ) : (
+            //       <h1>{comment.message}</h1>
+            //     )}
+            //   </div>
+            // </li>
+            <Comment key={idx} users={props.users} currentUser={props.currentUser} comment={comment} editComment={props.editComment} deleteComment={props.deleteComment} post={props.post} />
+            )
+            )}
             <form onSubmit={handleComment} className="new-comment-wrapper">
             <div className="text-wrapper">
               <textarea onChange={update('comment')} value={comment} placeholder='Add a comment . . .' />
