@@ -209,6 +209,7 @@
       }
 
       & > li {
+        display: none;
         margin-bottom: 40px;
         display: flex;
         flex-direction: column;
@@ -219,14 +220,86 @@
 
         & > .inner-comment-wrapper {
           display: flex;
+          flex-direction: column;
           justify-content: space-between;
 
-          & > .btn-wrapper {
-            display: flex;
-            gap: 20px;
+          & > form {
+            & > .text-wrapper {
+              min-width: 200px;
+              width: 100%;
+              max-height: 300px;
+              min-height: 60px;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 2px solid rgba(92, 69, 53, 0.3);
+              border-radius: 10px;
+              
+              & > textarea {
+                background-color: $off-white;
+              }
+              
+              &:focus-within {
+                border-radius: 10px;
+                border: 2px solid $lime-green;
+              }
+              
+              & > textarea {
+                padding-top: 10px;
+                width: 90%;
+                height: 40%;
+                resize: none;
+                border: none;
+                outline: none;
+                font-size: 16px;
+                font-family: 'Hind Siliguri', sans-serif;
+                letter-spacing: 0.5px;
+                color: $brown;
+                font-size: 20px;
+                line-height: 30px;
+              
+                &::placeholder {
+                  font-size: 14px;
+                  font-family: 'Hind Siliguri', sans-serif;
+                  letter-spacing: 0.5px;
+                  color: $light-brown;
+                }
+              }
+            }
+          }
 
-            & > button {
-              font-size: 14px;
+          & > .upper-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & > .btn-wrapper {
+              display: flex;
+              gap: 20px;
+            
+              & > button {
+                font-size: 14px;
+                color: $light-brown;
+                padding: 10px;
+                margin-left: -10px;
+                border-radius: 6px;
+                width: fit-content;
+                margin-bottom: 6px;
+                -webkit-transition: background 0.8s;
+                transition: background 0.8s;
+            
+                &:hover {
+                  color: $brown;
+                  cursor: pointer;
+                  background-color: $pastel-green;
+                }
+              }
+            }
+
+            & > a {
+              font-size: 16px;
+              font-weight: 500;
               color: $light-brown;
               padding: 10px;
               margin-left: -10px;
@@ -235,31 +308,12 @@
               margin-bottom: 6px;
               -webkit-transition: background 0.8s;
               transition: background 0.8s;
-
+            
               &:hover {
                 color: $brown;
                 cursor: pointer;
                 background-color: $pastel-green;
               }
-            }
-          }
-
-          & > a {
-            font-size: 16px;
-            font-weight: 500;
-            color: $light-brown;
-            padding: 10px;
-            margin-left: -10px;
-            border-radius: 6px;
-            width: fit-content;
-            margin-bottom: 6px;
-            -webkit-transition: background 0.8s;
-            transition: background 0.8s;
-            
-            &:hover {
-              color: $brown;
-              cursor: pointer;
-              background-color: $pastel-green;
             }
           }
         }
@@ -287,6 +341,7 @@
         }
   
         & > .like {
+          padding: 8px;
           padding-right: 10px;
   
           &:hover {
@@ -433,4 +488,14 @@
 
 .not-available {
   font-size: 15px !important;
+  color: $light-brown;
+}
+
+.error-msg {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.user-like {
+  pointer-events: none;
 }

@@ -11,8 +11,8 @@ const Lyrics = props => {
   let [error, setError] = useState('');
 
   useEffect(() => {
-    fetchLyrics(props.artist, props.name).then(res => setSongLyrics(res.data.lyrics));
-    fetchTrack(props.id).then(res => fetchLyrics(res.data.artists[0].name, props.name).then(res => setSongLyrics(res.data.lyrics)).catch(err => setSongLyrics('Sorry, there is not yet lyrics available for this song.')));
+    fetchLyrics(props.artist, props.name).then(res => setSongLyrics(res.data.lyrics)).catch(err => setError('Sorry, lyrics are not yet available for this song.'))
+    // fetchTrack(props.id).then(res => fetchLyrics(res.data.artists[0].name, props.name).then(res => setSongLyrics(res.data.lyrics)).catch(err => setError('Sorry, there is not yet lyrics available for this song.')));
   }, []);
 
   if (songLyrics){
@@ -20,7 +20,7 @@ const Lyrics = props => {
       <div className='song-desc song-lyrics'>
         <h1>Lyrics</h1>
         {songLyrics === '?' ? (
-          <p className='not-available'>Sorry, there is not yet lyrics available for this song.</p>
+          <p className='not-available'>Sorry, lyrics are not yet available for this song.</p>
           ) : (
             <p className='song-lyrics__lyrics'>{songLyrics}</p>
             )}
@@ -28,7 +28,7 @@ const Lyrics = props => {
     ) 
   } else if (error) {
     return (
-      <p className='not-available'>{error}</p>
+      <p className='error-msg not-available'>{error}</p>
     )
   } else {
     return (
