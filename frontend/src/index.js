@@ -33,7 +33,9 @@ import { createFollower, deleteFollower } from './actions/follower_actions'
 import { fetchComments, fetchComment, createComment, editComment, deleteComment } from './actions/comment_actions';
 
 //TESTING LIKES
-import { fetchLikes, fetchLike, createLike, deleteLike } from "./actions/like_actions";
+// import { fetchLikes, fetchLike, createLike, deleteLike } from "./actions/like_actions";
+// import { createLike, deleteLike } from "./actions/like_actions";
+import { createLike, deleteLike } from "./util/like_api_util";
 
 // We will create this component shortly
 import Root from './components/root';
@@ -113,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchPostsByUser = fetchPostsByUser;
     window.fetchLikedPostsbyUser = fetchLikedPostsbyUser;
 
-    window.fetchLikes = fetchLikes;
-    window.fetchLike = fetchLike;
+    // window.fetchLikes = fetchLikes;
+    // window.fetchLike = fetchLike;
     window.createLike = createLike;
     window.deleteLike = deleteLike;
 
