@@ -61,21 +61,22 @@ router.post("/:userId/posts/:postId",
 
 
 //deleting a like and removing it from the array of the post
-router.delete("/posts/:postId/:likeId",
+router.delete("/:userId/posts/:postId",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
+        let foundUser = User.findById(req.params.userId)
+            
         Post.findById(req.params.postId)
             .then(post => {
 
                 let deleteLikeIndex = "";
 
                 post.likes.forEach( (like, idx) => {
-                    if (like.toString() === req.params.likeId) {
+                    if (like.toString() === req.params.userId) {
                         deleteLikeIndex = idx
                         // like.remove()
                     }
                 })
-
 
                 if (deleteLikeIndex === "") {
                     return res.json({ nolikefound: "No like found" })

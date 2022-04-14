@@ -56,10 +56,10 @@ export const createLike = (userId, postId) => (dispatch) => {
         )
 };
 
-export const deleteLike = (postId, likeId) => (dispatch) => {
-    return LikeApiUtil.deleteLike(postId, likeId)
+export const deleteLike = (userId, postId) => (dispatch) => {
+    return LikeApiUtil.deleteLike(userId, postId)
         .then(
-            () => dispatch(receiveAllLikes(likeId)),
+            post => dispatch(receiveAllLikes(post.data)),
             err => dispatch(receiveErrors(err.response.data))
         )
 };

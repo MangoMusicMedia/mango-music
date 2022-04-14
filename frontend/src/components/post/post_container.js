@@ -4,9 +4,7 @@ import { fetchPost, updatePost, deletePost } from "../../actions/post_actions";
 import { createComment, editComment, deleteComment, fetchComments } from "../../actions/comment_actions";
 import { openModal } from "../../actions/modal_actions";
 import { fetchUsers } from "../../actions/user_actions";
-import { createLike, deleteLike, 
-  // fetchLikes 
-  } from "../../actions/like_actions";
+import { createLike, deleteLike } from "../../actions/like_actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -28,5 +26,4 @@ export default connect(mapStateToProps, {fetchPost,
   fetchUsers,
   createLike,
   deleteLike, 
-  // fetchLikes
 })(Post);

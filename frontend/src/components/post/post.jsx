@@ -10,8 +10,6 @@ const Post = props => {
   let [caption, setCaption] = useState('');
   let [initialCaption, setInitialCaption] = useState('');
   let [comment, setComment] = useState('');
-  let [likedStatus, setLikedStatus] = useState(false);
-  let [likedButton, setLikedButton] = useState('like');
 
   const update = field => {
     return e => {
@@ -44,13 +42,12 @@ const Post = props => {
 
   const handleLike = e => {
     e.preventDefault();
-    if (likedStatus) return;
     
-    if (!props.post.likes.includes(props.currentUser.id)) {
-      setLikedStatus(true);
-      setLikedButton('liked');
-      props.createLike(props.currentUser.id, props.post._id);
-    }
+    (props.post.likes.includes(props.currentUser.id)) ? (
+      props.deleteLike(props.currentUser.id, props.post._id)
+    ) : (
+      props.createLike(props.currentUser.id, props.post._id)
+    )
   }
 
   const getDate = date => {
@@ -103,19 +100,13 @@ const Post = props => {
             <img alt="profile" src={demoPic} />
           )}
         </Link>
-            <iframe title={props.post.trackName} alt={props.post.trackName} src={`https://open.spotify.com/embed/track/${props.post.trackId}?utm_source=generator`} width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" ></iframe>
+          <iframe title={props.post.trackName} alt={props.post.trackName} src={`https://open.spotify.com/embed/track/${props.post.trackId}?utm_source=generator`} width="100%" height="80" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" ></iframe>
         <div className="post__right__small-wrapper">
           <p className="post__right__time">{beautifyDate(props.post.createdAt)}</p>
           <div className="likes-wrapper">
-          {props.post.likes.includes(props.currentUser.id) ? (
-            <button onClick={handleLike} className='liked'>
+            <button onClick={handleLike} className={props.post.likes.includes(props.currentUser.id) ? 'liked' : "like" }>
               <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg>
             </button>
-          ) : (
-            <button onClick={handleLike} className={likedButton}>
-              <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" /></svg>
-            </button>
-          )}
             <p className="post__right__likes">{props.post.likes.length}</p>
           </div>
         </div>
