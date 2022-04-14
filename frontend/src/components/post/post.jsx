@@ -89,7 +89,7 @@ const Post = props => {
         </div>
         <img src={props.post.albumCoverURL} alt="album or track art" />
         <Description name={props.post.trackName}/>
-        <Lyrics artist={props.post.trackName} name={props.post.trackName}/>
+        <Lyrics id={props.post.trackId} artist={props.post.trackName} name={props.post.trackName}/>
         <div className="button-wrapper">
           {props.currentUser.id === props.post.author ? (
             <button onClick={() => props.deletePost(props.post._id)}>Delete Post</button>
@@ -172,7 +172,7 @@ const Post = props => {
   } else {
     return (
       <div className="removed">
-        <h1>Post has successfully been removed.</h1>
+        <h1>Post has been removed.</h1>
       </div>
     );
   }
