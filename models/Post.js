@@ -51,6 +51,9 @@ const PostSchema = new Schema({
     trackId: {
         type: String
     },
+    artistName: {
+        type: String
+    },
     albumId: {
         type: String
     },

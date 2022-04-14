@@ -39,6 +39,7 @@ const SearchBar = (props) => {
                   payload: {
                     trackName: song.name,
                     trackId: song.id,
+                    artistName: song.artists[0].name,
                     albumId: song.album.id,
                     albumName: song.album.name,
                     albumCoverURL: song.album.images[0].url,

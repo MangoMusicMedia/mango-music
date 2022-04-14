@@ -27,6 +27,7 @@ import { searchGenius, fetchTrackDescription } from './util/genius_api_util'
 import { fetchLyrics } from './util/lyrics_api_util';
 import { createFollower, deleteFollower } from './actions/follower_actions'
 // import { createFollower } from './util/follower_api_util';
+import { fetchUser } from './util/user_api_util';
 // TESTING END
 
 //TESTING COMMENTS
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchLyrics = fetchLyrics;
     window.createFollower = createFollower;
     window.deleteFollower = deleteFollower;
+    window.fetchUser = fetchUser;
 
     //TESTING END
     

@@ -7,6 +7,7 @@ export const FETCH_POST = "FETCH_POST";
 export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
+export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
 
 const fetchPostsAction = (posts) => {
   return {
@@ -50,6 +51,11 @@ const deletePostAction = (postId) => {
   }
 }
 
+export const receiveUserPosts = user => ({
+  type: RECEIVE_USER_POSTS,
+  user
+})
+
 export const fetchPosts = () => dispatch => {
   return PostAPIUtil.fetchPostIndex()
     .then((posts) => dispatch(fetchPostsAction(posts.data)))
@@ -76,18 +82,27 @@ export const fetchPost = (postId) => dispatch => {
 
 export const createPost = (postData) => dispatch => {
   return PostAPIUtil.createPost(postData)
-    .then((post) => dispatch(createPostAction(post.data)))
+    .then((res) => {
+      dispatch(receiveUserPosts(res.data.user))
+      dispatch(createPostAction(res.data.post))
+    })
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const updatePost = (postData) => dispatch => {
   return PostAPIUtil.updatePost(postData)
-    .then((post) => dispatch(updatePostAction(post.data)))
+    .then((res) => {
+      dispatch(receiveUserPosts(res.data.user))
+      dispatch(updatePostAction(res.data.post))
+    })
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }
 
 export const deletePost = (postId) => dispatch => {
   return PostAPIUtil.deletePost(postId)
-    .then(() => dispatch(deletePostAction(postId)))
+    .then((res) => {
+      dispatch(receiveUserPosts(res.data.user))
+      dispatch(deletePostAction(postId))
+    })
     .catch(err => dispatch(receiveErrors(err.response.data)))
 }

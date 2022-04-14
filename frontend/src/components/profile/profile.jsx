@@ -7,32 +7,33 @@ import { updateUserProfile } from '../../actions/user_actions';
 import ProfilePost from './profile_post';
 
 const Profile = props => {
-  const [userPosts, setUserPosts] = useState([]);
+  // const [userPosts, setUserPosts] = useState([]);
   
   useEffect(() => {
     props.requestUser(props.match.params.id);
-    props.fetchPostsByUser(props.userId).then((res) => {
-      setUserPosts(res.posts)
-    });
-    props.fetchPostsByUser(props.userId).then((res) => {
-      setUserPosts(res.posts)
-    });
-    window.scrollTo(0, 0);
-  }, [props.location.pathname])
-  
-  useEffect(() => {
     // props.fetchPostsByUser(props.userId).then((res) => {
     //   setUserPosts(res.posts)
     // });
-  }, [props.posts]);
+    // props.fetchPostsByUser(props.userId).then((res) => {
+    //   setUserPosts(res.posts)
+    // });
+    console.log("posts", props.user)
+    window.scrollTo(0, 0);
+  }, [props.location.pathname])
+  
+  // useEffect(() => {
+  //   // props.fetchPostsByUser(props.userId).then((res) => {
+  //   //   setUserPosts(res.posts)
+  //   // });
+  // }, [props.posts]);
 
-  return props.user && props.posts ? (
+  return props.user ? (
     <div className='profile-outer'>
       <div className='profile-inner'>
-        <ProfileHeader updateUserProfile={props.updateUserProfile} currentUser={props.currentUser} posts={userPosts} user={props.user}/>
-      {(userPosts) ? (
+        <ProfileHeader updateUserProfile={props.updateUserProfile} currentUser={props.currentUser} posts={props.user.posts} user={props.user}/>
+      {(props.user.posts) ? (
         <ul className='profile-inner__container'>
-          {userPosts.map((post, idx) => (
+          {props.user.posts.map((post, idx) => (
               <ProfilePost key={idx} id={post._id} img={post.albumCoverURL} name={post.trackName} text={post.description}/>
           ))}
         </ul>
@@ -45,13 +46,11 @@ const Profile = props => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
   return {
     userId: ownProps.match.params.id,
     user: state.entities.users[ownProps.match.params.id],
     currentUser: state.session.user,
     loggedIn: state.session.isAuthenticated,
-    posts: Object.values(state.entities.posts)
   }
 }
 
