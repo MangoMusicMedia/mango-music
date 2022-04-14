@@ -34,18 +34,18 @@ const Comment = (props) => {
                     <Link to={`/users/${comment.author}`}>{props.users[comment.author] && props.users[comment.author].username}</Link>
                     {props.currentUser.id === comment.author ? (
                     <div className="btn-wrapper">
-                        {comm === initialComm ? (
+                        {/* {comm === initialComm ? (
                             null
                             ) : (
                             <button onClick={handleEdit} >Edit</button>
-                        )}
+                        )} */}
                         <button onClick={() => props.deleteComment(props.post._id, comment._id)}>Remove</button>
                     </div>
                     ) : (
                         null
                     )}
                 </div>
-                {props.currentUser.id === comment.author ? (
+                {/* {props.currentUser.id === comment.author ? (
                     <form className="new-comment-wrapper">
                         <div className="text-wrapper">
                             <textarea onChange={update('comm')} value={comm} />
@@ -53,7 +53,8 @@ const Comment = (props) => {
                     </form>
                 ) : (
                 <h1 className="new-comment-wrapper">{comment.message}</h1>
-                )}
+            )} */}
+            <h1 className="new-comment-wrapper">{comment.message}</h1>
             </div>
         </li>
     )
