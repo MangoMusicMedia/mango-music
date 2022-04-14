@@ -34,8 +34,8 @@ import { fetchComments, fetchComment, createComment, editComment, deleteComment 
 
 //TESTING LIKES
 // import { fetchLikes, fetchLike, createLike, deleteLike } from "./actions/like_actions";
-// import { createLike, deleteLike } from "./actions/like_actions";
-import { createLike, deleteLike } from "./util/like_api_util";
+import { createLike, deleteLike } from "./actions/like_actions";
+// import { createLike, deleteLike } from "./util/like_api_util";
 
 // We will create this component shortly
 import Root from './components/root';

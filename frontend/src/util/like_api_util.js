@@ -12,6 +12,6 @@ export const createLike = (userId, postId) => {
     return axios.post(`/api/likes/${userId}/posts/${postId}`)
 };
 
-export const deleteLike = (postId, likeId) => {
-    return axios.delete(`/api/likes/posts/${postId}/${likeId}`)
+export const deleteLike = (userId, postId) => {
+    return axios.delete(`/api/likes/${userId}/posts/${postId}`)
 };
