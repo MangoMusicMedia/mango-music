@@ -27,11 +27,11 @@ User.remove({}, function(err) {
 });
 
 Post.remove({}, function(err) { 
-  console.log('User collection removed') 
+  console.log('Post collection removed') 
 });
 
 Like.remove({}, function(err) { 
-  console.log('User collection removed') 
+  console.log('Like collection removed') 
 });
 
 let profileBio = ["Music is life. That’s why our hearts have beats.",
@@ -138,7 +138,6 @@ let usersData = [
 
 bcrypt.genSalt(10, (err, salt) => {
   bcrypt.hash("password123", salt, (err, hash) => {
-    console.log(hash);
   })
 })
 
@@ -752,22 +751,35 @@ const songComments = [
 ]
 
 commentedSpotifySongs.forEach(async (song, idx) => {
-  newPost = new Post(song)
-
+  const newPost = new Post(song)
+  
   for (let index = 0; index < songComments[idx].length; index++) {
     newPost.comments.push({
       message: songComments[idx][index],
       author: randUser()._id
     });
   }
+
+  await axios.get('http://localhost:5000/api/spotify/track', { params: { id: newPost.trackId } })
+    .then((res) => {
+
+      newPost.artistName = res.data.artists[0].name
+      
+      newPost.save((err, result) => {
+        User.findById(newPost.author.toString())
+        .then(foundUser => {
+          if (foundUser) {
+            foundUser.posts.push(newPost)
+            foundUser.save()
+          } else {
+            console.log(`Doesn't work for ${newPost.author.toString()}`)
+          }
+        }).catch(error => console.log(error))
+      })
+    })
   
-  await newPost.save((err, result) => {
-  })
 })
 
-
-
-  
 
 // const songIds = [
 //   "7qCZgvV98j6RjUULW1s1it", 

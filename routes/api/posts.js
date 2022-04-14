@@ -101,6 +101,7 @@ router.post('/',
             author: req.body.author,
             trackName: req.body.trackName,
             trackId: req.body.trackId,
+            artistName: req.body.artistName,
             albumCoverURL: req.body.albumCoverURL,
             likes: [],
             comments: []   
@@ -108,16 +109,16 @@ router.post('/',
 
         let user = newPost.author
         let userId = user._id.toString();
-
-        User.findById(userId)
-            .then(foundUser => {
-                foundUser.posts.push(newPost)
-                foundUser.save()
-            })
-
+        
         newPost.save()
-            .then(post => res.json(post))
-            .catch(err => res.json(err))
+        
+        User.findById(userId)
+        .then(foundUser => {
+            foundUser.posts.push(newPost)
+            foundUser.save()
+            return res.json({user: foundUser, post: newPost})
+        })
+        .catch(err => res.json(err))
     })
 
 
@@ -126,7 +127,20 @@ router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
-            .then(post => res.json(post))
+            .then(updatedPost => {
+                User.findById(updatedPost.author).then( foundUser => {
+                    let index;
+                    foundUser.posts.forEach((post, idx) => {
+                        if (post._id.toString() === updatedPost._id.toString()) {
+                            index = idx
+                        }
+                    })
+                    foundUser.posts[index] = updatedPost
+                    foundUser.save().then(() => {
+                        return res.json({user: foundUser, post: updatedPost})
+                    })
+                })
+            })
             .catch(err => res.status(400).json({ nopostfound: "No post found by that ID" }))
     })
 
@@ -136,7 +150,21 @@ router.delete("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         Post.findByIdAndDelete(req.params.id)
-            .then(post => res.json("Post deleted"))
+            .then(deletedPost => {
+                User.findById(deletedPost.author)
+                .then(foundUser => {
+                    console.log("before", foundUser.posts.length)
+                    let index; 
+                    foundUser.posts.forEach((post, idx) => {
+                        if (post._id.toString() === deletedPost._id.toString()) {
+                            index = idx
+                        }
+                    })
+                    foundUser.posts.splice(index, 1); 
+                    foundUser.save()
+                    return res.json({user: foundUser})
+                })
+            })
             .catch(err => res.status(400).json({ nopostfound: "No post found by that ID" }))
     })
 
