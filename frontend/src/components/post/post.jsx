@@ -172,7 +172,7 @@ const Post = props => {
   } else {
     return (
       <div className="removed">
-        <h1>Post has successfully been removed.</h1>
+        <h1>Post has been removed.</h1>
       </div>
     );
   }
