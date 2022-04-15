@@ -81,7 +81,7 @@ useEffect(() => {
 * If no results were found for the fetch, we setErrors state to a custom error message to indicate that the lyrics were not available
 
 Intuitive search bar design
-```
+```js
 const SearchBar = (props) => {
 
   const [searchString, setSearch] = useState("");
@@ -108,6 +108,35 @@ const SearchBar = (props) => {
 * Search by clicking on search icon
 * Clear results by clicking away
 * Click on listed song to create a post
+
+
+Post patch route
+```js
+router.patch("/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
+            .then(updatedPost => {
+                User.findById(updatedPost.author).then( foundUser => {
+                    let index;
+                    foundUser.posts.forEach((post, idx) => {
+                        if (post._id.toString() === updatedPost._id.toString()) {
+                            index = idx
+                        }
+                    })
+                    foundUser.posts[index] = updatedPost
+                    foundUser.save().then(() => {
+                        return res.json({user: foundUser, post: updatedPost})
+                    })
+                })
+            })
+            .catch(err => res.status(400).json({ nopostfound: "No post found by that ID" }))
+    })
+```
+* To update a post, we first searched for the post by ID and then also the author that owned the post.
+* To ensure the user's post gets saved to the database, we iterated through all of their posts and found the index
+* We then updated the post by keying in to the user's posts array and finally called .save() on this user to save 
+update our database
 
 
 ## Contributors
