@@ -6,8 +6,9 @@ Mango Music is a social media platform in which users can build connections over
 
 1. [Features](#features)
 2. [Technologies](#technologies)
-3. [Contributors](#contributors)
-4. [Future Features](#future-features)
+3. [Featured Code](#featured-code)
+4. [Contributors](#contributors)
+5. [Future Features](#future-features)
 
 ## Features
 * Create new account creation and login
@@ -35,6 +36,7 @@ Lyrics Ovh API will be used to extract:
 * Song lyrics
 
 ## Featured Code
+Spotify Web API Routes
 ``` js
 router.get("/search", (req, res) => {
     getAuth()
@@ -65,6 +67,7 @@ router.get("/search", (req, res) => {
 * After we get back the response with the access token, we chain another request to the `/v1/search` endpoint, including our specified search parameters such as song title.  
 * Once we get back the response, we return it as a json object.
 
+Lyric Fetching
 ```js
 useEffect(() => {
   fetchLyrics(props.artist, props.name)
@@ -76,6 +79,36 @@ useEffect(() => {
 * In order to fetch lyrics for a specific song, we passed in the track artist and track name into a fetchLyrics action
 * We utilized setState React hooks to save the fetched result
 * If no results were found for the fetch, we setErrors state to a custom error message to indicate that the lyrics were not available
+
+Intuitive search bar design
+```
+const SearchBar = (props) => {
+
+  const [searchString, setSearch] = useState("");
+  const [songList, setSongList] = useState([]);
+  const [searching, setSearching] = useState(false);
+
+  const onKeyDown = (e) => {
+    if (searchString != "" && e.keyCode === 13) {
+      if (searching) {
+        setSearching(false);
+        setSongList([]);
+      } else {
+        setSearching(true);
+        props.search({ q: searchString, type: "track", limit: 5 })
+          .then(res => setSongList(res.data.tracks.items))
+          .catch(err => setSongList([]))
+      }
+    }
+  }
+  ...
+ }
+```
+* Utilize return key to search
+* Search by clicking on search icon
+* Clear results by clicking away
+* Click on listed song to create a post
+
 
 ## Contributors
 Thanks for the following people who have contributed to this project:
