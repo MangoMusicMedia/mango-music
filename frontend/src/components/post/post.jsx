@@ -11,6 +11,7 @@ const Post = props => {
   let [caption, setCaption] = useState('');
   let [initialCaption, setInitialCaption] = useState('');
   let [comment, setComment] = useState('');
+  let [commentError, setCommentError] = useState('');
 
   const update = field => {
     return e => {
@@ -34,11 +35,16 @@ const Post = props => {
 
   const handleComment = e => {
     e.preventDefault();
-    const commentObj = {
-      author: props.currentUser.id,
-      message: comment
+    if (comment) {
+      setCommentError('')
+      const commentObj = {
+        author: props.currentUser.id,
+        message: comment
+      }
+      props.createComment(props.post._id, commentObj).then(() => setComment(''));
+    } else {
+      setCommentError('Comment cannot be blank')
     }
-    props.createComment(props.post._id, commentObj).then(() => setComment(''));
   }
 
   const handleLike = e => {
@@ -147,6 +153,7 @@ const Post = props => {
             <div className="text-wrapper">
               <textarea onChange={update('comment')} value={comment} placeholder='Add a comment . . .' />
             </div>
+            <p className="comment-error">{commentError}</p>
               <div className="comment-button-wrapper">
                 <button className="comment-button">Add comment</button>
             </div>

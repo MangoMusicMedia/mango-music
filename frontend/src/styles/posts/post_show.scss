@@ -499,3 +499,9 @@
 .user-like {
   pointer-events: none;
 }
+
+.comment-error {
+  font-size: 16px;
+  margin-top: 10px;
+  color: $blood-orange;
+}
