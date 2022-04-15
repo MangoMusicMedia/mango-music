@@ -34,6 +34,17 @@ Genius API will be used to extract:
 Lyrics Ovh API will be used to extract:
 * Song lyrics
 
+## Featured Code
+
+```  useEffect(() => {
+fetchLyrics(props.artist, props.name).then(res => setSongLyrics(res.data.lyrics)).catch(err => setError('Sorry, lyrics are not yet available for this song.'))
+}, []);
+```
+
+* In order to fetch lyrics for a specific song, we passed in the track artist and track name into a fetchLyrics action
+* We utilized setState React hooks to save the fetched result
+* If no results were found for the fetch, we setErrors state to a custom error message to indicate that the lyrics were not available
+
 ## Contributors
 Thanks for the following people who have contributed to this project:
 * [Abigail Hernandez](https://github.com/Shhmabbey)
