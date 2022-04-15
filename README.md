@@ -80,7 +80,7 @@ useEffect(() => {
 * We utilized setState React hooks to save the fetched result
 * If no results were found for the fetch, we setErrors state to a custom error message to indicate that the lyrics were not available
 
-Intuitive search bar design
+Intuitive Search Bar Design
 ```js
 const SearchBar = (props) => {
 
@@ -110,7 +110,7 @@ const SearchBar = (props) => {
 * Click on listed song to create a post
 
 
-Post patch route
+Post Patch Route
 ```js
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
