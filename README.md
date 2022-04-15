@@ -35,9 +35,41 @@ Lyrics Ovh API will be used to extract:
 * Song lyrics
 
 ## Featured Code
+``` js
+router.get("/search", (req, res) => {
+    getAuth()
+    .then(data => {
+      const token = "Bearer " + data.access_token;
+      let search_url = "https://api.spotify.com/v1/search?";
+      
+      let params = []
+      for (let k in req.query) {
+        params.push(`${k}=${req.query[k]}`)
+      }
+      search_url += params.join("&");
+      
+      const response = axios.get(search_url, {
+        headers: { 
+          'Authorization': token
+        }
+      })
+      
+      return response;
+    })
+    .then(payload => {
+      return res.json(payload.data)
+    }, err =>  res.status(400).json(err))
+});
+```
+* To fetch data from the Spotify Web API, we first use `getAuth()` a function we defined to sent a `POST` request to the `/api/token` Spotify API endpoint, while including the Authorization and Content-Type in the headers of the request.
+* After we get back the response with the access token, we chain another request to the `/v1/search` endpoint, including our specified search parameters such as song title.  
+* Once we get back the response, we return it as a json object.
 
-```  useEffect(() => {
-fetchLyrics(props.artist, props.name).then(res => setSongLyrics(res.data.lyrics)).catch(err => setError('Sorry, lyrics are not yet available for this song.'))
+```js
+useEffect(() => {
+  fetchLyrics(props.artist, props.name)
+  .then(res => setSongLyrics(res.data.lyrics))
+  .catch(err => setError('Sorry, lyrics are not yet available for this song.'))
 }, []);
 ```
 
