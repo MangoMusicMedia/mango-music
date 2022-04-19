@@ -141,9 +141,9 @@ update our database
 
 ## Contributors
 Thanks for the following people who have contributed to this project:
-* [Abigail Hernandez](https://github.com/Shhmabbey)
+* [Abigail Hernandez](https://shhmabbey.com/)
 * [Catherine Choi](https://catherinemchoi.com/)
-* [Johnny Hoang](https://github.com/johnnyhoang510)
+* [Johnny Hoang](https://johnnyhoang510.github.io/portfolio-website/)
 * [Maggie McDonald](https://maggie-mcdonald.com/) 
 
 ## Future Features
