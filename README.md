@@ -48,9 +48,9 @@ fetchLyrics(props.artist, props.name).then(res => setSongLyrics(res.data.lyrics)
 ## Contributors
 Thanks for the following people who have contributed to this project:
 * [Abigail Hernandez](https://github.com/Shhmabbey)
-* [Catherine Choi](https://github.com/Catherine-M-Choi)
+* [Catherine Choi](https://catherinemchoi.com/)
 * [Johnny Hoang](https://github.com/johnnyhoang510)
-* [Maggie McDonald](https://github.com/kingbloopy) 
+* [Maggie McDonald](https://maggie-mcdonald.com/) 
 
 ## Future Features
 * View lyrics on post show page
