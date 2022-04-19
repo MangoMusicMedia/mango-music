@@ -6,8 +6,9 @@ Mango Music is a social media platform in which users can build connections over
 
 1. [Features](#features)
 2. [Technologies](#technologies)
-3. [Contributors](#contributors)
-4. [Future Features](#future-features)
+3. [Featured Code](#featured-code)
+4. [Contributors](#contributors)
+5. [Future Features](#future-features)
 
 ## Features
 * Create new account creation and login
@@ -35,15 +36,108 @@ Lyrics Ovh API will be used to extract:
 * Song lyrics
 
 ## Featured Code
+Spotify Web API Routes
+``` js
+router.get("/search", (req, res) => {
+    getAuth()
+    .then(data => {
+      const token = "Bearer " + data.access_token;
+      let search_url = "https://api.spotify.com/v1/search?";
+      
+      let params = []
+      for (let k in req.query) {
+        params.push(`${k}=${req.query[k]}`)
+      }
+      search_url += params.join("&");
+      
+      const response = axios.get(search_url, {
+        headers: { 
+          'Authorization': token
+        }
+      })
+      
+      return response;
+    })
+    .then(payload => {
+      return res.json(payload.data)
+    }, err =>  res.status(400).json(err))
+});
+```
+* To fetch data from the Spotify Web API, we first use `getAuth()` a function we defined to sent a `POST` request to the `/api/token` Spotify API endpoint, while including the Authorization and Content-Type in the headers of the request.
+* After we get back the response with the access token, we chain another request to the `/v1/search` endpoint, including our specified search parameters such as song title.  
+* Once we get back the response, we return it as a json object.
 
-```  useEffect(() => {
-fetchLyrics(props.artist, props.name).then(res => setSongLyrics(res.data.lyrics)).catch(err => setError('Sorry, lyrics are not yet available for this song.'))
+Lyric Fetching
+```js
+useEffect(() => {
+  fetchLyrics(props.artist, props.name)
+  .then(res => setSongLyrics(res.data.lyrics))
+  .catch(err => setError('Sorry, lyrics are not yet available for this song.'))
 }, []);
 ```
 
 * In order to fetch lyrics for a specific song, we passed in the track artist and track name into a fetchLyrics action
 * We utilized setState React hooks to save the fetched result
 * If no results were found for the fetch, we setErrors state to a custom error message to indicate that the lyrics were not available
+
+Intuitive Search Bar Design
+```js
+const SearchBar = (props) => {
+
+  const [searchString, setSearch] = useState("");
+  const [songList, setSongList] = useState([]);
+  const [searching, setSearching] = useState(false);
+
+  const onKeyDown = (e) => {
+    if (searchString != "" && e.keyCode === 13) {
+      if (searching) {
+        setSearching(false);
+        setSongList([]);
+      } else {
+        setSearching(true);
+        props.search({ q: searchString, type: "track", limit: 5 })
+          .then(res => setSongList(res.data.tracks.items))
+          .catch(err => setSongList([]))
+      }
+    }
+  }
+  ...
+ }
+```
+* Utilize return key to search
+* Search by clicking on search icon
+* Clear results by clicking away
+* Click on listed song to create a post
+
+
+Post Patch Route
+```js
+router.patch("/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
+            .then(updatedPost => {
+                User.findById(updatedPost.author).then( foundUser => {
+                    let index;
+                    foundUser.posts.forEach((post, idx) => {
+                        if (post._id.toString() === updatedPost._id.toString()) {
+                            index = idx
+                        }
+                    })
+                    foundUser.posts[index] = updatedPost
+                    foundUser.save().then(() => {
+                        return res.json({user: foundUser, post: updatedPost})
+                    })
+                })
+            })
+            .catch(err => res.status(400).json({ nopostfound: "No post found by that ID" }))
+    })
+```
+* To update a post, we first searched for the post by ID and then also the author that owned the post.
+* To ensure the user's post gets saved to the database, we iterated through all of their posts and found the index
+* We then updated the post by keying in to the user's posts array and finally called .save() on this user to save 
+update our database
+
 
 ## Contributors
 Thanks for the following people who have contributed to this project:
