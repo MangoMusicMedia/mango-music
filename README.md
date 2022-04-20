@@ -11,14 +11,32 @@ Mango Music is a social media platform in which users can build connections over
 5. [Future Features](#future-features)
 
 ## Features
-* Create new account creation and login
-* Create, edit, or delete posts about songs and albums they would like to share
-* Like or add comments to posts
-* View feed of recently made posts
-* View own posts on profile
-* Utilize search bar to find new songs to share
-* View profiles of and follow users
-* Users can expect a responsive application that is intuitive to use and has a consistent look and feel
+<p>Users can expect a responsive application that is intuitive to use and has a consistent look and feel. </p>
+<p>Create new account and login</p>
+<div id="header" align="left">
+  <img src="https://media.giphy.com/media/NQNXezhodDn4bZurss/giphy.gif"/>
+</div>
+<p>View feed of recently shared music.</p>
+<div id="header" align="left">
+  <img src="https://media.giphy.com/media/aDw11KibfQMrZ1i0Yk/giphy.gif"/>
+</div>
+<p>View profiles of and follow other users.</p>
+<div id="header" align="left">
+  <img src="https://media.giphy.com/media/DAblN4KYYVQJbYwbCN/giphy.gif"/>
+</div>
+<p>Utilize search bar to find new songs to share. Edit, or delete posts.</p>
+<div id="header" align="left">
+  <img src="https://media.giphy.com/media/nwU2DKKzC7EA1RGVMU/giphy.gif"/>
+</div>
+<p>Like or add comments to posts.</p>
+<p>View and edit profile.</p>
+<div id="header" align="left">
+  <img src="https://media.giphy.com/media/n9wtJ1x1oXa95f7iAL/giphy.gif"/>
+</div>
+
+
+
+
 
 ## Technologies
 MangoMusic is primarily built with the MERN stack, a combination of following four technologies: MongoDB, Express, React, and Node.
