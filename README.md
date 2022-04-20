@@ -12,7 +12,7 @@ Mango Music is a social media platform in which users can build connections over
 
 ## Features
 <p>Users can expect a responsive application that is intuitive to use and has a consistent look and feel. </p>
-<p>Create new account and login</p>
+<p>Create new account or login</p>
 <div id="header" align="left">
   <img src="https://media.giphy.com/media/NQNXezhodDn4bZurss/giphy.gif"/>
 </div>
@@ -20,15 +20,15 @@ Mango Music is a social media platform in which users can build connections over
 <div id="header" align="left">
   <img src="https://media.giphy.com/media/aDw11KibfQMrZ1i0Yk/giphy.gif"/>
 </div>
-<p>View profiles of and follow other users.</p>
+<p>View profiles and follow other users.</p>
 <div id="header" align="left">
   <img src="https://media.giphy.com/media/DAblN4KYYVQJbYwbCN/giphy.gif"/>
 </div>
-<p>Utilize search bar to find new songs to share. Edit, or delete posts.</p>
+<p>Utilize search bar to find new songs to share, which can be edited or deleted.</p>
 <div id="header" align="left">
   <img src="https://media.giphy.com/media/nwU2DKKzC7EA1RGVMU/giphy.gif"/>
 </div>
-<p>Like or add comments to posts.</p>
+<p>Like or comment on a post.</p>
 <p>View and edit profile.</p>
 <div id="header" align="left">
   <img src="https://media.giphy.com/media/n9wtJ1x1oXa95f7iAL/giphy.gif"/>
@@ -165,7 +165,6 @@ Thanks for the following people who have contributed to this project:
 * [Maggie McDonald](https://maggie-mcdonald.com/) 
 
 ## Future Features
-* View lyrics on post show page
 * View chords on post show page
 * Users wll soon have the ability to create, edit or delete 'playlists' on their personal profile to organize their music posts
 * Private posts that can only been seen by the user
