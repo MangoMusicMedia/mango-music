@@ -9,11 +9,11 @@ const Footer = () => {
                 <footer>
                     <div className="footer__about-us">
                         <h2 className="footer__label">About Us</h2>
-                        <Link to="/ourTeam">Our team</Link>
+                        <Link to={"/ourTeam"}>Our team</Link>
                     </div>
                     <div className="footer__help">
                         <h2 className="footer__label">Help</h2>
-                        <Link to="/ourTeam" className="support-page">Support page</Link>
+                        <Link to={"/ourTeam"} className="support-page">Support page</Link>
                     </div>
                     <div className="footer__technologies">
                         <h2 className="footer__label">Technologies</h2>

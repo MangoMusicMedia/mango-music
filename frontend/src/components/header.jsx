@@ -21,17 +21,17 @@ const Header = (props) => {
   return (
     <header className="header">
       <div className="header__inner">
-        <Link to="/" >
+        <Link to={"/"} >
         <img className="header__logo" src={logo} alt="logo" />
         </Link>
         <SearchBarContainer />
         {props.currentUser.profilePhoto ? (
         <Link to={`/users/${props.currentUser.id}`}>
-          <img className="user-profile" src={props.currentUser.profilePhoto}/>
+          <img alt="user profile" className="user-profile" src={props.currentUser.profilePhoto}/>
         </Link>
         ) : (
         <Link to={`/users/${props.currentUser.id}`}>
-        <img className="user-profile" src={demoPic}/>
+              <img alt="user profile" className="user-profile" src={demoPic}/>
         </Link>
         )}
         {getSessionLink(props.loggedIn)}
